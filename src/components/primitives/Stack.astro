@@ -1,0 +1,38 @@
+---
+import type { StackProps } from "@props/stack";
+import "@styles/global.css";
+
+const {
+  direction = "column",
+  gap,
+  horizontalAlign,
+  verticalAlign,
+} = Astro.props as StackProps;
+
+const {...props} = Astro.props;
+---
+
+<section class:list={[
+    "stack",
+    "content-block",
+    `direction-${direction}`,
+    `gap-${gap}`,
+    `horizontal-align-${horizontalAlign}`,
+    `vertical-align-${verticalAlign}`
+  ]} {...props}>
+   <slot />
+</section>
+
+<style>
+    .stack {
+        display: flex;
+        width: 100%;
+        max-width: 800px;
+    }
+
+    @media (max-width: 768px) {
+        .stack {
+            flex-direction: column;
+        }
+    }
+</style>

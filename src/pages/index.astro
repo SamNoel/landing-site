@@ -1,49 +1,84 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import Section from "../components/Section.astro";
-import FeatureGrid from "../components/FeatureGrid.astro";
-import CTA from "../components/CTA.astro";
-import { getEntry } from "astro:content";
-import home from "../content/pages/home.json";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Hero from "@components/composits/Hero.astro";
+import SectionContainer from "@components/containers/SectionContainer.astro";
+import Stack from "@components/primitives/Stack.astro";
+import Card from "@components/primitives/Card.astro";
+import Grid from "@components/primitives/Grid.astro";
+import Button from "@components/primitives/Button.astro";
+import Divider from "@components/primitives/Divider.astro";
+import { getServices } from "@services/loaders/data/services";
+import { getReviews } from "@services/loaders/data/reviews";
+import { getAbout } from "@services/loaders/pages/home/about"; 
 
-// const homeEntry = await getEntry("pages", "home");
-
-// if (!homeEntry) {
-//   throw new Error("Home content not found");
-// }
-
-// const home = homeEntry.data;
+const servicesCollection = await getServices();
+const reviewsCollection = await getReviews();
+const aboutContent = await getAbout();
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<BaseLayout>
-			<Hero
-				title={home.hero.title}
-				subtitle={home.hero.subtitle}
-			/>
+<BaseLayout>
+	<SectionContainer>
+		<Hero 
+		title="Drinks, Crêpes, and Sandwiches"
+		subtitle="We serve a wide variety of hot, iced, and frozen  drinks, as well as savory,  sweet, and breakfast crêpes, and sandwiches.  Every drink and food item is made to order!"/>
+	</SectionContainer>
 
-			<Section title={home.services.title}>
-				<FeatureGrid items={home.services.content} />
-			</Section>
-
-			<Section>
-				<CTA
-				title={home.cta.title}
-				text={home.cta.text}
-				buttonText={home.cta.buttonText}
-				href={home.cta.href}
+	<SectionContainer>
+		<Grid columns={3}>
+			{servicesCollection.map((service) => (
+				<Card
+				title={service.title}
+				text={service.text}
+				imageName={service.imageName}
 				/>
-			</Section>
-					</BaseLayout>
-	</body>
-</html>
+			))}
+  		</Grid>
+	</SectionContainer>
+
+	<SectionContainer>
+		<Divider/>
+		<h2>Our Menus</h2>
+		<Grid columns={3} gap={16}>
+			<Button href="#" label="Cornwall Menu"></Button>
+			<Button href="#" label="Campbelltown Menu"></Button>
+			<Button href="#" label="Annville Menu"></Button>
+		</Grid>
+		<Divider/>
+	</SectionContainer>
+
+	<SectionContainer>
+		<h2>ABOUT</h2>
+		<Stack
+			direction="row"
+			gap="md"
+			horizontalAlign="center"
+			verticalAlign="top"
+		>
+			<h3>{aboutContent.title}</h3>
+			<div><aboutContent.Content/></div>
+		</Stack>
+	</SectionContainer>
+
+	<SectionContainer>
+		<Divider/>
+	</SectionContainer>
+
+	<SectionContainer>
+		<h2>What Our Customers Are Saying…</h2>
+		<Grid columns={3}>
+			{reviewsCollection.map((review) => (
+				<div style="border: 1px solid var(--color-neutral-300); padding: var(--space-2); border-radius: var(--space-1);">
+					<h3>{review.name}</h3>
+					<p>{review.review}</p>
+					{/* <p><strong>- {review.author}</strong></p> */}
+				</div>
+			))}
+		</Grid>
+	</SectionContainer>
+
+</BaseLayout>
+
+<style>
+
+
+</style>

@@ -1,7 +1,18 @@
 ---
+import Stack from "@components/primitives/Stack.astro";
+const {...props} = Astro.props;
 ---
 
-<footer class="footer">
+<footer class="footer" {...props}>
+  <Stack
+  direction="row"
+			gap="md"
+			maxWidth="wide"
+			horizontalAlign="center"
+			verticalAlign="top"
+  >
+
+  </Stack>
   <div class="inner">
     <p>© {new Date().getFullYear()} ClientSite. All rights reserved.</p>
   </div>

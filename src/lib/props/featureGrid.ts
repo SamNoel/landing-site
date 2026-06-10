@@ -1,8 +1,8 @@
 import { z } from "astro/zod";
-import { CardSchema } from "./card";
+import type { CollectionEntry } from "astro:content";
 
 export const FeatureGridSchema = z.object({
-  items: z.array(CardSchema),
+  // services: CollectionEntry<"services">,
 });
 
 export type FeatureGridProps = z.infer<typeof FeatureGridSchema>;

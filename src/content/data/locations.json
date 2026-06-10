@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Cornwall",
+    "hours": "Monday - Saturday: 7am - 2pm\nSunday: 8am - 2pm",
+    "address": "119 Springwood Dr., suite 500\nLebanon, PA 17042",
+    "phone": "(717) 675-7527",
+    "locationNumber": 1
+  },
+  {
+    "name": "Campbelltown",
+    "hours": "Monday - Saturday: 7am - 2pm\nSunday: 8am - 2pm",
+    "address": "2701 Horseshoe Pike\nPalmyra, PA 17078",
+    "phone": "(717) 675-9911",
+    "locationNumber": 2
+  },
+  {
+    "name": "Annville",
+    "hours": "Monday - Saturday: 7am - 2pm\nSunday: 8am - 2pm",
+    "address": "104 W Main St.\nAnnville, PA 17003",
+    "phone": "(717) 685-7933",
+    "locationNumber": 3
+  }
+]

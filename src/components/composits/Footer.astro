@@ -1,0 +1,24 @@
+---
+const {...props} = Astro.props;
+---
+
+<footer class="footer" {...props}>
+  <div class="inner">
+    <p>© {new Date().getFullYear()} ClientSite. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+.footer {
+  margin-top: var(--space-4);
+  padding: var(--space-3) 0;
+  border-top: 1px solid #eee;
+  color: var(--color-muted);
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-2);
+}
+</style>

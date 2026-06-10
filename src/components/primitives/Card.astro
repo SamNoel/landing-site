@@ -1,0 +1,56 @@
+---
+import type {CardProps} from "@props/card";
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+const { title, text, imageName } = Astro.props as CardProps;
+
+const {...props} = Astro.props;
+
+// Construct the image path based on the image name
+const imagePath = `/src/assets/${imageName}`;
+
+// Gather all image paths from the assets folder
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif,webp}');
+
+// Check if image exists in the glob
+if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "@assets/*.{jpeg,jpg,png,gif,webp}"`);
+---
+
+<div class="card" {...props}>
+  {(imagePath && images) && <Image src={images[imagePath]()} alt=`Image for card with title of: ${title}` class="card-image"/>}
+  <div class="content-container">
+    {title && <h3>{title}</h3>}
+    {text && <p>{text}</p>}
+  </div>
+</div>
+
+<style>
+.card {
+  /* padding: var(--space-3); */
+  /* border: 1px solid #eee; */
+  /* border-radius: 8px; */
+  display: flex;
+  flex-direction: column;
+  /* gap: var(--space-2); */
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  /* border-radius: 4px; */
+}
+
+.content-container {
+  padding: var(--space-3);
+  background-color: #c3a979;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+h3, p {
+  margin: 0;
+  color: #000000;
+}
+</style>

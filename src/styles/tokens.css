@@ -1,12 +1,17 @@
+/*
+NOTE: Custom fonts via fontsource are defined in astro.config.mjs and imported in BaseLayout.astro.
+*/
+
 :root {
   /* colors */
-  --color-bg: #ffffff;
-  --color-text: #111111;
+  --color-bg: #1f3d4d;
+  --color-bg-muted: #44728a;
+  --color-text: #c4c4c4;
+  --color-text-muted: #bababa;
   --color-muted: #666666;
   --color-primary: #3b82f6;
 
   /* typography */
-  --font-sans: system-ui, sans-serif;
   --text-sm: 14px;
   --text-base: 16px;
   --text-lg: 20px;

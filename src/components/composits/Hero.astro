@@ -1,0 +1,68 @@
+---
+import type { HeroProps } from "@props/hero";
+import { Image } from "astro:assets";
+
+const { title, subtitle } = Astro.props as HeroProps;
+const {...props} = Astro.props;
+
+// Gather all image paths from the assets folder
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif,webp}');
+---
+
+<section class="hero", {...props}>
+  <Image src={images["/src/assets/ancestor-hero.webp"]()} alt=`Image for card with title of: ${title}` class="image" width={821} quality={"high"}/>
+  <div class="content-container">
+  <h2>{title}</h2>
+  <p>{subtitle}</p>
+  </div>
+</section>
+
+<style>
+.hero {
+  padding: 0 var(--space-4) var(--space-4) var(--space-4);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: flex-start;
+  position: relative;
+}
+
+.content-container {
+  background-color: #511516;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 24px;
+  max-width: 600px;
+  padding: 40px 32px;
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+  z-index: 2;
+}
+
+.image {
+  align-items: start;
+}
+
+h1 {
+  font-size: var(--text-2xl);
+  margin: 0 0 var(--space-2);
+}
+
+p {
+  font-size: var(--text-lg);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 0;
+  }
+
+  .image {
+      width: 100%;
+      height: auto;
+  }
+    }
+</style>

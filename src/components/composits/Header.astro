@@ -1,0 +1,185 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import AncestorLogoImage from "@assets/ancestor-logo-grey.webp";
+import {NAV_LINKS} from "@consts";
+
+const {...props} = Astro.props;
+---
+
+<header class="header" {...props}>
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <a href="/" class="logo-link">
+      <Image src={AncestorLogoImage} alt="Ancestor logo" width="150" />
+    </a>
+
+    <!-- Hamburger (mobile only) -->
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Nav -->
+    <nav class="desktop-nav">
+      {NAV_LINKS.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+  </div>
+
+  <!-- Mobile menu (separate panel) -->
+  <div id="mobileNav" class="mobile-nav">
+    {NAV_LINKS.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+  </div>
+</header>
+
+<script>
+  let lastScrollTop = 0;
+  const header = document.querySelector(".header");
+  const mobileNav = document.querySelector("#mobileNav");
+  const burger = document.querySelector(".hamburger");
+
+  // scroll hide/show
+  window.addEventListener("scroll", () => {
+    let scrollTop =
+      window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+      header?.classList.add("nav-up");
+      mobileNav?.classList.add("mobile-nav-hidden");
+    } else {
+      header?.classList.remove("nav-up");
+      mobileNav?.classList.remove("mobile-nav-hidden");
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+
+  // mobile menu toggle
+  burger?.addEventListener("click", () => {
+    const isOpen = header!.classList.toggle("menu-open");
+    burger.setAttribute("aria-expanded", isOpen.toString());
+  });
+</script>
+
+<style>
+  .header {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #534b4c;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: transform 0.2s ease-in-out;
+  overflow-x: clip;
+}
+
+.nav-up {
+  transform: translateY(-100%);
+}
+
+/* MAIN ROW */
+.nav-inner {
+  max-width: var(--max-width);
+  margin-inline: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 32px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* LOGO */
+.logo-link {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* DESKTOP NAV */
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.desktop-nav a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-family: var(--font-cabin);
+  white-space: nowrap;
+}
+
+/* HAMBURGER (hidden on desktop) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: white;
+  display: block;
+}
+
+/* MOBILE MENU PANEL */
+.mobile-nav {
+  display: flex;
+  height: 0;
+  opacity: 0;
+  position: absolute;
+  bottom: 60;
+  width: 100%;
+  flex-direction: column;
+  gap: 16px;
+
+  padding: 16px;
+  background: #534b4c;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-nav a {
+  color: white;
+  text-decoration: none;
+  font-family: var(--font-cabin);
+}
+
+.mobile-nav-hidden {
+  height: 0 !important;
+  opacity: 0 !important;
+  transition: height 0.2s ease;
+}
+
+/* OPEN STATE */
+.header.menu-open .mobile-nav {
+  height: auto;
+  opacity: 100;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+</style>
