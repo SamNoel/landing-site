@@ -1,0 +1,62 @@
+---
+import "@styles/global.css";
+
+const {...props} = Astro.props;
+---
+
+<section class="scroll-container" {...props}>
+  <div class="scroll-track">
+    <slot class="scroll-item"/>
+  </div>
+   
+</section>
+
+<style>
+
+    .scroll-container {
+        width: 100%;
+        overflow-x: auto;   /* Enables the horizontal scrolling capability */
+        overflow-y: hidden; /* Blocks unwanted vertical movement */
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        
+        /* Enables CSS native scroll snapping */
+        scroll-snap-type: x mandatory; 
+        scroll-behavior: smooth;
+    }
+
+    /* Track lays items out edge-to-edge inline */
+    .scroll-track {
+        display: flex;       /* Ensures child elements sit side-by-side */
+        gap: 20px;
+        padding: 0 20px;
+        width: max-content;  /* Forces container to expand past 100% width */
+    }
+
+    /* Individual Content Blocks */
+    .scroll-item {
+        flex-shrink: 0;      /* Crucial: prevents cards from compressing */
+        
+        /* Locks the card behavior during native touch scrolling */
+        scroll-snap-align: start; 
+    }
+
+    /* Optional: Cleanly hide the native scrollbar visual block for a sleeker look */
+    .scroll-container::-webkit-scrollbar {
+        height: 0;
+    }
+    .scroll-container::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 4px;
+    }
+
+    @media (max-width: 768px) {
+        .scroll-container {
+        display: default;
+        align-items: left;
+        justify-content: left;
+    }
+    }
+</style>

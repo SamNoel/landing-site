@@ -10,6 +10,7 @@ import Divider from "@components/primitives/Divider.astro";
 import { getServices } from "@services/loaders/data/services";
 import { getReviews } from "@services/loaders/data/reviews";
 import { getAbout } from "@services/loaders/pages/home/about"; 
+import Carousel from "@components/primitives/Carousel.astro";
 
 const servicesCollection = await getServices();
 const reviewsCollection = await getReviews();
@@ -17,14 +18,12 @@ const aboutContent = await getAbout();
 ---
 
 <BaseLayout>
-	<SectionContainer>
 		<Hero 
 		title="Drinks, Crêpes, and Sandwiches"
 		subtitle="We serve a wide variety of hot, iced, and frozen  drinks, as well as savory,  sweet, and breakfast crêpes, and sandwiches.  Every drink and food item is made to order!"/>
-	</SectionContainer>
 
 	<SectionContainer>
-		<Grid columns={3}>
+		<!-- <Grid columns={3}>
 			{servicesCollection.map((service) => (
 				<Card
 				title={service.title}
@@ -32,7 +31,16 @@ const aboutContent = await getAbout();
 				imageName={service.imageName}
 				/>
 			))}
-  		</Grid>
+  		</Grid> -->
+		<Carousel>
+			{servicesCollection.map((service) => (
+				<Card
+				title={service.title}
+				text={service.text}
+				imageName={service.imageName}
+				/>
+			))}
+  		</Carousel>
 	</SectionContainer>
 
 	<SectionContainer>
@@ -64,16 +72,28 @@ const aboutContent = await getAbout();
 	</SectionContainer>
 
 	<SectionContainer>
-		<h2>What Our Customers Are Saying…</h2>
-		<Grid columns={3}>
-			{reviewsCollection.map((review) => (
-				<div style="border: 1px solid var(--color-neutral-300); padding: var(--space-2); border-radius: var(--space-1);">
-					<h3>{review.name}</h3>
-					<p>{review.review}</p>
-					{/* <p><strong>- {review.author}</strong></p> */}
-				</div>
-			))}
-		</Grid>
+		<Stack
+		direction="column"
+					gap="md"
+					horizontalAlign="left"
+					verticalAlign="top"
+		>
+			<h2>What Our Customers Are Saying…</h2>
+			<Grid columns={3}>
+				{reviewsCollection.map((review) => (
+					<Stack
+					direction="column"
+					gap="sm"
+					horizontalAlign="left"
+					verticalAlign="top"
+					>
+						<h3>{review.name}</h3>
+						<p>{review.review}</p>
+						{/* <p><strong>- {review.author}</strong></p> */}
+					</Stack>
+				))}
+			</Grid>
+		</Stack>
 	</SectionContainer>
 
 </BaseLayout>

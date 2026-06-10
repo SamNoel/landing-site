@@ -10,7 +10,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 ---
 
 <section class="hero", {...props}>
-  <Image src={images["/src/assets/ancestor-hero.webp"]()} alt=`Image for card with title of: ${title}` class="image" width={821} quality={"high"}/>
+  <!-- <Image src={images["/src/assets/ancestor-hero.webp"]()} alt=`Image for card with title of: ${title}` class="image" width={821} quality={"high"}/> -->
   <div class="content-container">
   <h2>{title}</h2>
   <p>{subtitle}</p>
@@ -19,13 +19,18 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 
 <style>
 .hero {
-  padding: 0 var(--space-4) var(--space-4) var(--space-4);
+  padding: 0;
+  margin-bottom: 100px;
   width: 100%;
+  height: 85vh;
   display: flex;
   flex-direction: row;
   justify-content: start;
   align-items: flex-start;
   position: relative;
+  background-image: url("/src/assets/ancestor-hero.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .content-container {
@@ -37,8 +42,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
   max-width: 600px;
   padding: 40px 32px;
   position: absolute;
-  bottom: 100px;
-  right: 100px;
+  bottom: 24px;
+  left: 24px;
   z-index: 2;
 }
 
@@ -63,6 +68,12 @@ p {
   .image {
       width: 100%;
       height: auto;
+  }
+
+  .content-container {
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
   }
     }
 </style>
