@@ -1,0 +1,63 @@
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: home
+    label: Home Page
+    type: file
+    path: src/content/pages/home.json
+
+    fields:
+      - name: hero
+        label: Hero
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+
+          - name: subtitle
+            label: Subtitle
+            type: text
+
+      - name: services
+        label: Services
+        type: object
+        fields:
+          - name: title
+            label: Section Title
+            type: string
+
+          - name: content
+            label: Service Items
+            type: object
+            list: true
+            fields:
+              - name: title
+                label: Title
+                type: string
+
+              - name: text
+                label: Text
+                type: text
+
+      - name: cta
+        label: CTA
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+
+          - name: text
+            label: Text
+            type: text
+
+          - name: buttonText
+            label: Button Text
+            type: string
+
+          - name: href
+            label: Link
+            type: string

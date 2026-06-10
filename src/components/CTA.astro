@@ -1,0 +1,40 @@
+---
+import Button from "./Button.astro";
+import type {CTAProps} from "../lib/schemas/components/cta";
+
+const {
+  title,
+  text,
+  buttonText,
+  href
+} = Astro.props as CTAProps;
+---
+
+<section class="cta">
+  <h2>{title}</h2>
+
+  <p>{text}</p>
+
+  <Button
+    href=`/${href}`
+    label={buttonText}
+  />
+</section>
+
+<style>
+.cta {
+  padding: var(--space-4);
+  background: #f5f5f5;
+  border-radius: 12px;
+  text-align: center;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+p {
+  margin-bottom: var(--space-2);
+  color: var(--color-muted);
+}
+</style>

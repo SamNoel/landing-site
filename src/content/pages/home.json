@@ -1,0 +1,31 @@
+{
+  "hero": {
+    "title": "Modern Web Solutions",
+    "subtitle": "Fast, maintainable websites built with a clean system"
+  },
+
+  "services": {
+    "title": "Services",
+    "content": [
+      {
+        "title": "Website Development",
+        "text": "Fast, maintainable Astro websites."
+      },
+      {
+        "title": "Performance Optimization",
+        "text": "Improve loading speed and usability."
+      },
+      {
+        "title": "Content Management",
+        "text": "Simple editing workflows with Decap CMS."
+      }
+    ]
+  },
+
+  "cta": {
+    "title": "Ready to improve your website?",
+    "text": "Let's build something fast, simple, and maintainable.",
+    "buttonText": "Contact Us",
+    "href": "contact"
+  }
+}

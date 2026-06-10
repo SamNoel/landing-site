@@ -1,0 +1,40 @@
+---
+import type { ButtonProps } from "../lib/schemas/components/buttons";
+
+const {
+  href = "#",
+  label = "Click Here",
+  variant = "primary"
+} = Astro.props as ButtonProps;
+---
+
+<a
+  href={href}
+  class={`button ${variant}`}
+>
+  {label}
+</a>
+
+<style>
+.button {
+  display: inline-block;
+  padding: var(--space-2);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+.primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.secondary {
+  border: 1px solid var(--color-text);
+  color: var(--color-text);
+}
+</style>

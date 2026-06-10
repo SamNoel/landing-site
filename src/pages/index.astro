@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import FeatureGrid from "../components/FeatureGrid.astro";
+import CTA from "../components/CTA.astro";
+import { getEntry } from "astro:content";
+import home from "../content/pages/home.json";
+
+// const homeEntry = await getEntry("pages", "home");
+
+// if (!homeEntry) {
+//   throw new Error("Home content not found");
+// }
+
+// const home = homeEntry.data;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<BaseLayout>
+			<Hero
+				title={home.hero.title}
+				subtitle={home.hero.subtitle}
+			/>
+
+			<Section title={home.services.title}>
+				<FeatureGrid items={home.services.content} />
+			</Section>
+
+			<Section>
+				<CTA
+				title={home.cta.title}
+				text={home.cta.text}
+				buttonText={home.cta.buttonText}
+				href={home.cta.href}
+				/>
+			</Section>
+					</BaseLayout>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+---
+import Card from "./Card.astro";
+import type {FeatureGridProps} from "../lib/schemas/components/featureGrid";
+
+const { items } = Astro.props as FeatureGridProps;
+---
+
+<div class="grid">
+  {items.map((item) => (
+    <Card
+      title={item.title}
+      text={item.text}
+    />
+  ))}
+</div>
+
+<style>
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-2);
+}
+</style>
