@@ -3,6 +3,7 @@ import { defineConfig, fontProviders } from "astro/config";
 import icon from "astro-icon";
 
 import path from "node:path";
+import cloudflare from "@astrojs/cloudflare";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -34,24 +35,32 @@ const watchExtraFiles = () => ({
 
 // https://astro.build/config
 export default defineConfig({
-  //adapter: cloudflare()
-  output: "static",
+  adapter: cloudflare(),
+  output: "server",
 
   fonts: [
     {
       provider: fontProviders.fontsource(),
       name: "Bodoni Moda",
       cssVariable: "--font-bodoni-moda",
+      weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
     },
     {
       provider: fontProviders.fontsource(),
       name: "Cabin",
       cssVariable: "--font-cabin",
+      weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "Noto Sans",
+      cssVariable: "--font-noto-sans",
+      weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
     },
   ],
 
   integrations: [icon()],
   vite: {
-    plugins: [watchExtraFiles()],
+    plugins: process.env.CI ? [] : [watchExtraFiles()],
   },
 });

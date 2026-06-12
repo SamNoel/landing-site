@@ -4,8 +4,7 @@
 export const SITE_TITLE = "Website Template";
 export const SITE_DESCRIPTION = "This is a website template";
 export const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Contact", href: "/contact" },
+  { label: "Home", href: "#home" },
+  { label: "Who We Are", href: "#about" },
+  { label: "Get In Touch", href: "#contact" },
 ];

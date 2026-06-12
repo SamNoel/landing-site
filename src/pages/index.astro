@@ -11,6 +11,8 @@ import { getServices } from "@services/loaders/data/services";
 import { getReviews } from "@services/loaders/data/reviews";
 import { getAbout } from "@services/loaders/pages/home/about"; 
 import Carousel from "@components/primitives/Carousel.astro";
+import PageContainer from "@components/containers/PageContainer.astro";
+import BackgroundImage from "@assets/background-transparent.png";
 
 const servicesCollection = await getServices();
 const reviewsCollection = await getReviews();
@@ -18,51 +20,25 @@ const aboutContent = await getAbout();
 ---
 
 <BaseLayout>
+	<PageContainer id="home" class="homepage-container">
+		<SectionContainer>
 		<Hero 
-		title="Drinks, Crêpes, and Sandwiches"
+		title="We create\nwebsites for\nsmall businesses."
 		subtitle="We serve a wide variety of hot, iced, and frozen  drinks, as well as savory,  sweet, and breakfast crêpes, and sandwiches.  Every drink and food item is made to order!"/>
+</SectionContainer>
 
-	<SectionContainer>
-		<!-- <Grid columns={3}>
-			{servicesCollection.map((service) => (
-				<Card
-				title={service.title}
-				text={service.text}
-				imageName={service.imageName}
-				/>
-			))}
-  		</Grid> -->
-		<Carousel>
-			{servicesCollection.map((service) => (
-				<Card
-				title={service.title}
-				text={service.text}
-				imageName={service.imageName}
-				/>
-			))}
-  		</Carousel>
-	</SectionContainer>
-
-	<SectionContainer>
-		<Divider/>
-		<h2>Our Menus</h2>
-		<Grid columns={3} gap={16}>
-			<Button href="#" label="Cornwall Menu"></Button>
-			<Button href="#" label="Campbelltown Menu"></Button>
-			<Button href="#" label="Annville Menu"></Button>
-		</Grid>
+<SectionContainer>
 		<Divider/>
 	</SectionContainer>
 
-	<SectionContainer>
-		<h2>ABOUT</h2>
+	<SectionContainer class="about-section fade-in-element" id="about">
 		<Stack
 			direction="row"
 			gap="md"
 			horizontalAlign="center"
 			verticalAlign="top"
 		>
-			<h3>{aboutContent.title}</h3>
+			<h2>{aboutContent.title}</h2>
 			<div><aboutContent.Content/></div>
 		</Stack>
 	</SectionContainer>
@@ -71,7 +47,27 @@ const aboutContent = await getAbout();
 		<Divider/>
 	</SectionContainer>
 
-	<SectionContainer>
+	<SectionContainer id="contact">
+		<Stack
+			direction="row"
+			gap="md"
+			horizontalAlign="center"
+			verticalAlign="top"
+		>
+		<Stack
+		direction="column"
+			gap="md"
+			horizontalAlign="left"
+			verticalAlign="top"
+			>
+			<h2>Get In Touch</h2>
+			<p>If you are looking for web services and think we could be a good fit, don't hesitate to reach out via phone or email - or fill out the form to get in touch!</p>
+		</Stack>
+			<!-- <div><aboutContent.Content/></div> -->
+		</Stack>
+	</SectionContainer>
+
+	<!-- <SectionContainer>
 		<Stack
 		direction="column"
 					gap="md"
@@ -94,11 +90,63 @@ const aboutContent = await getAbout();
 				))}
 			</Grid>
 		</Stack>
-	</SectionContainer>
-
+	</SectionContainer> -->
+</PageContainer>
 </BaseLayout>
 
-<style>
+<style define:vars={{ backgroundImage: `url(${BackgroundImage.src})` }}>
+.homepage-container {
+   background-image: url(/src/assets/background-transparent.png); /*var(--backgroundImage); */
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-attachment: fixed;
+}
 
+.about-section {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 32px;
+}
 
+@media (max-width: 768px) {
+.homepage-container {
+   background-image: url(/src/assets/background-mobile-transparent.png); /*var(--backgroundImage); */
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-attachment: scroll;
+}
+}
+
+/* 1. Define the fade-in animation keyframes */
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px); /* Optional: slides up slightly while fading */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 2. Apply it to your target scroll elements */
+.fade-in-element {
+  /* Attach the keyframe animation */
+  animation: fadeIn ease-in-out both;
+  
+  /* Bind the animation progress directly to the element entering the viewport */
+  animation-timeline: view();
+  
+  /* Adjust exactly when the animation starts and finishes */
+  /* Starts when the top of the element hits the bottom of the viewport */
+  /* Ends when the element is 30% into the viewport */
+  animation-range: entry 0% entry 30%;
+}
 </style>

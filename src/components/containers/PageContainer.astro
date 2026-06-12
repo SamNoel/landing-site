@@ -1,8 +1,8 @@
 ---
-const {...props} = Astro.props;
+const {class: className, ...props} = Astro.props;
 ---
 
-<main class="page-container" {...props}>
+<main class=`page-container ${className}` {...props}>
     <slot />
 </main>
 
@@ -12,10 +12,9 @@ const {...props} = Astro.props;
     padding: 0;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     margin-inline: auto;
     width: 100%;
-    max-width: 1600px;
     min-width: 0;
+    overflow: clip;
 }
 </style>

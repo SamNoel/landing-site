@@ -14,11 +14,14 @@
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^13.7.0",
     "@fontsource-variable/bodoni-moda": "^5.2.7",
     "@fontsource-variable/cabin": "^5.2.8",
+    "@fontsource-variable/noto-sans": "^5.2.10",
     "@iconify-json/mdi": "^1.2.3",
     "astro": "^6.2.2",
-    "astro-icon": "^1.1.5"
+    "astro-icon": "^1.1.5",
+    "resend": "^6.12.4"
   },
   "devDependencies": {
     "wrangler": "^4.90.0"

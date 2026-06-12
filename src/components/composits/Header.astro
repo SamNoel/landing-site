@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
-import AncestorLogoImage from "@assets/ancestor-logo-grey.webp";
+import LogoImage from "@assets/logo.svg";
 import {NAV_LINKS} from "@consts";
 
 const {...props} = Astro.props;
@@ -11,15 +11,16 @@ const {...props} = Astro.props;
   <div class="nav-inner">
 
     <!-- Logo -->
-    <a href="/" class="logo-link">
-      <Image src={AncestorLogoImage} alt="Ancestor logo" width="150" />
+    <a href="#home" class="logo-link">
+      <Image src={LogoImage} alt="Ancestor logo" width="28" />
+      <p class="logo-text">Noel Web Studio</p>
     </a>
 
     <!-- Hamburger (mobile only) -->
     <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span class="hamburger-top"></span>
+      <span class="hamburger-middle"></span>
+      <span class="hamburger-bottom"></span>
     </button>
 
     <!-- Nav -->
@@ -40,38 +41,65 @@ const {...props} = Astro.props;
 
 <script>
   let lastScrollTop = 0;
-  const header = document.querySelector(".header");
-  const mobileNav = document.querySelector("#mobileNav");
-  const burger = document.querySelector(".hamburger");
 
-  // scroll hide/show
-  window.addEventListener("scroll", () => {
-    let scrollTop =
-      window.pageYOffset || document.documentElement.scrollTop;
+const header = document.querySelector(".header");
+const burger = document.querySelector(".hamburger");
+const burgerTop = document.querySelector(".hamburger-top");
+const burgerMiddle = document.querySelector(".hamburger-middle");
+const burgerBottom = document.querySelector(".hamburger-bottom");
 
-    if (scrollTop > lastScrollTop) {
-      header?.classList.add("nav-up");
-      mobileNav?.classList.add("mobile-nav-hidden");
-    } else {
-      header?.classList.remove("nav-up");
-      mobileNav?.classList.remove("mobile-nav-hidden");
-    }
+window.addEventListener("scroll", () => {
+  const scrollTop =
+    window.pageYOffset || document.documentElement.scrollTop;
 
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-  });
+    // Check if scrolling up or down
+  const scrollingDown = scrollTop > lastScrollTop;
 
-  // mobile menu toggle
-  burger?.addEventListener("click", () => {
-    const isOpen = header!.classList.toggle("menu-open");
-    burger.setAttribute("aria-expanded", isOpen.toString());
-  });
+  if (scrollingDown) {
+    header?.classList.add("nav-up");
+
+    // Close menu if open
+    header?.classList.remove("menu-open");
+    // Accessibility state
+    burger?.setAttribute("aria-expanded", "false");
+    burgerTop?.classList.remove("open");
+    burgerMiddle?.classList.remove("open");
+    burgerBottom?.classList.remove("open");
+  } else {
+    // Bring header back into view
+    header?.classList.remove("nav-up");
+  }
+
+  lastScrollTop = Math.max(scrollTop, 0);
+});
+
+burger?.addEventListener("click", () => {
+  // Toggle mobile menu
+  const isOpen = header?.classList.toggle("menu-open");
+
+  if (isOpen) {
+    burgerTop?.classList.add("open");
+    burgerMiddle?.classList.add("open");
+    burgerBottom?.classList.add("open");
+  } else {
+    burgerTop?.classList.remove("open");
+    burgerMiddle?.classList.remove("open");
+    burgerBottom?.classList.remove("open");
+  }
+
+  // Accessibility state
+  burger?.setAttribute(
+    "aria-expanded",
+    String(isOpen)
+  );
+});
 </script>
 
 <style>
   .header {
   box-sizing: border-box;
   width: 100%;
-  background-color: #534b4c;
+  background-color: black;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -92,7 +120,7 @@ const {...props} = Astro.props;
   align-items: center;
   justify-content: space-between;
 
-  padding: 12px 32px;
+  padding: 16px 32px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -102,6 +130,17 @@ const {...props} = Astro.props;
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  gap: 16px;
+  text-decoration: none;
+}
+
+.logo-link:hover {
+  background-color: var(--color-bg);
+}
+
+.logo-link p {
+  font-weight: 400;
+  color: white;
 }
 
 /* DESKTOP NAV */
@@ -113,14 +152,18 @@ const {...props} = Astro.props;
 
 .desktop-nav a {
   text-decoration: none;
-  color: var(--color-text);
-  font-family: var(--font-cabin);
+  /* color: var(--color-text); */
+  /* font-family: var(--font-cabin); */
   white-space: nowrap;
 }
 
 /* HAMBURGER (hidden on desktop) */
 .hamburger {
   display: none;
+  position: relative;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
   flex-direction: column;
   gap: 4px;
 
@@ -134,40 +177,77 @@ const {...props} = Astro.props;
   height: 2px;
   background: white;
   display: block;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s;
+}
+
+.hamburger-top.open {
+  transform: translateY(6px) rotate(45deg);
+  translateY: 5px;
+  translate: 0 1px;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s;
+}
+
+.hamburger-middle.open {
+  opacity: 0;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s;
+}
+
+.hamburger-bottom.open {
+  transform: translateY(-5px) rotate(-45deg);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s;
 }
 
 /* MOBILE MENU PANEL */
 .mobile-nav {
   display: flex;
-  height: 0;
-  opacity: 0;
   position: absolute;
-  bottom: 60;
-  width: 100%;
+  top: 100%;
+  right: 0;
+
+  /* width: 100%; */
   flex-direction: column;
   gap: 16px;
 
   padding: 16px;
-  background: #534b4c;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  background: black;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(-8px);
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s;
 }
 
 .mobile-nav a {
-  color: white;
   text-decoration: none;
-  font-family: var(--font-cabin);
-}
-
-.mobile-nav-hidden {
-  height: 0 !important;
-  opacity: 0 !important;
-  transition: height 0.2s ease;
+  padding: 8px 16px;
+  text-align: right;
 }
 
 /* OPEN STATE */
 .header.menu-open .mobile-nav {
-  height: auto;
-  opacity: 100;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translateY(0);
 }
 
 /* =========================
@@ -180,6 +260,10 @@ const {...props} = Astro.props;
 
   .hamburger {
     display: flex;
+  }
+
+  .logo-text {
+    display: none;
   }
 }
 </style>

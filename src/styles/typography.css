@@ -4,8 +4,9 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-bodoni-moda);
-  font-weight: 400;
+  font-family: var(--font-noto-sans);
+  font-weight: 150;
+  font-synthesis: none;
   line-height: 1.2;
   margin: 0;
   padding: 0;
@@ -13,8 +14,22 @@ h6 {
   text-transform: uppercase;
 }
 
+h1.display {
+  font-size: var(--text-display);
+}
+
+h1 {
+  font-size: var(--text-2xl);
+}
+
+h2 {
+  font-size: var(--text-base);
+}
+
 p {
-  font-family: var(--font-cabin);
+  font-family: var(--font-noto-sans);
+  font-weight: 300;
+  font-size: var(--text-base);
   line-height: 1.6;
   color: var(--color-text-muted);
   margin: 0;
@@ -24,6 +39,8 @@ p {
 a {
   text-decoration: underline;
   color: var(--color-text-muted);
+  font-family: var(--font-noto-sans);
+  font-weight: 300;
 }
 
 a:hover {
@@ -41,4 +58,10 @@ h2 {
 
 h3 {
   font-size: var(--text-lg);
+}
+
+@media (max-width: 768px) {
+  h1.display {
+    font-size: var(--text-3xl);
+  }
 }
