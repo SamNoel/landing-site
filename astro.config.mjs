@@ -35,8 +35,9 @@ const watchExtraFiles = () => ({
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: cloudflare(),
-  output: "server",
+  // adapter: cloudflare(),
+  // output: "server",
+  output: "static",
 
   fonts: [
     {
