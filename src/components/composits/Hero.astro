@@ -1,62 +1,57 @@
 ---
-import type { HeroProps } from "@props/hero";
-import { Image } from "astro:assets";
-
-const {...props} = Astro.props;
-
-// Gather all image paths from the assets folder
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif,webp}');
+const { ...props } = Astro.props;
 ---
 
-<section class="hero", {...props}>
-  <!-- <Image src={images["/src/assets/ancestor-hero.webp"]()} alt=`Image for card with title of: ${title}` class="image" width={821} quality={"high"}/> -->
+<section class="hero" , {...props}>
   <div class="content-container">
-  <h1 class="display">We create<br><span style="font-weight: 700;">websites</span> for<br>small businesses.</h1>
+    <h1 class="display">
+      We create<br /><span style="font-weight: 700;">websites</span> for<br
+      />small businesses.
+    </h1>
   </div>
 </section>
 
 <style>
-.hero {
-  padding: 0 0 64px 0;
-  width: 100%;
-  height: 80vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-end;
-  position: relative;
-}
-
-.content-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 24px;
-  /* padding: 40px 32px; */
-  bottom: 24px;
-  left: 24px;
-  z-index: 2;
-  max-width: 1200px;
-}
-
-.image {
-  align-items: start;
-}
-
-@media (max-width: 768px) {
   .hero {
-    padding: 0;
-  }
-
-  .image {
-      width: 100%;
-      height: auto;
+    padding: 0 0 64px 0;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    position: relative;
   }
 
   .content-container {
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 24px;
+    bottom: 24px;
+    left: 24px;
+    z-index: 2;
+    max-width: 1200px;
   }
+
+  .image {
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 0;
     }
+
+    .image {
+      width: 100%;
+      height: auto;
+    }
+
+    .content-container {
+      bottom: 0px;
+      left: 0px;
+      width: 100%;
+    }
+  }
 </style>

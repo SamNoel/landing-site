@@ -1,37 +1,46 @@
 ---
-import type { StackProps } from "@props/stack";
 import "@styles/global.css";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"section"> {
+  direction: "row" | "column";
+  gap: "xs" | "sm" | "md" | "lg";
+  horizontalAlign: "left" | "center" | "right";
+  verticalAlign: "top" | "center" | "bottom";
+}
 
 const {
   direction = "column",
-  gap,
-  horizontalAlign,
-  verticalAlign,
-} = Astro.props as StackProps;
-
-const {...props} = Astro.props;
+  gap = "md",
+  horizontalAlign = "left",
+  verticalAlign = "top",
+  ...props
+} = Astro.props;
 ---
 
-<section class:list={[
+<section
+  class:list={[
     "stack",
     "content-block",
     `direction-${direction}`,
     `gap-${gap}`,
     `horizontal-align-${horizontalAlign}`,
-    `vertical-align-${verticalAlign}`
-  ]} {...props}>
-   <slot />
+    `vertical-align-${verticalAlign}`,
+  ]}
+  {...props}
+>
+  <slot />
 </section>
 
 <style>
-    .stack {
-        display: flex;
-        width: 100%;
-    }
+  .stack {
+    display: flex;
+    width: 100%;
+  }
 
-    @media (max-width: 768px) {
-        .stack {
-            flex-direction: column;
-        }
+  @media (max-width: 768px) {
+    .stack {
+      flex-direction: column;
     }
+  }
 </style>

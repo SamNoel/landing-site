@@ -7,8 +7,8 @@ import { fileURLToPath } from "node:url";
 /*
 TO DO:
 Get astro prettier - DONE
-Fix environment for builds
-Fix image loading
+Fix environment for builds - DONE
+Fix image loading - DONE
 Fix props for components - clean up and use global Props interfaces - https://docs.astro.build/en/guides/typescript/#component-props
 Env variables
 Using pnpm?

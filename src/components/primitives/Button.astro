@@ -1,47 +1,48 @@
 ---
-import type { ButtonProps } from "@props/buttons";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"a"> {
+  href: string;
+  label: string;
+  variant: "primary" | "secondary";
+}
 
 const {
   href = "#",
   label = "Click Here",
-  variant = "primary"
-} = Astro.props as ButtonProps;
-
-const {...props} = Astro.props;
+  variant = "primary",
+  ...props
+} = Astro.props;
 ---
 
-<a
-  href={href}
-  class={`button ${variant}`}
-  {...props}
->
+<a href={href} class={`button ${variant}`} {...props}>
   {label}
 </a>
 
 <style>
-.button {
-  font-family: var(--font-cabin);
-  display: inline-block;
-  padding: var(--space-2);
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-  border: 1px solid #eee;
-  border-radius: 4px;
-  text-align: center;
-}
+  .button {
+    font-family: var(--font-cabin);
+    display: inline-block;
+    padding: var(--space-2);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    text-align: center;
+  }
 
-.button:hover {
-  background: #fff;
-  color: var(--color-bg);
-  transition: background 0.2s ease;
-}
+  .button:hover {
+    background: #fff;
+    color: var(--color-bg);
+    transition: background 0.2s ease;
+  }
 
-.primary {
-  color: white;
-}
+  .primary {
+    color: white;
+  }
 
-.secondary {
-  border: 1px solid var(--color-text);
-  color: var(--color-text);
-}
+  .secondary {
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
+  }
 </style>

@@ -1,11 +1,16 @@
 ---
-import type {CardProps} from "@props/card";
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
-const { title, text, imageName } = Astro.props as CardProps;
+import type { HTMLAttributes } from "astro/types";
 
-const {...props} = Astro.props;
+interface Props extends HTMLAttributes<"div"> {
+  title: string;
+  text: string;
+  imageName: "primary" | "secondary";
+}
+
+const { title = "Card Title", text= "Here is some text", imageName = "placeholder.png", ...props } = Astro.props;
 
 // Construct the image path based on the image name
 const imagePath = `/src/assets/${imageName}`;
