@@ -2,17 +2,21 @@
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import LogoImage from "@assets/logo.svg";
-import {NAV_LINKS} from "@consts";
+import { NAV_LINKS } from "@consts";
 
-const {...props} = Astro.props;
+const { ...props } = Astro.props;
 ---
 
 <header class="header" {...props}>
   <div class="nav-inner">
-
     <!-- Logo -->
     <a href="#home" class="logo-link">
-      <Image src={LogoImage} alt="Noel Web Studio logo" width="28" />
+      <Image
+        src={LogoImage}
+        alt="Noel Web Studio logo"
+        width="28"
+        format="svg"
+      />
       <p class="logo-text">Noel Web Studio</p>
     </a>
 
@@ -25,245 +29,237 @@ const {...props} = Astro.props;
 
     <!-- Nav -->
     <nav class="desktop-nav">
-      {NAV_LINKS.map((item) => (
-        <a href={item.href}>{item.label}</a>
-      ))}
+      {NAV_LINKS.map((item) => <a href={item.href}>{item.label}</a>)}
     </nav>
   </div>
 
   <!-- Mobile menu (separate panel) -->
   <div id="mobileNav" class="mobile-nav">
-    {NAV_LINKS.map((item) => (
-        <a href={item.href}>{item.label}</a>
-      ))}
+    {NAV_LINKS.map((item) => <a href={item.href}>{item.label}</a>)}
   </div>
 </header>
 
 <script>
   let lastScrollTop = 0;
 
-const header = document.querySelector(".header");
-const burger = document.querySelector(".hamburger");
-const burgerTop = document.querySelector(".hamburger-top");
-const burgerMiddle = document.querySelector(".hamburger-middle");
-const burgerBottom = document.querySelector(".hamburger-bottom");
+  const header = document.querySelector(".header");
+  const burger = document.querySelector(".hamburger");
+  const burgerTop = document.querySelector(".hamburger-top");
+  const burgerMiddle = document.querySelector(".hamburger-middle");
+  const burgerBottom = document.querySelector(".hamburger-bottom");
 
-window.addEventListener("scroll", () => {
-  const scrollTop =
-    window.pageYOffset || document.documentElement.scrollTop;
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
     // Check if scrolling up or down
-  const scrollingDown = scrollTop > lastScrollTop;
+    const scrollingDown = scrollTop > lastScrollTop;
 
-  if (scrollingDown) {
-    header?.classList.add("nav-up");
+    if (scrollingDown) {
+      header?.classList.add("nav-up");
 
-    // Close menu if open
-    header?.classList.remove("menu-open");
+      // Close menu if open
+      header?.classList.remove("menu-open");
+      // Accessibility state
+      burger?.setAttribute("aria-expanded", "false");
+      burgerTop?.classList.remove("open");
+      burgerMiddle?.classList.remove("open");
+      burgerBottom?.classList.remove("open");
+    } else {
+      // Bring header back into view
+      header?.classList.remove("nav-up");
+    }
+
+    lastScrollTop = Math.max(scrollTop, 0);
+  });
+
+  burger?.addEventListener("click", () => {
+    // Toggle mobile menu
+    const isOpen = header?.classList.toggle("menu-open");
+
+    if (isOpen) {
+      burgerTop?.classList.add("open");
+      burgerMiddle?.classList.add("open");
+      burgerBottom?.classList.add("open");
+    } else {
+      burgerTop?.classList.remove("open");
+      burgerMiddle?.classList.remove("open");
+      burgerBottom?.classList.remove("open");
+    }
+
     // Accessibility state
-    burger?.setAttribute("aria-expanded", "false");
-    burgerTop?.classList.remove("open");
-    burgerMiddle?.classList.remove("open");
-    burgerBottom?.classList.remove("open");
-  } else {
-    // Bring header back into view
-    header?.classList.remove("nav-up");
-  }
-
-  lastScrollTop = Math.max(scrollTop, 0);
-});
-
-burger?.addEventListener("click", () => {
-  // Toggle mobile menu
-  const isOpen = header?.classList.toggle("menu-open");
-
-  if (isOpen) {
-    burgerTop?.classList.add("open");
-    burgerMiddle?.classList.add("open");
-    burgerBottom?.classList.add("open");
-  } else {
-    burgerTop?.classList.remove("open");
-    burgerMiddle?.classList.remove("open");
-    burgerBottom?.classList.remove("open");
-  }
-
-  // Accessibility state
-  burger?.setAttribute(
-    "aria-expanded",
-    String(isOpen)
-  );
-});
+    burger?.setAttribute("aria-expanded", String(isOpen));
+  });
 </script>
 
 <style>
   .header {
-  box-sizing: border-box;
-  width: 100%;
-  background-color: black;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  transition: transform 0.2s ease-in-out;
-  overflow-x: clip;
-}
+    box-sizing: border-box;
+    width: 100%;
+    background-color: black;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: transform 0.2s ease-in-out;
+    overflow-x: clip;
+  }
 
-.nav-up {
-  transform: translateY(-100%);
-}
+  .nav-up {
+    transform: translateY(-100%);
+  }
 
-/* MAIN ROW */
-.nav-inner {
-  max-width: var(--max-width);
-  margin-inline: auto;
+  /* MAIN ROW */
+  .nav-inner {
+    max-width: var(--max-width);
+    margin-inline: auto;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  padding: 16px 32px;
-  width: 100%;
-  box-sizing: border-box;
-}
+    padding: 16px 32px;
+    width: 100%;
+    box-sizing: border-box;
+  }
 
-/* LOGO */
-.logo-link {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  gap: 16px;
-  text-decoration: none;
-}
+  /* LOGO */
+  .logo-link {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 16px;
+    text-decoration: none;
+  }
 
-.logo-link:hover {
-  background-color: var(--color-bg);
-}
+  .logo-link:hover {
+    background-color: var(--color-bg);
+  }
 
-.logo-link p {
-  font-weight: 400;
-  color: white;
-}
+  .logo-link p {
+    font-weight: 400;
+    color: white;
+  }
 
-/* DESKTOP NAV */
-.desktop-nav {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
+  /* DESKTOP NAV */
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
 
-.desktop-nav a {
-  text-decoration: none;
-  /* color: var(--color-text); */
-  /* font-family: var(--font-cabin); */
-  white-space: nowrap;
-}
+  .desktop-nav a {
+    text-decoration: none;
+    /* color: var(--color-text); */
+    /* font-family: var(--font-cabin); */
+    white-space: nowrap;
+  }
 
-/* HAMBURGER (hidden on desktop) */
-.hamburger {
-  display: none;
-  position: relative;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  flex-direction: column;
-  gap: 4px;
+  /* HAMBURGER (hidden on desktop) */
+  .hamburger {
+    display: none;
+    position: relative;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-direction: column;
+    gap: 4px;
 
-  background: none;
-  border: none;
-  cursor: pointer;
-}
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 
-.hamburger span {
-  width: 22px;
-  height: 2px;
-  background: white;
-  display: block;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease,
-    visibility 0.2s;
-}
+  .hamburger span {
+    width: 22px;
+    height: 2px;
+    background: white;
+    display: block;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      visibility 0.2s;
+  }
 
-.hamburger-top.open {
-  transform: translateY(6px) rotate(45deg);
-  translateY: 5px;
-  translate: 0 1px;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease,
-    visibility 0.2s;
-}
+  .hamburger-top.open {
+    transform: translateY(6px) rotate(45deg);
+    translatey: 5px;
+    translate: 0 1px;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      visibility 0.2s;
+  }
 
-.hamburger-middle.open {
-  opacity: 0;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease,
-    visibility 0.2s;
-}
+  .hamburger-middle.open {
+    opacity: 0;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      visibility 0.2s;
+  }
 
-.hamburger-bottom.open {
-  transform: translateY(-5px) rotate(-45deg);
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease,
-    visibility 0.2s;
-}
+  .hamburger-bottom.open {
+    transform: translateY(-5px) rotate(-45deg);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      visibility 0.2s;
+  }
 
-/* MOBILE MENU PANEL */
-.mobile-nav {
-  display: flex;
-  position: absolute;
-  top: 100%;
-  right: 0;
+  /* MOBILE MENU PANEL */
+  .mobile-nav {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    right: 0;
 
-  /* width: 100%; */
-  flex-direction: column;
-  gap: 16px;
+    /* width: 100%; */
+    flex-direction: column;
+    gap: 16px;
 
-  padding: 16px;
-  background: black;
+    padding: 16px;
+    background: black;
 
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 
-  transform: translateY(-8px);
+    transform: translateY(-8px);
 
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease,
-    visibility 0.2s;
-}
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      visibility 0.2s;
+  }
 
-.mobile-nav a {
-  text-decoration: none;
-  padding: 8px 16px;
-  text-align: right;
-}
+  .mobile-nav a {
+    text-decoration: none;
+    padding: 8px 16px;
+    text-align: right;
+  }
 
-/* OPEN STATE */
-.header.menu-open .mobile-nav {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+  /* OPEN STATE */
+  .header.menu-open .mobile-nav {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 
-  transform: translateY(0);
-}
+    transform: translateY(0);
+  }
 
-/* =========================
+  /* =========================
    MOBILE
 ========================= */
-@media (max-width: 768px) {
-  .desktop-nav {
-    display: none;
-  }
+  @media (max-width: 768px) {
+    .desktop-nav {
+      display: none;
+    }
 
-  .hamburger {
-    display: flex;
-  }
+    .hamburger {
+      display: flex;
+    }
 
-  .logo-text {
-    display: none;
+    .logo-text {
+      display: none;
+    }
   }
-}
 </style>

@@ -1,14 +1,26 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
 import icon from "astro-icon";
-
 import path from "node:path";
-import cloudflare from "@astrojs/cloudflare";
 import { fileURLToPath } from "node:url";
+
+/*
+TO DO:
+Get astro prettier - DONE
+Fix environment for builds
+Fix image loading
+Fix props for components - clean up and use global Props interfaces - https://docs.astro.build/en/guides/typescript/#component-props
+Env variables
+Using pnpm?
+New page template component?
+Head component
+*/
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const watchExtraFiles = () => ({
+  apply: "serve",
+
   configureServer(server) {
     console.log("[watch-extra-files] Plugin loaded");
 
@@ -31,12 +43,12 @@ const watchExtraFiles = () => ({
   name: "watch-extra-files",
 });
 
-// import cloudflare from "@astrojs/cloudflare";
+const isDev = process.argv.includes("dev");
 
 // https://astro.build/config
 export default defineConfig({
-  // adapter: cloudflare(),
-  // output: "server",
+  site: "https://noelwebstudio.com",
+
   output: "static",
 
   fonts: [
@@ -62,6 +74,6 @@ export default defineConfig({
 
   integrations: [icon()],
   vite: {
-    plugins: process.env.CI ? [] : [watchExtraFiles()],
+    plugins: isDev ? [watchExtraFiles()] : [],
   },
 });

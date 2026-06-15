@@ -15,15 +15,15 @@ import Footer from "@components/composits/Footer.astro";
     <Font cssVariable="--font-cabin" />
     <Font cssVariable="--font-noto-sans" />
     <meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
   </head>
   <body>
     <Header />
-      <slot />
+    <slot />
     <Footer />
   </body>
 </html>
