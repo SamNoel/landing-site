@@ -46,6 +46,7 @@ a {
 a:hover {
   color: var(--color-bg);
   background-color: #fff;
+  transition: background 0.2s ease;
 }
 
 h1 {

@@ -15,34 +15,47 @@ const {
 } = Astro.props;
 ---
 
-<a href={href} class={`button ${variant}`} {...props}>
+<a type="button" href={href} class={`button ${variant}`} {...props} aria-label={label} title={label}>
   {label}
 </a>
 
 <style>
   .button {
-    font-family: var(--font-cabin);
     display: inline-block;
     padding: var(--space-2);
-    text-decoration: none;
     transition: opacity 0.2s ease;
-    border: 1px solid #eee;
     border-radius: 4px;
     text-align: center;
-  }
-
-  .button:hover {
-    background: #fff;
-    color: var(--color-bg);
+    font-family: var(--font-cabin);
+    text-decoration: none;
     transition: background 0.2s ease;
   }
 
+  .button:focus {
+    outline: 2px solid blue;
+    color: blue;
+  }
+
   .primary {
-    color: white;
+    border: 1px solid #fff;
+    background-color: #fff;
+    color: black;
+  }
+
+    .primary:hover {
+      border: 1px solid #b8b8b8;
+    background-color: #b8b8b8;
+    color: black;
   }
 
   .secondary {
-    border: 1px solid var(--color-text);
+    border: 1px solid #fff;
+    background-color: none
     color: var(--color-text);
+  }
+
+  .secondary:hover {
+    background-color: #fff;
+    color: black;
   }
 </style>

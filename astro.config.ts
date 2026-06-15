@@ -11,14 +11,19 @@ Fix environment for builds - DONE
 Fix image loading - DONE
 Fix props for components - clean up and use global Props interfaces - https://docs.astro.build/en/guides/typescript/#component-props - DONE
 Clean up all components
+Make sure styles are pulling from proper sources
+Fix astro favicon showing on mobile
+Fix mobile menu issue
 Env variables
 Using pnpm?
 New page template component?
-Head component
+Head component - DONE
 */
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const isDev = process.argv.includes("dev");
 
+// This custom plugin watches extra files and triggers a full reload when they change. Only used in development environment.
 const watchExtraFiles = () => ({
   name: "watch-extra-files",
 
@@ -42,8 +47,6 @@ const watchExtraFiles = () => ({
     s.watcher.on("unlink", reload);
   },
 });
-
-const isDev = process.argv.includes("dev");
 
 // https://astro.build/config
 export default defineConfig({
