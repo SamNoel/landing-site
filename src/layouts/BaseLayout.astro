@@ -3,27 +3,19 @@ import "@styles/global.css";
 import "@styles/tokens.css";
 import "@styles/typography.css";
 
-import { Font } from "astro:assets";
-
 import Header from "@components/composits/Header.astro";
 import Footer from "@components/composits/Footer.astro";
+import Head from "@components/primitives/Head.astro";
+import { SITE_TITLE } from "@consts";
+
+const { title = SITE_TITLE } = Astro.props;
 ---
 
 <html lang="en">
-  <head>
-    <Font cssVariable="--font-bodoni-moda" />
-    <Font cssVariable="--font-cabin" />
-    <Font cssVariable="--font-noto-sans" />
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
+  <Head title={title} />
   <body>
     <Header />
     <slot />
-    <Footer name="footer" />
+    <Footer />
   </body>
 </html>

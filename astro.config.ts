@@ -9,7 +9,8 @@ TO DO:
 Get astro prettier - DONE
 Fix environment for builds - DONE
 Fix image loading - DONE
-Fix props for components - clean up and use global Props interfaces - https://docs.astro.build/en/guides/typescript/#component-props
+Fix props for components - clean up and use global Props interfaces - https://docs.astro.build/en/guides/typescript/#component-props - DONE
+Clean up all components
 Env variables
 Using pnpm?
 New page template component?
