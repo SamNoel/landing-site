@@ -19,14 +19,16 @@ Head component
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const watchExtraFiles = () => ({
-  apply: "serve",
+  name: "watch-extra-files",
 
-  configureServer(server) {
-    console.log("[watch-extra-files] Plugin loaded");
+  apply: "serve" as const,
 
-    const reload = (file) => {
+  configureServer(server: any) {
+    const s = server;
+
+    const reload = (file: any) => {
       console.log(`[watch-extra-files] Reload triggered due to: ${file}`);
-      server.ws.send({ type: "full-reload" });
+      s.ws.send({ type: "full-reload" });
     };
 
     const watchPaths = [
@@ -34,13 +36,10 @@ const watchExtraFiles = () => ({
       path.resolve(__dirname, "src/content/blog"),
     ];
 
-    server.watcher.add(watchPaths);
-    console.log("[watch-extra-files] Watching paths:", watchPaths);
-
-    server.watcher.on("add", reload);
-    server.watcher.on("unlink", reload);
+    s.watcher.add(watchPaths);
+    s.watcher.on("add", reload);
+    s.watcher.on("unlink", reload);
   },
-  name: "watch-extra-files",
 });
 
 const isDev = process.argv.includes("dev");
