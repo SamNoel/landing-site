@@ -5,12 +5,12 @@ h4,
 h5,
 h6 {
   font-family: var(--font-noto-sans);
-  font-weight: 150;
+  font-weight: 200;
   font-synthesis: none;
   line-height: 1.2;
   margin: 0;
   padding: 0;
-  color: var(--color-text);
+  color: var(--color-heading);
   text-transform: uppercase;
 }
 
@@ -23,6 +23,14 @@ h1 {
 }
 
 h2 {
+  font-size: var(--text-xl);
+}
+
+h3 {
+  font-size: var(--text-lg);
+}
+
+h4 {
   font-size: var(--text-base);
 }
 
@@ -31,34 +39,23 @@ p {
   font-weight: 300;
   font-size: var(--text-base);
   line-height: 1.6;
-  color: var(--color-text-muted);
+  color: var(--color-body);
   margin: 0;
   padding: 0;
 }
 
 a {
+  font-size: var(--text-sm);
   text-decoration: underline;
-  color: var(--color-text-muted);
+  color: var(--color-link);
   font-family: var(--font-noto-sans);
   font-weight: 300;
 }
 
 a:hover {
-  color: var(--color-bg);
-  background-color: #fff;
+  color: var(--color-black);
+  background-color: var(--color-white);
   transition: background 0.2s ease;
-}
-
-h1 {
-  font-size: var(--text-2xl);
-}
-
-h2 {
-  font-size: var(--text-xl);
-}
-
-h3 {
-  font-size: var(--text-lg);
 }
 
 @media (max-width: 768px) {

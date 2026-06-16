@@ -1,0 +1,52 @@
+/*
+NOTE: Custom fonts via fontsource are defined in astro.config.mjs and imported in BaseLayout.astro.
+*/
+
+:root {
+  /* base font size 10px (62.5% of 16px) */
+  font-size: 62.5%;
+
+  /* colors - neutrals */
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-grey-100: #eeeeee;
+  --color-grey-150: #c4c4c4;
+  --color-grey-200: #727272;
+  --color-grey-300: #282828;
+  --color-grey-400: #161616;
+
+  /* colors - primary */
+  --color-primary-100: #60a5fa;
+  --color-primary-500: #2563eb;
+  --color-primary-900: #123c99;
+
+  /* colors - secondary */
+  --color-secondary-100: #fa9160;
+  --color-secondary-500: #bb6137;
+  --color-secondary-900: #7a3a1d;
+
+  /* typography */
+  --text-sm: 1.4rem;
+  --text-base: 1.6rem;
+  --text-lg: 2rem;
+  --text-xl: 3.2rem;
+  --text-2xl: 4.8rem;
+  --text-3xl: 5.6rem;
+  --text-4xl: 6.4rem;
+  --text-display: 8rem;
+
+  /* spacing */
+  --space-xs: 0.2rem;
+  --space-sm: 0.4rem;
+  --space-base: 1.6rem;
+  --space-2x: 8rem;
+  --space-3x: 12rem;
+  --space-4x: 1.6rem;
+  --space-5x: 2rem;
+  --space-6x: 2.4rem;
+  --space-12x: 4.8rem;
+  --space-16x: 6.4rem;
+
+  /* layout */
+  --max-width: 1200px;
+}

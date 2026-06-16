@@ -8,6 +8,7 @@ import { getAbout } from "@services/loaders/pages/home/about";
 import PageContainer from "@components/containers/PageContainer.astro";
 import BackgroundImage from "@assets/background-transparent.png";
 import Button from "@components/primitives/Button.astro";
+import Card from "@components/primitives/Card.astro";
 
 // const servicesCollection = await getServices();
 // const reviewsCollection = await getReviews();
@@ -25,6 +26,10 @@ const aboutContent = await getAbout();
     </SectionContainer>
 
     <!-- <Button href="#" label="Click Here" variant="primary" /> -->
+
+    <!-- <Card
+      text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966"
+    /> -->
 
     <SectionContainer class="about-section fade-in-element" id="about">
       <Stack

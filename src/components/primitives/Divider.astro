@@ -1,12 +1,12 @@
 ---
-const {...props} = Astro.props;
+const { ...props } = Astro.props;
 ---
 
-<div class="divider" {...props}/>
+<div class="divider" {...props}></div>
 
 <style>
-.divider {
-  border-top: 1px solid var(--color-bg-muted);
-  width: 100%;
-}
+  .divider {
+    border-top: var(--border-width) solid var(--color-surface-muted);
+    width: 100%;
+  }
 </style>

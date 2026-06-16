@@ -22,11 +22,11 @@ const {
 <style>
   .button {
     display: inline-block;
-    padding: var(--space-2);
+    padding: var(--space-4x);
     transition: opacity 0.2s ease;
-    border-radius: 4px;
+    border-radius: var(--border-radius-sm);
     text-align: center;
-    font-family: var(--font-cabin);
+    font-family: var(--font-noto-sans);
     text-decoration: none;
     transition: background 0.2s ease;
   }
@@ -37,25 +37,25 @@ const {
   }
 
   .primary {
-    border: 1px solid #fff;
-    background-color: #fff;
-    color: black;
+    border: var(--border-width) solid var(--color-btn-surface-primary);
+    background-color: var(--color-btn-surface-primary);
+    color: var(--color-btn-text-primary);
   }
 
-    .primary:hover {
-      border: 1px solid #b8b8b8;
-    background-color: #b8b8b8;
+  .primary:hover {
+    border: var(--border-width) solid var(--color-btn-surface-muted);
+    background-color: var(--color-btn-surface-muted);
     color: black;
   }
 
   .secondary {
-    border: 1px solid #fff;
+    border: var(--border-width) solid var(--color-btn-surface-secondary);
     background-color: none
-    color: var(--color-text);
+    color: var(--color-body);
   }
 
   .secondary:hover {
-    background-color: #fff;
-    color: black;
+    background-color: var(--color-btn-surface-primary);
+    color: var(--color-btn-text-primary);;
   }
 </style>

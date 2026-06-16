@@ -1,6 +1,5 @@
 ---
-
-const {class: className, ...props} = Astro.props;
+const { class: className, ...props } = Astro.props;
 ---
 
 <section class=`section-container ${className}` {...props}>
@@ -8,17 +7,16 @@ const {class: className, ...props} = Astro.props;
 </section>
 
 <style>
-.section-container {
-  padding: 64px var(--space-4);
-  min-width: 0;
-  width: 100%;
-  max-width: 1200px;
-}
-
-@media (max-width: 768px) {
   .section-container {
-    padding: 32px var(--space-2);
+    padding: 64px var(--space-12x);
+    min-width: 0;
+    width: 100%;
+    max-width: var(--max-width);
   }
-}
 
+  @media (max-width: 768px) {
+    .section-container {
+      padding: 32px var(--space-4x);
+    }
+  }
 </style>

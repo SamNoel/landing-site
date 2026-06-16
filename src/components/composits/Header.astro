@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import LogoImage from "@assets/logo.svg";
-import { NAV_LINKS } from "@consts";
+import { NAV_LINKS, MOBILE_BREAKPOINT } from "@consts";
 
 const { ...props } = Astro.props;
 ---
@@ -130,7 +130,7 @@ const { ...props } = Astro.props;
   }
 
   .logo-link:hover {
-    background-color: var(--color-bg);
+    background-color: var(--color-surface);
   }
 
   .logo-link p {
@@ -147,8 +147,6 @@ const { ...props } = Astro.props;
 
   .desktop-nav a {
     text-decoration: none;
-    /* color: var(--color-text); */
-    /* font-family: var(--font-cabin); */
     white-space: nowrap;
   }
 
@@ -170,7 +168,7 @@ const { ...props } = Astro.props;
   .hamburger span {
     width: 22px;
     height: 2px;
-    background: white;
+    background: var(--color-body);
     display: block;
     transition:
       opacity 0.2s ease,
@@ -216,7 +214,7 @@ const { ...props } = Astro.props;
     gap: 16px;
 
     padding: 16px;
-    background: black;
+    background: var(--color-surface);
 
     opacity: 0;
     visibility: hidden;

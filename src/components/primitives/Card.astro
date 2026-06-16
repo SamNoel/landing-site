@@ -5,59 +5,78 @@ import { Image } from "astro:assets";
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"div"> {
-  title: string;
-  text: string;
-  imageName: "primary" | "secondary";
+  title?: string;
+  text?: string;
+  imageName?: "primary" | "secondary";
 }
 
-const { title = "Card Title", text= "Here is some text", imageName = "placeholder.png", ...props } = Astro.props;
+const {
+  title = "Card Title",
+  text = "Here is some text",
+  imageName = "placeholder.webp",
+  ...props
+} = Astro.props;
 
 // Construct the image path based on the image name
 const imagePath = `/src/assets/${imageName}`;
 
 // Gather all image paths from the assets folder
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif,webp}');
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.{jpeg,jpg,png,gif,webp}",
+);
 
 // Check if image exists in the glob
-if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "@assets/*.{jpeg,jpg,png,gif,webp}"`);
+if (!images[imagePath])
+  throw new Error(
+    `"${imagePath}" does not exist in glob: "@assets/*.{jpeg,jpg,png,gif,webp}"`,
+  );
 ---
 
 <div class="card" {...props}>
-  {(imagePath && images) && <Image src={images[imagePath]()} alt=`Image for card with title of: ${title}` class="card-image"/>}
+  <!-- {(imagePath && images) && <Image src={images[imagePath]()} alt=`Image for card with title of: ${title}` class="card-image"/>} -->
+  <Image
+    src="https://placehold.co/600x400"
+    alt=`Image for card with title of: ${title}`
+    class="card-image"
+    width={600}
+    height={400}
+  />
   <div class="content-container">
-    {title && <h3>{title}</h3>}
-    {text && <p>{text}</p>}
+    <h3>{title}</h3>
+    <p>{text}</p>
   </div>
 </div>
 
 <style>
-.card {
-  /* padding: var(--space-3); */
-  /* border: 1px solid #eee; */
-  /* border-radius: 8px; */
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  height: auto;
-  /* gap: var(--space-2); */
-}
+  .card {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    height: auto;
+  }
 
-.card-image {
-  width: 100%;
-  height: 100%;
-  /* border-radius: 4px; */
-}
+  .card-image {
+    width: 100%;
+    height: 100%;
+  }
 
-.content-container {
-  padding: var(--space-3);
-  background-color: #c3a979;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
+  .content-container {
+    padding: var(--space-6x);
+    background-color: var(--color-surface-muted);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+  }
 
-h3, p {
-  margin: 0;
-  color: #000000;
-}
+  h3,
+  p {
+    margin: 0;
+    color: var(--color-body);
+  }
+
+  @media (max-width: 768px) {
+    .content-container {
+      padding: var(--space-base);
+    }
+  }
 </style>

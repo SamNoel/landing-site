@@ -12,6 +12,7 @@
       "@content/*": ["./src/content/*"],
       "@services/*": ["./src/services/*"],
       "@styles/*": ["./src/styles/*"],
+      "@tokens/*": ["./src/styles/tokens/*"],
       "@consts": ["./src/consts.ts"]
     }
   }
