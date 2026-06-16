@@ -58,6 +58,11 @@ a:hover {
   transition: background 0.2s ease;
 }
 
+.logo-text {
+  font-size: var(--text-sm);
+  font-weight: 300;
+}
+
 @media (max-width: 768px) {
   h1.display {
     font-size: var(--text-3xl);

@@ -4,20 +4,27 @@ import icon from "astro-icon";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import sitemap from "@astrojs/sitemap";
+
 /*
 TO DO:
 Get astro prettier - DONE
 Fix environment for builds - DONE
 Fix image loading - DONE
 Fix props for components - clean up and use global Props interfaces - https://docs.astro.build/en/guides/typescript/#component-props - DONE
-Clean up all components
-Make sure styles are pulling from proper sources
+Clean up all components - DONE
+Make sure styles are pulling from proper sources - DONE
 Fix astro favicon showing on mobile
 Fix mobile menu issue
 Env variables
 Using pnpm?
 New page template component?
 Head component - DONE
+Security headers - DONE
+404 page
+Fix yaml for CMS
+Redirects - DONE
+Cookies, site map, accessibility
 */
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -75,7 +82,7 @@ export default defineConfig({
     },
   ],
 
-  integrations: [icon()],
+  integrations: [icon(), sitemap()],
   vite: {
     plugins: isDev ? [watchExtraFiles()] : [],
   },

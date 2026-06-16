@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  height: number;
+}
+
+const { height = 32, ...props } = Astro.props;
+---
+
+<div
+  class="spacer"
+  style=`height: ${height}px`
+  {...props}
+  aria-label="Just an empty element for spacing purposes."
+>
+</div>
+
+<style>
+  .spacer {
+    width: 100%;
+  }
+</style>

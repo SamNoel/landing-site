@@ -1,0 +1,27 @@
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px); /* Optional: slides up slightly while fading */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 2. Apply it to your target scroll elements */
+.fade-in-element {
+  /* Attach the keyframe animation */
+  animation: fadeIn ease-in-out both;
+
+  /* Bind the animation progress directly to the element entering the viewport */
+  animation-timeline: view();
+
+  /* Adjust exactly when the animation starts and finishes */
+  /* Starts when the top of the element hits the bottom of the viewport */
+  /* Ends when the element is 30% into the viewport */
+  animation-range: entry 0% entry 30%;
+}
