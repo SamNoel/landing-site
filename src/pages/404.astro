@@ -11,13 +11,13 @@ export const prerender = true;
 ---
 
 <BaseLayout title="404">
-  <PageContainer id="404" class="page-container">
+  <PageContainer id="404" class="notfound-container">
     <SectionContainer style="display: flex; justify-content: center;">
       <Stack
         direction="column"
         gap="lg"
-        horizontalAlign="center"
-        verticalAlign="center"
+        justify="center"
+        align="center"
         style="max-width: 400px;"
       >
         <Heading titleSize="h1" display={true}>404</Heading>
@@ -32,7 +32,7 @@ export const prerender = true;
 </BaseLayout>
 
 <style define:vars={{ backgroundImage: `url(${BackgroundImage.src})` }}>
-  .page-container {
+  .notfound-container {
     background-image: url(/src/assets/background-transparent.png); /*var(--backgroundImage); */
     background-position: right bottom;
     background-repeat: no-repeat;
@@ -41,7 +41,7 @@ export const prerender = true;
   }
 
   @media (max-width: 768px) {
-    .page-container {
+    .notfound-container {
       background-image: url(/src/assets/background-mobile-transparent.png); /*var(--backgroundImage); */
       background-position: center top;
       background-repeat: no-repeat;

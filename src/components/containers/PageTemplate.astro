@@ -14,12 +14,7 @@ import Text from "@components/primitives/Text.astro";
 <BaseLayout title="Page">
   <PageContainer id="page" class="page-container">
     <SectionContainer>
-      <Stack
-        direction="column"
-        gap="lg"
-        horizontalAlign="left"
-        verticalAlign="top"
-      >
+      <Stack direction="column" gap="lg" justify="left" align="top">
         <Heading titleSize="h1">This is a new page.</Heading>
         <Text>
           You can use different components here to build out your page.
@@ -33,18 +28,8 @@ import Text from "@components/primitives/Text.astro";
     </SectionContainer>
 
     <SectionContainer class="fade-in-element" id="section">
-      <Stack
-        direction="row"
-        gap="lg"
-        horizontalAlign="left"
-        verticalAlign="center"
-      >
-        <Stack
-          direction="column"
-          gap="lg"
-          horizontalAlign="left"
-          verticalAlign="top"
-        >
+      <Stack direction="row" gap="lg" justify="left" align="center">
+        <Stack direction="column" gap="lg" justify="left" align="top">
           <Heading titleSize="h2">This is a section.</Heading>
           <Text>
             You can use different components here to build out your section.

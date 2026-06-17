@@ -11,3 +11,5 @@ export const NAV_LINKS = [
   { label: "Who We Are", href: "/#about" },
   { label: "Get In Touch", href: "/#contact" },
 ];
+
+export const SPACER_HEIGHT = 150;

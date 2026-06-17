@@ -24,12 +24,16 @@ body {
   overflow-x: clip;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   min-height: 100vh;
 }
 
 .content-block {
   display: flex;
+  width: 100%;
+}
+
+.spacer {
+  height: 150px;
   width: 100%;
 }
 
@@ -137,4 +141,10 @@ body {
 
 .text-2xl {
   font-size: var(--text-2xl);
+}
+
+@media (max-width: 768px) {
+  .spacer {
+    height: 80px;
+  }
 }

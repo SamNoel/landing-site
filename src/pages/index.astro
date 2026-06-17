@@ -3,12 +3,13 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Hero from "@components/composits/Hero.astro";
 import SectionContainer from "@components/containers/SectionContainer.astro";
 import Stack from "@components/primitives/Stack.astro";
-import Divider from "@components/primitives/Divider.astro";
-import { getAbout } from "@services/loaders/pages/home/about";
+import Card from "@components/primitives/Card.astro";
+import { getAbout } from "@data/about.tsx";
 import PageContainer from "@components/containers/PageContainer.astro";
 import BackgroundImage from "@assets/background-transparent.png";
 import Heading from "@components/primitives/Heading.astro";
 import Text from "@components/primitives/Text.astro";
+import Spacer from "@components/primitives/Spacer.astro";
 
 const aboutContent = await getAbout();
 ---
@@ -19,44 +20,31 @@ const aboutContent = await getAbout();
       <Hero />
     </SectionContainer>
 
-    <SectionContainer>
-      <Divider />
-    </SectionContainer>
+    <Spacer />
 
     <SectionContainer class="about-section fade-in-element" id="about">
-      <Stack
-        direction="row"
-        gap="lg"
-        horizontalAlign="center"
-        verticalAlign="top"
-      >
+      <Stack direction="row" gap="lg" justify="center" align="top">
         <Heading titleSize="h2">{aboutContent.title}</Heading>
         <div><aboutContent.Content /></div>
       </Stack>
     </SectionContainer>
 
-    <SectionContainer>
-      <Divider />
-    </SectionContainer>
+    <Spacer />
 
     <SectionContainer id="contact">
-      <Stack
-        direction="row"
-        gap="md"
-        horizontalAlign="center"
-        verticalAlign="top"
-      >
-        <Stack
-          direction="column"
-          gap="md"
-          horizontalAlign="left"
-          verticalAlign="top"
-        >
-          <Heading titleSize="h2">Get In Touch</Heading>
-          <Text>
+      <Stack direction="row" gap="md" justify="center" align="top">
+        <Stack direction="column" gap="md" justify="center" align="center">
+          <Heading titleSize="h2" align="center">Get In Touch</Heading>
+          <!-- <Text>
             If you are looking for web services and think we could be a good
             fit, don't hesitate to reach out via phone or email - or fill out
             the form to get in touch!
+          </Text> -->
+          <Text>
+            If you are looking for web services and think we could be a good
+            fit, don't hesitate to reach out via email: <a
+              href="mailto:sam@noelwebstudio.com">sam@noelwebstudio.com</a
+            >. Stay tuned for a contact form coming soon!
           </Text>
         </Stack>
       </Stack>

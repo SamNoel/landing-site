@@ -5,15 +5,15 @@ import type { HTMLAttributes } from "astro/types";
 interface Props extends HTMLAttributes<"section"> {
   direction: "row" | "column";
   gap: "xs" | "sm" | "md" | "lg";
-  horizontalAlign: "left" | "center" | "right";
-  verticalAlign: "top" | "center" | "bottom";
+  justify: "left" | "center" | "right";
+  align: "top" | "center" | "bottom";
 }
 
 const {
   direction = "column",
   gap = "md",
-  horizontalAlign = "left",
-  verticalAlign = "top",
+  justify = "left",
+  align = "top",
   ...props
 } = Astro.props;
 ---
@@ -24,8 +24,8 @@ const {
     "content-block",
     `direction-${direction}`,
     `gap-${gap}`,
-    `horizontal-align-${horizontalAlign}`,
-    `vertical-align-${verticalAlign}`,
+    `horizontal-align-${justify}`,
+    `vertical-align-${align}`,
   ]}
   {...props}
 >
