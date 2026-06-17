@@ -18,10 +18,10 @@ Fix astro favicon showing on mobile
 Fix mobile menu issue
 Env variables
 Using pnpm?
-New page template component?
+New page template component? - DONE
 Head component - DONE
 Security headers - DONE
-404 page
+404 page - DONE
 Fix yaml for CMS
 Redirects - DONE
 Cookies, site map, accessibility
