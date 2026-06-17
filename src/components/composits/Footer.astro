@@ -13,8 +13,9 @@ const { ...props } = Astro.props;
 <style>
   .footer {
     margin-top: var(--space-12x);
-    padding: var(--space-6x) 0;
+    padding: var(--footer-padding) 0;
     border-top: var(--border-width) solid var(--color-border);
+    flex-shrink: 0;
   }
 
   .inner {

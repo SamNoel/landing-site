@@ -7,11 +7,9 @@ import Divider from "@components/primitives/Divider.astro";
 import { getAbout } from "@services/loaders/pages/home/about";
 import PageContainer from "@components/containers/PageContainer.astro";
 import BackgroundImage from "@assets/background-transparent.png";
-import Button from "@components/primitives/Button.astro";
-import Card from "@components/primitives/Card.astro";
+import Heading from "@components/primitives/Heading.astro";
+import Text from "@components/primitives/Text.astro";
 
-// const servicesCollection = await getServices();
-// const reviewsCollection = await getReviews();
 const aboutContent = await getAbout();
 ---
 
@@ -25,12 +23,6 @@ const aboutContent = await getAbout();
       <Divider />
     </SectionContainer>
 
-    <!-- <Button href="#" label="Click Here" variant="primary" /> -->
-
-    <!-- <Card
-      text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966"
-    /> -->
-
     <SectionContainer class="about-section fade-in-element" id="about">
       <Stack
         direction="row"
@@ -38,7 +30,7 @@ const aboutContent = await getAbout();
         horizontalAlign="center"
         verticalAlign="top"
       >
-        <h2>{aboutContent.title}</h2>
+        <Heading titleSize="h2">{aboutContent.title}</Heading>
         <div><aboutContent.Content /></div>
       </Stack>
     </SectionContainer>
@@ -60,14 +52,13 @@ const aboutContent = await getAbout();
           horizontalAlign="left"
           verticalAlign="top"
         >
-          <h2>Get In Touch</h2>
-          <p>
+          <Heading titleSize="h2">Get In Touch</Heading>
+          <Text>
             If you are looking for web services and think we could be a good
             fit, don't hesitate to reach out via phone or email - or fill out
             the form to get in touch!
-          </p>
+          </Text>
         </Stack>
-        <!-- <div><aboutContent.Content/></div> -->
       </Stack>
     </SectionContainer>
 

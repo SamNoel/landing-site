@@ -1,20 +1,21 @@
 ---
-const {class: className, ...props} = Astro.props;
+const { class: className, ...props } = Astro.props;
 ---
 
 <main class=`page-container ${className}` {...props}>
-    <slot />
+  <slot />
 </main>
 
 <style>
-.page-container {
+  .page-container {
     display: flex;
     padding: 0;
     flex-direction: column;
+    flex: 1;
     align-items: center;
     margin-inline: auto;
     width: 100%;
     min-width: 0;
     overflow: clip;
-}
+  }
 </style>

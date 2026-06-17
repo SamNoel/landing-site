@@ -1,13 +1,16 @@
 ---
+import Heading from "@components/primitives/Heading.astro";
+import Text from "@components/primitives/Text.astro";
+
 const { ...props } = Astro.props;
 ---
 
 <section class="hero" , {...props}>
   <div class="content-container">
-    <h1 class="display">
+    <Heading titleSize="h1" display={true}>
       We create<br /><span style="font-weight: 700;">websites</span> for<br
       />local businesses.
-    </h1>
+    </Heading>
   </div>
 </section>
 

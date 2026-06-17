@@ -9,7 +9,7 @@ const { ...props } = Astro.props;
 <header class="header" {...props}>
   <div class="nav-inner">
     <!-- Logo -->
-    <a href="#home" class="logo-link">
+    <a href="/#home" class="logo-link">
       <Image
         src={LogoImage}
         alt="Noel Web Studio logo"
@@ -115,7 +115,7 @@ const { ...props } = Astro.props;
     align-items: center;
     justify-content: space-between;
 
-    padding: 16px 32px;
+    padding: var(--header-padding) 32px;
     width: 100%;
     box-sizing: border-box;
   }

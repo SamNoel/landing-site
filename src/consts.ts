@@ -7,7 +7,7 @@ export const SITE_DESCRIPTION = "This is a website template";
 export const MOBILE_BREAKPOINT = 768;
 
 export const NAV_LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "Who We Are", href: "#about" },
-  { label: "Get In Touch", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "Who We Are", href: "/#about" },
+  { label: "Get In Touch", href: "/#contact" },
 ];

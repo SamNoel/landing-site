@@ -40,4 +40,8 @@ NOTE: Custom fonts via fontsource are defined in astro.config.mjs and imported i
   --gap-md: 24px;
   --gap-lg: 32px;
   --gap-xl: 40px;
+
+  /* padding */
+  --header-padding: var(--space-6x);
+  --footer-padding: var(--space-6x);
 }

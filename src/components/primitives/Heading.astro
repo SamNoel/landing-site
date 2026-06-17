@@ -1,6 +1,28 @@
-<!-- ---
+---
+import "@styles/global.css";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<
+  "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+> {
+  titleSize: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  display?: boolean;
+  align?: "left" | "center" | "right";
+  maxWidth?: "small" | "normal" | "wide" | "full";
+}
+
+const {
+  titleSize = "h1",
+  display = false,
+  align = "left",
+  maxWidth = "normal",
+  ...props
+} = Astro.props;
+
 // Render the title with the appropriate heading tag based on the titleSize prop
 const HeadingTag = titleSize || "h2";
 ---
 
-  <HeadingTag class:list={[`align-${titleAlign}`]}>{contentEntry.data.title}</HeadingTag> -->
+<HeadingTag class=`align-${align} ${display ? "display" : ""}` , {...props}
+  ><slot /></HeadingTag
+>

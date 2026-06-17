@@ -2,28 +2,55 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import SectionContainer from "@components/containers/SectionContainer.astro";
 import Stack from "@components/primitives/Stack.astro";
+import Divider from "@components/primitives/Divider.astro";
 import PageContainer from "@components/containers/PageContainer.astro";
 import BackgroundImage from "@assets/background-transparent.png";
+import Button from "@components/primitives/Button.astro";
+import Card from "@components/primitives/Card.astro";
 import Heading from "@components/primitives/Heading.astro";
 import Text from "@components/primitives/Text.astro";
 ---
 
-<BaseLayout title="404">
-  <PageContainer id="404" class="page-container">
-    <SectionContainer style="display: flex; justify-content: center;">
+<BaseLayout title="Page">
+  <PageContainer id="page" class="page-container">
+    <SectionContainer>
       <Stack
         direction="column"
         gap="lg"
-        horizontalAlign="center"
-        verticalAlign="center"
-        style="max-width: 400px;"
+        horizontalAlign="left"
+        verticalAlign="top"
       >
-        <Heading titleSize="h1" display={true}>404</Heading>
-        <Text align="center"
-          >Looks like the page you're looking for doesn't exist. Please check
-          the URL or return to the homepage using the link below.</Text
+        <Heading titleSize="h1">This is a new page.</Heading>
+        <Text>
+          You can use different components here to build out your page.
+        </Text>
+        <Button href="#" label="Button" variant="primary" />
+      </Stack>
+    </SectionContainer>
+
+    <SectionContainer>
+      <Divider />
+    </SectionContainer>
+
+    <SectionContainer class="fade-in-element" id="section">
+      <Stack
+        direction="row"
+        gap="lg"
+        horizontalAlign="left"
+        verticalAlign="center"
+      >
+        <Stack
+          direction="column"
+          gap="lg"
+          horizontalAlign="left"
+          verticalAlign="top"
         >
-        <a href="/">Back to home</a>
+          <Heading titleSize="h2">This is a section.</Heading>
+          <Text>
+            You can use different components here to build out your section.
+          </Text>
+        </Stack>
+        <Card title="Card Title" text="This is a simple card component." />
       </Stack>
     </SectionContainer>
   </PageContainer>
