@@ -42,6 +42,7 @@ const { ...props } = Astro.props;
   let lastScrollTop = 0;
 
   const header = document.querySelector(".header");
+  const mobileNav = document.querySelector(".mobile-nav");
   const burger = document.querySelector(".hamburger");
   const burgerTop = document.querySelector(".hamburger-top");
   const burgerMiddle = document.querySelector(".hamburger-middle");
@@ -58,6 +59,7 @@ const { ...props } = Astro.props;
 
       // Close menu if open
       header?.classList.remove("menu-open");
+      mobileNav?.classList.remove("menu-open");
       // Accessibility state
       burger?.setAttribute("aria-expanded", "false");
       burgerTop?.classList.remove("open");
@@ -73,7 +75,7 @@ const { ...props } = Astro.props;
 
   burger?.addEventListener("click", () => {
     // Toggle mobile menu
-    const isOpen = header?.classList.toggle("menu-open");
+    const isOpen = mobileNav?.classList.toggle("menu-open");
 
     if (isOpen) {
       burgerTop?.classList.add("open");
@@ -178,7 +180,6 @@ const { ...props } = Astro.props;
 
   .hamburger-top.open {
     transform: translateY(6px) rotate(45deg);
-    translatey: 5px;
     translate: 0 1px;
     transition:
       opacity 0.2s ease,
@@ -235,12 +236,17 @@ const { ...props } = Astro.props;
   }
 
   /* OPEN STATE */
-  .header.menu-open .mobile-nav {
+  /* .header.menu-open .mobile-nav {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
 
     transform: translateY(0);
+  } */
+  .mobile-nav.menu-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   /* =========================
