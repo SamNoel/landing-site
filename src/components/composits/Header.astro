@@ -50,9 +50,15 @@ const { ...props } = Astro.props;
 
   window.addEventListener("scroll", () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const delta = scrollTop - lastScrollTop; // + = down, - = up
 
-    // Check if scrolling up or down
-    const scrollingDown = scrollTop > lastScrollTop;
+    // Only react to intentional scrolls (ignore tiny jitter from taps)
+    if (Math.abs(delta) < 5) {
+      lastScrollTop = Math.max(scrollTop, 0);
+      return;
+    }
+
+    const scrollingDown = delta > 0;
 
     if (scrollingDown) {
       header?.classList.add("nav-up");
