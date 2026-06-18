@@ -253,12 +253,16 @@ const { ...props } = Astro.props;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    transform: translateY(0);
   }
 
   /* =========================
    MOBILE
 ========================= */
   @media (max-width: 768px) {
+    .header {
+      overflow: visible;
+    }
     .desktop-nav {
       display: none;
     }
