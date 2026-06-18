@@ -1,10 +1,31 @@
 /* =========================
    ANIMATIONS
 ========================= */
-@keyframes fadeIn {
+@keyframes fadeInOutOnScroll {
+  0% {
+    opacity: 0;
+    transform: translateY(100px); /* Slides up slightly while fading */
+  }
+  20% {
+    opacity: 0.75;
+    transform: translateY(50px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInWithDelay {
   from {
     opacity: 0;
-    transform: translateY(50px); /* Optional: slides up slightly while fading */
+    transform: translateY(20px); /* Optional: adds a slight slide-up effect */
   }
   to {
     opacity: 1;
@@ -13,15 +34,24 @@
 }
 
 /* 2. Apply it to your target scroll elements */
-.fade-in-element {
+.fade-in-out-on-scroll {
   /* Attach the keyframe animation */
-  animation: fadeIn ease-in-out both;
+  animation: fadeInOutOnScroll ease-in-out both;
 
   /* Bind the animation progress directly to the element entering the viewport */
   animation-timeline: view();
+  animation-fill-mode: both;
 
-  /* Adjust exactly when the animation starts and finishes */
-  /* Starts when the top of the element hits the bottom of the viewport */
-  /* Ends when the element is 30% into the viewport */
-  animation-range: entry 0% entry 30%;
+  /* Adjust when the animation starts and finishes */
+  animation-range: cover;
+}
+
+.fade-in-with-delay {
+  /* Apply the fade-in animation when the element is in view */
+  /* animation: fadeIn ease-in-out both;
+  animation-timeline: view();
+  animation-fill-mode: both;
+  animation-range: cover; */
+  opacity: 0;
+  animation: fadeInWithDelay 0.75s ease-in-out 0.5s forwards; /* name | duration | timing | delay | fill-mode */
 }

@@ -22,7 +22,7 @@ const aboutContent = await getAbout();
 
     <Spacer />
 
-    <SectionContainer class="about-section fade-in-element" id="about">
+    <SectionContainer class="about-section fade-in-out-on-scroll" id="about">
       <Stack direction="row" gap="lg" justify="center" align="top">
         <Heading titleSize="h2">{aboutContent.title}</Heading>
         <div><aboutContent.Content /></div>
@@ -31,7 +31,7 @@ const aboutContent = await getAbout();
 
     <Spacer />
 
-    <SectionContainer id="contact">
+    <SectionContainer id="contact" class="fade-in-out-on-scroll">
       <Stack direction="row" gap="md" justify="center" align="top">
         <Stack direction="column" gap="md" justify="center" align="center">
           <Heading titleSize="h2" align="center">Get In Touch</Heading>

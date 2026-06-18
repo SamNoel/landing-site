@@ -1,12 +1,14 @@
 ---
+import Text from "@components/primitives/Text.astro";
+
 const { ...props } = Astro.props;
 ---
 
 <footer class="footer" {...props}>
   <div class="inner">
-    <p>
+    <Text align="center" maxWidth="full">
       &copy; {new Date().getFullYear()} Noel Web Studio. All rights reserved.
-    </p>
+    </Text>
   </div>
 </footer>
 

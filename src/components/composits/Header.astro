@@ -6,7 +6,7 @@ import { NAV_LINKS } from "@consts";
 const { ...props } = Astro.props;
 ---
 
-<header class="header" {...props}>
+<header class="header fade-in-with-delay" {...props}>
   <div class="nav-inner">
     <!-- Logo -->
     <a href="/#home" class="logo-link">
@@ -195,10 +195,10 @@ const { ...props } = Astro.props;
 
   .hamburger-middle.open {
     opacity: 0;
-    transition:
-      opacity 0.2s ease,
+    /* transition:
+      opacity 0.1s ease,
       transform 0.2s ease,
-      visibility 0.2s;
+      visibility 0.1s; */
   }
 
   .hamburger-bottom.open {
