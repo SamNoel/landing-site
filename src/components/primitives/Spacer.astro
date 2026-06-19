@@ -8,9 +8,4 @@
 const { ...props } = Astro.props;
 ---
 
-<div
-  class="spacer"
-  {...props}
-  aria-label="Just an empty element for spacing purposes."
->
-</div>
+<div class="spacer" {...props} aria-hidden="true"></div>

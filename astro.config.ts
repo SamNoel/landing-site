@@ -15,7 +15,7 @@ Fix props for components - clean up and use global Props interfaces - https://do
 Clean up all components - DONE
 Make sure styles are pulling from proper sources - DONE
 Fix astro favicon showing on mobile
-Fix mobile menu issue
+Fix mobile menu issue - DONE
 Env variables
 Using pnpm?
 New page template component? - DONE
