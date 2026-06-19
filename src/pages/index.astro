@@ -10,7 +10,7 @@ import BackgroundImage from "@assets/background-transparent.png";
 import Heading from "@components/primitives/Heading.astro";
 import Text from "@components/primitives/Text.astro";
 import Spacer from "@components/primitives/Spacer.astro";
-import ContactForm from "@components/forms/ContactForm.astro";
+import ContactForm2 from "@components/forms/ContactForm2.astro";
 
 const aboutContent = await getAbout();
 ---
@@ -43,12 +43,10 @@ const aboutContent = await getAbout();
           </Text> -->
           <Text align="center">
             If you are looking for web services and think we could be a good
-            fit, don't hesitate to reach out via email: <a
-              href="mailto:sam@noelwebstudio.com">sam@noelwebstudio.com</a
-            >. Stay tuned for a contact form coming soon!
+            fit, don't hesitate to fill out the form to get in touch!
           </Text>
         </Stack>
-        <ContactForm />
+        <ContactForm2 />
       </Stack>
     </SectionContainer>
 

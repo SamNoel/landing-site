@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig, fontProviders, envField } from "astro/config";
 import icon from "astro-icon";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -81,6 +81,14 @@ export default defineConfig({
       weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
     },
   ],
+  env: {
+    schema: {
+      PUBLIC_WEB3FORMS_ACCESS_KEY: envField.string({
+        context: "client",
+        access: "public",
+      }),
+    },
+  },
 
   integrations: [icon(), sitemap()],
   vite: {

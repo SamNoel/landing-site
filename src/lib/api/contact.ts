@@ -1,12 +1,5 @@
-import type { EventContext } from "@cloudflare/workers-types";
+import type { Env } from "../../../worker";
 import type { ContactFormData } from "@api/structures";
-
-interface Env {
-  RESEND_API_KEY: string;
-  CONTACT_EMAIL_TO: string;
-  CONTACT_EMAIL_FROM: string;
-  TURNSTILE_SECRET_KEY: string;
-}
 
 interface ApiResult {
   ok: boolean;
@@ -123,10 +116,15 @@ function buildEmailText(data: ContactFormData): string {
   ].join("\n");
 }
 
-export const onRequestPost = async (
-  context: EventContext<Env, string, Record<string, unknown>>,
-): Promise<Response> => {
-  const { env, request } = context;
+export async function handleContact(
+  request: Request,
+  env: Env,
+): Promise<Response> {
+  if (request.method !== "POST") {
+    return json({ ok: false, error: "Method not allowed." }, 405);
+  }
+  // ... rest of your existing handler logic, replacing context.env with env
+  // const { env, request } = context;
 
   const corsHeaders = {
     "Access-Control-Allow-Origin": new URL(request.url).origin,
@@ -222,7 +220,115 @@ export const onRequestPost = async (
     status: 200,
     headers: corsHeaders,
   });
-};
+}
+
+// export const onRequestPost = async (
+//   context: EventContext<Env, string, Record<string, unknown>>,
+// ): Promise<Response> => {
+//   const { env, request } = context;
+
+//   const corsHeaders = {
+//     "Access-Control-Allow-Origin": new URL(request.url).origin,
+//     "Content-Type": "application/json",
+//   };
+
+//   // Parse body
+//   let body: unknown;
+//   try {
+//     body = await request.json();
+//   } catch {
+//     return new Response(
+//       JSON.stringify({
+//         ok: false,
+//         error: "Invalid JSON in request body.",
+//       } satisfies ApiResult),
+//       { status: 400, headers: corsHeaders },
+//     );
+//   }
+
+//   // Honeypot check — field must be absent or empty
+//   const maybeHoneypot = (body as Record<string, unknown>)?.website;
+//   if (maybeHoneypot) {
+//     // Silently accept so bots don't know they were caught
+//     return new Response(JSON.stringify({ ok: true } satisfies ApiResult), {
+//       status: 200,
+//       headers: corsHeaders,
+//     });
+//   }
+
+//   // Validate fields + presence of Turnstile token
+//   const result = validate(body);
+//   if (!result.valid) {
+//     return new Response(
+//       JSON.stringify({ ok: false, error: result.error } satisfies ApiResult),
+//       { status: 422, headers: corsHeaders },
+//     );
+//   }
+
+//   const { parsed } = result;
+
+//   // Verify Turnstile token with Cloudflare
+//   const clientIp = request.headers.get("CF-Connecting-IP") ?? "";
+//   const turnstileValid = await verifyTurnstile(
+//     parsed.turnstileToken,
+//     env.TURNSTILE_SECRET_KEY,
+//     clientIp,
+//   );
+
+//   if (!turnstileValid) {
+//     return new Response(
+//       JSON.stringify({
+//         ok: false,
+//         error: "Security check failed. Please try again.",
+//       } satisfies ApiResult),
+//       { status: 403, headers: corsHeaders },
+//     );
+//   }
+
+//   // Send via Resend
+//   const resendResponse = await fetch("https://api.resend.com/emails", {
+//     method: "POST",
+//     headers: {
+//       Authorization: `Bearer ${env.RESEND_API_KEY}`,
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       from: env.CONTACT_EMAIL_FROM,
+//       to: [env.CONTACT_EMAIL_TO],
+//       reply_to: parsed.email,
+//       subject: `New contact form message from ${parsed.name}`,
+//       html: buildEmailHtml(parsed),
+//       text: buildEmailText(parsed),
+//     }),
+//   });
+
+//   if (!resendResponse.ok) {
+//     console.error(
+//       "Resend error:",
+//       resendResponse.status,
+//       await resendResponse.text(),
+//     );
+//     return new Response(
+//       JSON.stringify({
+//         ok: false,
+//         error: "Failed to send message. Please try again later.",
+//       } satisfies ApiResult),
+//       { status: 502, headers: corsHeaders },
+//     );
+//   }
+
+//   return new Response(JSON.stringify({ ok: true } satisfies ApiResult), {
+//     status: 200,
+//     headers: corsHeaders,
+//   });
+// };
+
+function json(data: unknown, status = 200): Response {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { "Content-Type": "application/json" },
+  });
+}
 
 // Reject all other HTTP methods
 export const onRequest = async (): Promise<Response> => {
