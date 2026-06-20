@@ -225,7 +225,8 @@
             let json = await response.json();
             if (response.status == 200) {
               result.classList.add("text-green-500");
-              result.innerHTML = json.message;
+              result.innerHTML =
+                "Thanks for reaching out! We'll get back to you soon.";
             } else {
               console.log(response);
               result.classList.add("text-red-500");
