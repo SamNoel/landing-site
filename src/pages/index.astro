@@ -3,7 +3,6 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Hero from "@components/composits/Hero.astro";
 import SectionContainer from "@components/containers/SectionContainer.astro";
 import Stack from "@components/primitives/Stack.astro";
-import Card from "@components/primitives/Card.astro";
 import { getAbout } from "@data/about.tsx";
 import PageContainer from "@components/containers/PageContainer.astro";
 import BackgroundImage from "@assets/background-transparent.png";
@@ -33,7 +32,7 @@ const aboutContent = await getAbout();
     <Spacer />
 
     <SectionContainer id="contact" class="fade-in-out-on-scroll">
-      <Stack direction="row" gap="md" justify="center" align="top">
+      <Stack direction="column" gap="md" justify="center" align="center">
         <Stack direction="column" gap="md" justify="center" align="center">
           <Heading titleSize="h2" align="center">Get In Touch</Heading>
           <!-- <Text>

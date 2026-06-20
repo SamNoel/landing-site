@@ -26,6 +26,7 @@ NOTE: Custom fonts via fontsource are defined in astro.config.mjs and imported i
   --color-secondary-900: #7a3a1d;
 
   /* typography */
+  --text-xs: 1.2rem;
   --text-sm: 1.4rem;
   --text-base: 1.6rem;
   --text-lg: 2rem;

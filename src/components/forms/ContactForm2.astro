@@ -2,16 +2,14 @@
 // import {PUBLIC_WEB3FORMS_ACCESS_KEY} from 'astro:env/client';
 ---
 
-<!-- // Styling Requires Tailwind CSS -->
 <form
   action="https://api.web3forms.com/submit"
   method="POST"
   id="form"
-  class="needs-validation contact-form"
+  class="needs-validation contact-form max-wide"
   data-astro-reload
   novalidate
 >
-  <!-- Add your Web3Forms Access Key -->
   <input
     type="hidden"
     name="access_key"
@@ -20,86 +18,85 @@
 
   <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
   <div class="field">
-    <label for="full_name" class="sr-only">Name</label>
+    <label for="full_name" class="cf_label">Name</label>
     <input
       id="full_name"
       type="text"
       placeholder="Full Name"
       required
-      class="w-full px-4 py-3 border placeholder:text-slate-400 rounded-md outline-none focus:ring-4 border-slate-300 focus:border-slate-600 ring-slate-100"
+      class="cf_input"
       name="name"
     />
-    <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
+    <div class="validation_message empty-feedback invalid-feedback">
       Please provide your full name.
     </div>
   </div>
   <div class="field">
-    <label for="email_address" class="sr-only">Email Address</label><input
+    <label for="email_address" class="cf_label">Email Address</label>
+    <input
       id="email_address"
       type="email"
       placeholder="Email Address"
       name="email"
       required
-      class="w-full px-4 py-3 border placeholder:text-slate-400 rounded-md outline-none focus:ring-4 border-slate-300 focus:border-slate-600 ring-slate-100"
+      class="cf_input"
     />
-    <div class="empty-feedback text-red-400 text-sm mt-1">
+    <div class="validation_message empty-feedback invalid-feedback">
       Please provide your email address.
     </div>
-    <div class="invalid-feedback text-red-400 text-sm mt-1">
+    <div class="validation_message empty-feedback invalid-feedback">
       Please provide a valid email address.
     </div>
   </div>
   <div class="field">
-    <label for="message" class="sr-only">Message</label>
+    <label for="message" class="cf_label">Message</label>
     <textarea
       id="message"
       name="message"
       required
       placeholder="Your Message"
-      class="w-full px-4 py-3 border placeholder:text-slate-400 rounded-md outline-none h-36 focus:ring-4 border-slate-300 focus:border-slate-600 ring-slate-100"
-    ></textarea>
-    <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
+      class="cf_input"></textarea>
+    <div class="validation_message empty-feedback invalid-feedback">
       Please enter your message.
     </div>
   </div>
-  <div class="h-captcha" data-captcha="true"></div>
-  <button type="submit" class="submit-btn">Send Message</button>
-  <div id="result" class="mt-3 text-center"></div>
+  <div class="h-captcha" data-captcha="true" data-theme="dark" data-lang="en">
+  </div>
+  <button type="submit" class="submit-btn button primary">Send Message</button>
+  <div id="result" class="result_message"></div>
 </form>
 
 <style>
   .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    gap: 2rem;
+    border: 1px solid var(--color-border);
     border-radius: 3px;
     padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: var(--color-surface);
     width: 100%;
   }
 
   .field {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
   }
 
-  label {
+  .cf_label {
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--color-body-muted);
   }
 
-  input,
-  textarea {
+  .cf_input {
     font-family: var(--font-noto-sans);
     font-size: 1rem;
     color: #fff;
     background: #000;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--color-border);
     border-radius: 3px;
     padding: 0.75rem 1rem;
     width: 100%;
@@ -108,6 +105,16 @@
       border-color 150ms ease,
       background 150ms ease;
     resize: vertical;
+  }
+
+  .validation_message {
+    font-size: var(--text-sm);
+    color: red;
+  }
+
+  .result_message {
+    font-size: var(--text-sm);
+    color: var(--color-white);
   }
 
   input::placeholder,

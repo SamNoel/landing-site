@@ -2,9 +2,9 @@
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"a"> {
-  href: string;
-  label: string;
-  variant: "primary" | "secondary";
+  href?: string;
+  label?: string;
+  variant?: "primary" | "secondary";
 }
 
 const {
@@ -15,12 +15,19 @@ const {
 } = Astro.props;
 ---
 
-<a type="button" href={href} class={`button ${variant}`} {...props} aria-label={label} title={label}>
+<a
+  type="button"
+  href={href}
+  class={`button ${variant}`}
+  {...props}
+  aria-label={label}
+  title={label}
+>
   {label}
 </a>
 
 <style>
-  .button {
+  /* .button {
     display: inline-block;
     padding: var(--space-4x);
     transition: opacity 0.2s ease;
@@ -57,5 +64,5 @@ const {
   .secondary:hover {
     background-color: var(--color-btn-surface-primary);
     color: var(--color-btn-text-primary);;
-  }
+  } */
 </style>
