@@ -1,303 +1,103 @@
 ---
-const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+// import {PUBLIC_WEB3FORMS_ACCESS_KEY} from 'astro:env/client';
 ---
 
-<!-- Turnstile script — loaded once, async -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer
-></script>
+<form
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  id="form"
+  class="needs-validation contact-form max-wide"
+  data-astro-reload
+  novalidate
+>
+  <input
+    type="hidden"
+    name="access_key"
+    value="92f04ba0-23e2-43c0-bbde-e883621269a0"
+  />
 
-<div class="contact-form-wrapper">
-  <form class="contact-form" id="contact-form" novalidate>
-    <!-- Honeypot: hidden from real users, bots fill it in -->
-    <div class="hp-field" aria-hidden="true">
-      <label for="cf-website">Website</label>
-      <input
-        id="cf-website"
-        name="website"
-        type="text"
-        tabindex="-1"
-        autocomplete="off"
-      />
-    </div>
-
-    <div class="field">
-      <label for="cf-name">Name</label>
-      <input
-        id="cf-name"
-        name="name"
-        type="text"
-        autocomplete="name"
-        placeholder="Your name"
-        maxlength="100"
-        required
-      />
-      <span class="field-error" id="cf-name-error" aria-live="polite"></span>
-    </div>
-
-    <div class="field">
-      <label for="cf-email">Email</label>
-      <input
-        id="cf-email"
-        name="email"
-        type="email"
-        autocomplete="email"
-        placeholder="you@example.com"
-        maxlength="254"
-        required
-      />
-      <span class="field-error" id="cf-email-error" aria-live="polite"></span>
-    </div>
-
-    <div class="field">
-      <label for="cf-message">Message</label>
-      <textarea
-        id="cf-message"
-        name="message"
-        placeholder="What's on your mind?"
-        minlength="10"
-        maxlength="5000"
-        rows="6"
-        required></textarea>
-      <span class="field-error" id="cf-message-error" aria-live="polite"></span>
-    </div>
-
-    <!-- Turnstile widget — renders invisibly by default, shows checkbox only if uncertain -->
-    <div
-      class="cf-turnstile"
-      id="cf-turnstile"
-      data-sitekey={TURNSTILE_SITE_KEY}
-      data-theme="dark"
-      data-size="flexible"
-      data-callback="onTurnstileSuccess"
-      data-error-callback="onTurnstileError"
-      data-expired-callback="onTurnstileExpired"
-    >
-    </div>
-    <span class="field-error" id="cf-turnstile-error" aria-live="polite"></span>
-
-    <div class="form-footer">
-      <span class="form-error" id="cf-form-error" aria-live="polite"></span>
-      <button type="submit" class="submit-btn" id="cf-submit">
-        <span class="btn-label">Send message</span>
-        <span class="btn-spinner" aria-hidden="true"></span>
-      </button>
-    </div>
-  </form>
-
-  <div class="success-state" id="cf-success" aria-live="polite" hidden>
-    <div class="success-inner">
-      <svg
-        class="success-icon"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"
-        ></circle>
-        <path
-          d="M7 12.5l3.5 3.5 6.5-7"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"></path>
-      </svg>
-      <p class="success-heading">Message sent</p>
-      <p class="success-body">
-        Thanks for reaching out — I'll get back to you soon.
-      </p>
+  <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
+  <div class="field">
+    <label for="full_name" class="cf_label">Name</label>
+    <input
+      id="full_name"
+      type="text"
+      placeholder="Full Name"
+      required
+      class="cf_input"
+      name="name"
+    />
+    <div class="validation_message empty-feedback invalid-feedback">
+      Please provide your full name.
     </div>
   </div>
-</div>
-
-<script>
-  import { postContact } from "@api/fetches";
-  import type { ContactFormData } from "@api/structures";
-
-  const form = document.getElementById("contact-form") as HTMLFormElement;
-  const submitBtn = document.getElementById("cf-submit") as HTMLButtonElement;
-  const successState = document.getElementById("cf-success") as HTMLDivElement;
-  const formError = document.getElementById("cf-form-error") as HTMLSpanElement;
-  const turnstileError = document.getElementById(
-    "cf-turnstile-error",
-  ) as HTMLSpanElement;
-
-  const fields = {
-    name: {
-      input: document.getElementById("cf-name") as HTMLInputElement,
-      error: document.getElementById("cf-name-error") as HTMLSpanElement,
-    },
-    email: {
-      input: document.getElementById("cf-email") as HTMLInputElement,
-      error: document.getElementById("cf-email-error") as HTMLSpanElement,
-    },
-    message: {
-      input: document.getElementById("cf-message") as HTMLTextAreaElement,
-      error: document.getElementById("cf-message-error") as HTMLSpanElement,
-    },
-  };
-
-  // Turnstile token — set by the widget callbacks on window so they're
-  // accessible here without a module boundary issue
-  let turnstileToken: string | null = null;
-
-  (window as any).onTurnstileSuccess = (token: string) => {
-    turnstileToken = token;
-    turnstileError.textContent = "";
-  };
-
-  (window as any).onTurnstileError = () => {
-    turnstileToken = null;
-    turnstileError.textContent =
-      "Security check failed. Please refresh and try again.";
-  };
-
-  (window as any).onTurnstileExpired = () => {
-    turnstileToken = null;
-    // Token expired silently — Turnstile will auto-refresh the challenge
-  };
-
-  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  function validateField(name: keyof typeof fields): string | null {
-    const value = fields[name].input.value.trim();
-    if (name === "name") {
-      if (!value) return "Name is required.";
-      if (value.length > 100) return "Name must be 100 characters or fewer.";
-    }
-    if (name === "email") {
-      if (!value) return "Email is required.";
-      if (!EMAIL_RE.test(value)) return "Enter a valid email address.";
-    }
-    if (name === "message") {
-      if (value.length < 10) return "Message must be at least 10 characters.";
-      if (value.length > 5000)
-        return "Message must be 5,000 characters or fewer.";
-    }
-    return null;
-  }
-
-  function showFieldError(name: keyof typeof fields, message: string | null) {
-    const { input, error } = fields[name];
-    error.textContent = message ?? "";
-    input.setAttribute("aria-invalid", message ? "true" : "false");
-  }
-
-  for (const name of Object.keys(fields) as (keyof typeof fields)[]) {
-    fields[name].input.addEventListener("blur", () => {
-      showFieldError(name, validateField(name));
-    });
-    fields[name].input.addEventListener("input", () => {
-      if (fields[name].error.textContent) {
-        showFieldError(name, null);
-      }
-    });
-  }
-
-  function setLoading(loading: boolean) {
-    submitBtn.disabled = loading;
-    submitBtn.classList.toggle("loading", loading);
-  }
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    formError.textContent = "";
-
-    // Field validation
-    let hasErrors = false;
-    for (const name of Object.keys(fields) as (keyof typeof fields)[]) {
-      const error = validateField(name);
-      showFieldError(name, error);
-      if (error) hasErrors = true;
-    }
-
-    // Turnstile check
-    if (!turnstileToken) {
-      turnstileError.textContent =
-        "Please wait for the security check to complete.";
-      hasErrors = true;
-    }
-
-    if (hasErrors) return;
-
-    setLoading(true);
-
-    const data: ContactFormData = {
-      name: fields.name.input.value.trim(),
-      email: fields.email.input.value.trim(),
-      message: fields.message.input.value.trim(),
-      turnstileToken: turnstileToken!,
-    };
-
-    const result = await postContact(data);
-
-    setLoading(false);
-
-    if (!result.ok) {
-      formError.textContent =
-        result.error ?? "Something went wrong. Please try again.";
-      // Reset Turnstile so user can re-challenge if needed
-      if (typeof (window as any).turnstile !== "undefined") {
-        (window as any).turnstile.reset("#cf-turnstile");
-        turnstileToken = null;
-      }
-      return;
-    }
-
-    form.hidden = true;
-    successState.hidden = false;
-  });
-</script>
+  <div class="field">
+    <label for="email_address" class="cf_label">Email Address</label>
+    <input
+      id="email_address"
+      type="email"
+      placeholder="Email Address"
+      name="email"
+      required
+      class="cf_input"
+    />
+    <div class="validation_message empty-feedback invalid-feedback">
+      Please provide your email address.
+    </div>
+    <div class="validation_message empty-feedback invalid-feedback">
+      Please provide a valid email address.
+    </div>
+  </div>
+  <div class="field">
+    <label for="message" class="cf_label">Message</label>
+    <textarea
+      id="message"
+      name="message"
+      required
+      placeholder="How can we help your business?"
+      class="cf_input"></textarea>
+    <div class="validation_message empty-feedback invalid-feedback">
+      Please enter your message.
+    </div>
+  </div>
+  <div class="h-captcha" data-captcha="true" data-theme="dark" data-lang="en">
+  </div>
+  <button type="submit" class="submit-btn button primary">Send Message</button>
+  <div id="result" class="result_message"></div>
+</form>
 
 <style>
-  .contact-form-wrapper {
-    font-family: var(--font-noto-sans);
-    width: 100%;
-  }
-
-  /* ── Honeypot: visually hidden, inaccessible to real users ── */
-  .hp-field {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-    pointer-events: none;
-  }
-
-  /* ── Form layout ── */
   .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    padding: 2rem;
+    background-color: var(--color-surface);
+    width: 100%;
   }
 
-  /* ── Fields ── */
   .field {
     display: flex;
     flex-direction: column;
-    gap: 0.375rem;
+    gap: 6px;
   }
 
-  label {
-    font-size: 0.8125rem;
-    font-weight: 500;
+  .cf_label {
+    font-size: 1rem;
+    font-weight: 400;
     letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--color-body-muted);
   }
 
-  input,
-  textarea {
+  .cf_input {
     font-family: var(--font-noto-sans);
-    font-size: 0.9375rem;
+    font-size: var(--text-sm);
+    font-weight: 300;
     color: #fff;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: #000;
+    border: 1px solid var(--color-border);
     border-radius: 3px;
     padding: 0.75rem 1rem;
     width: 100%;
@@ -308,9 +108,19 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     resize: vertical;
   }
 
+  .validation_message {
+    font-size: var(--text-sm);
+    color: red;
+  }
+
+  .result_message {
+    font-size: var(--text-sm);
+    color: var(--color-white);
+  }
+
   input::placeholder,
   textarea::placeholder {
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.4);
   }
 
   input:hover,
@@ -330,47 +140,21 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     border-color: rgba(255, 100, 100, 0.7);
   }
 
-  .field-error {
-    font-size: 0.8125rem;
-    color: rgba(255, 100, 100, 0.9);
-    min-height: 1.1em;
-  }
-
-  /* ── Turnstile widget ── */
-  .cf-turnstile {
-    /* Collapses to nothing when invisible mode is active */
-    min-height: 0;
-  }
-
-  /* ── Footer row ── */
-  .form-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .form-error {
-    font-size: 0.8125rem;
-    color: rgba(255, 100, 100, 0.9);
-    flex: 1;
-  }
-
   /* ── Submit button ── */
   .submit-btn {
     font-family: var(--font-noto-sans);
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 500;
-    letter-spacing: 0.02em;
     color: #000;
     background: #fff;
     border: none;
     border-radius: 3px;
-    padding: 0.75rem 1.75rem;
+    padding: 1.5rem 1.75rem;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
+    text-align: center;
+    justify-content: center;
     gap: 0.5rem;
     transition:
       background 150ms ease,
@@ -388,74 +172,81 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     cursor: not-allowed;
   }
 
-  /* Spinner */
-  .btn-spinner {
+  .invalid-feedback,
+  .empty-feedback {
     display: none;
-    width: 0.875rem;
-    height: 0.875rem;
-    border: 1.5px solid rgba(0, 0, 0, 0.25);
-    border-top-color: #000;
-    border-radius: 50%;
-    animation: spin 0.6s linear infinite;
   }
 
-  .submit-btn.loading .btn-label {
-    opacity: 0.6;
-  }
-
-  .submit-btn.loading .btn-spinner {
+  .was-validated :placeholder-shown:invalid ~ .empty-feedback {
     display: block;
   }
 
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
+  .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
+    display: block;
   }
 
-  /* ── Success state ── */
-  .success-state {
-    display: flex;
-    align-items: flex-start;
-    padding: 2rem 0;
-  }
-
-  .success-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .success-icon {
-    width: 2rem;
-    height: 2rem;
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 0.25rem;
-  }
-
-  .success-heading {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-    margin: 0;
-  }
-
-  .success-body {
-    font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.5);
-    margin: 0;
-  }
-
-  /* ── Reduced motion ── */
-  @media (prefers-reduced-motion: reduce) {
-    .btn-spinner {
-      animation: none;
-      opacity: 0.5;
-    }
-    input,
-    textarea,
-    .submit-btn {
-      transition: none;
-    }
+  .is-invalid,
+  .was-validated :invalid {
+    border-color: #dc3545;
   }
 </style>
+
+<script is:inline>
+  // use astro:page-load event if you are using View Transitions
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+      const form = document.getElementById("form");
+      const result = document.getElementById("result");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        form.classList.add("was-validated");
+        if (!form.checkValidity()) {
+          form.querySelectorAll(":invalid")[0].focus();
+          return;
+        }
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        result.innerHTML = "Sending...";
+
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: json,
+        })
+          .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+              result.classList.add("text-green-500");
+              result.innerHTML = json.message;
+            } else {
+              console.log(response);
+              result.classList.add("text-red-500");
+              result.innerHTML = json.message;
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            result.innerHTML = "Something went wrong!";
+          })
+          .then(function () {
+            form.reset();
+            form.classList.remove("was-validated");
+            setTimeout(() => {
+              result.style.display = "none";
+            }, 5000);
+          });
+      });
+    },
+    { once: true },
+  );
+</script>
+
+<script src="https://web3forms.com/client/script.js" async defer></script>

@@ -9,7 +9,7 @@ import BackgroundImage from "@assets/background-transparent.png";
 import Heading from "@components/primitives/Heading.astro";
 import Text from "@components/primitives/Text.astro";
 import Spacer from "@components/primitives/Spacer.astro";
-import ContactForm2 from "@components/forms/ContactForm2.astro";
+import ContactForm from "@components/forms/ContactForm.astro";
 
 const aboutContent = await getAbout();
 ---
@@ -45,7 +45,7 @@ const aboutContent = await getAbout();
             fit, don't hesitate to fill out the form to get in touch!
           </Text>
         </Stack>
-        <ContactForm2 />
+        <ContactForm />
       </Stack>
     </SectionContainer>
 
