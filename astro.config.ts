@@ -64,18 +64,6 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.fontsource(),
-      name: "Bodoni Moda",
-      cssVariable: "--font-bodoni-moda",
-      weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
-    },
-    {
-      provider: fontProviders.fontsource(),
-      name: "Cabin",
-      cssVariable: "--font-cabin",
-      weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
-    },
-    {
-      provider: fontProviders.fontsource(),
       name: "Noto Sans",
       cssVariable: "--font-noto-sans",
       weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],

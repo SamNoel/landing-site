@@ -1,0 +1,46 @@
+---
+import { Picture } from "astro:assets";
+import { BASE_IMAGE_PATH } from "@consts";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"picture"> {
+  imageName?: string;
+  alt?: string;
+  width?: number | undefined;
+  height?: number | undefined;
+  loading?: "lazy" | "eager";
+}
+
+const {
+  imageName = "placeholder.webp",
+  alt = "A description of my image.",
+  width,
+  height,
+  loading = "lazy",
+  ...props
+} = Astro.props;
+
+// Construct the image path based on the image name
+const imagePath = `${BASE_IMAGE_PATH}${imageName}`;
+
+// Gather all image paths from the assets folder
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.{jpeg,jpg,png,gif,webp}",
+);
+
+// Check if image exists in the glob
+if (!images[imagePath])
+  throw new Error(`"${imagePath}" does not exist in glob`);
+---
+
+<Picture
+  src={images[imagePath]()}
+  formats={["avif", "webp"]}
+  alt={alt}
+  layout="constrained"
+  width={width}
+  height={height}
+  loading={loading}
+  fetchpriority={loading == "eager" ? "high" : "auto"}
+  {...props}
+/>

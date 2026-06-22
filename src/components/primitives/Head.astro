@@ -9,10 +9,20 @@ const { title = { SITE_TITLE } } = Astro.props;
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
   <meta name="generator" content={Astro.generator} />
-  <Font cssVariable="--font-bodoni-moda" />
-  <Font cssVariable="--font-cabin" />
-  <Font cssVariable="--font-noto-sans" />
+  <Font cssVariable="--font-noto-sans" preload={true} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" href="/favicon.ico" />
+  <link
+    rel="preload"
+    as="image"
+    href="src/assets/background-transparent.png"
+    type="image/png"
+  />
+  <link
+    rel="preload"
+    as="image"
+    href="src/assets/background-mobile-transparent.png"
+    type="image/png"
+  />
   <title>{title}</title>
 </head>

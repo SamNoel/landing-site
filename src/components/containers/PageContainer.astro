@@ -2,7 +2,7 @@
 const { class: className, ...props } = Astro.props;
 ---
 
-<main class=`page-container ${className}` {...props}>
+<main class=`page-container ${className}` fetch-priority="high" {...props}>
   <slot />
 </main>
 

@@ -1,0 +1,42 @@
+---
+import type { ImageMetadata } from "astro";
+import { getImage } from "astro:assets";
+import { BASE_IMAGE_PATH } from "@consts";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"picture"> {
+  mobileImgUrl: string | ImageMetadata;
+  desktopImgUrl: string | ImageMetadata;
+  alt: string;
+}
+
+const {
+  mobileImgUrl,
+  desktopImgUrl,
+  alt = "A description of my image.",
+  ...props
+} = Astro.props;
+
+const desktopImagePath = `${BASE_IMAGE_PATH}${desktopImgUrl}`;
+const mobileImagePath = `${BASE_IMAGE_PATH}${mobileImgUrl}`;
+
+const mobileImg = await getImage({
+  src: mobileImagePath,
+  format: "webp",
+  width: 200,
+  height: 200,
+});
+
+const desktopImg = await getImage({
+  src: desktopImagePath,
+  format: "webp",
+  width: 200,
+  height: 200,
+});
+---
+
+<picture {...props}>
+  <source media="(max-width: 768px)" srcset={mobileImg.src} />
+  <source media="(min-width: 769px)" srcset={desktopImg.src} />
+  <img src={desktopImg.src} alt={alt} />
+</picture>

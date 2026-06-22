@@ -1,41 +1,26 @@
 ---
 import type { ImageMetadata } from "astro";
-import { Image } from "astro:assets";
+import Image from "@components/primitives/Image.astro";
 
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"div"> {
   title?: string;
   text?: string;
-  imageName?: "primary" | "secondary";
+  imageName?: string;
 }
 
 const {
   title = "Card Title",
   text = "Here is some text",
-  imageName = "placeholder.webp",
+  imageName,
   ...props
 } = Astro.props;
-
-// Construct the image path based on the image name
-const imagePath = `/src/assets/${imageName}`;
-
-// Gather all image paths from the assets folder
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/*.{jpeg,jpg,png,gif,webp}",
-);
-
-// Check if image exists in the glob
-if (!images[imagePath])
-  throw new Error(
-    `"${imagePath}" does not exist in glob: "@assets/*.{jpeg,jpg,png,gif,webp}"`,
-  );
 ---
 
 <div class="card" {...props}>
-  <!-- {(imagePath && images) && <Image src={images[imagePath]()} alt=`Image for card with title of: ${title}` class="card-image"/>} -->
   <Image
-    src="https://placehold.co/600x400"
+    imageName={imageName}
     alt=`Image for card with title of: ${title}`
     class="card-image"
     width={600}

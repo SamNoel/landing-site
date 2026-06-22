@@ -60,7 +60,9 @@
       Please enter your message.
     </div>
   </div>
-  <div class="h-captcha" data-captcha="true" data-theme="dark" data-lang="en">
+  <div class="hcaptcha-wrapper">
+    <div class="h-captcha" data-captcha="true" data-theme="dark" data-lang="en">
+    </div>
   </div>
   <button type="submit" class="submit-btn button primary">Send Message</button>
   <div id="result" class="result_message"></div>
@@ -116,6 +118,11 @@
   .result_message {
     font-size: var(--text-sm);
     color: var(--color-white);
+  }
+
+  .hcaptcha-wrapper {
+    width: 100%;
+    height: 100px;
   }
 
   input::placeholder,
