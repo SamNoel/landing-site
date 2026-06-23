@@ -72,6 +72,14 @@ export default defineConfig({
         "base-uri 'self'",
         "form-action 'self'",
       ],
+      scriptDirective: {
+        resources: [
+          "self",
+          "https://static.cloudflareinsights.com",
+          "https://web3forms.com",
+          "https://js.hcaptcha.com",
+        ],
+      },
     },
   },
 
