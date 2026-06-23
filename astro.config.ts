@@ -66,9 +66,9 @@ export default defineConfig({
       algorithm: "SHA-512",
       directives: [
         // script-src and style-src are included by default: https://docs.astro.build/en/reference/configuration-reference/#securitycspdirectives
-        "default-src 'self' https://newassets.hcaptcha.com/",
-        "connect-src 'self' https://*.hcaptcha.com/",
-        "frame-ancestors 'none'",
+        "default-src 'self'",
+        "connect-src 'self' https://hcaptcha.com, https://*.hcaptcha.com",
+        "frame-src 'self' https://hcaptcha.com, https://*.hcaptcha.com",
         "base-uri 'self'",
         "form-action 'self' https://api.web3forms.com",
       ],
@@ -78,7 +78,12 @@ export default defineConfig({
           "https://static.cloudflareinsights.com",
           "https://web3forms.com",
           "https://js.hcaptcha.com",
+          "https://hcaptcha.com",
+          "https://*.hcaptcha.com",
         ],
+      },
+      styleDirective: {
+        resources: ["self", "https://hcaptcha.com", "https://*.hcaptcha.com"],
       },
     },
   },
