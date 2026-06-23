@@ -61,6 +61,20 @@ export default defineConfig({
 
   output: "static",
 
+  security: {
+    csp: {
+      algorithm: "SHA-512",
+      directives: [
+        // script-src and style-src are included by default: https://docs.astro.build/en/reference/configuration-reference/#securitycspdirectives
+        "default-src 'self' https://newassets.hcaptcha.com/",
+        "connect-src 'self' https://*.hcaptcha.com/",
+        "frame-ancestors 'none'",
+        "base-uri 'self'",
+        "form-action 'self'",
+      ],
+    },
+  },
+
   fonts: [
     {
       provider: fontProviders.fontsource(),

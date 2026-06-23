@@ -5,4 +5,3 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  Content-Security-Policy-Report-Only: default-src 'self' https://newassets.hcaptcha.com/; script-src 'self' https://web3forms.com/ https://static.cloudflareinsights.com/ https://js.hcaptcha.com/; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://*.hcaptcha.com/; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
