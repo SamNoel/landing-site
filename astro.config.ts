@@ -70,7 +70,7 @@ export default defineConfig({
         "connect-src 'self' https://*.hcaptcha.com/",
         "frame-ancestors 'none'",
         "base-uri 'self'",
-        "form-action 'self'",
+        "form-action 'self' https://api.web3forms.com",
       ],
       scriptDirective: {
         resources: [
