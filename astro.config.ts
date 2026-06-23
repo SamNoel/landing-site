@@ -74,7 +74,7 @@ export default defineConfig({
       ],
       scriptDirective: {
         resources: [
-          "self",
+          "'self'",
           "https://static.cloudflareinsights.com",
           "https://web3forms.com",
           "https://js.hcaptcha.com",
@@ -83,7 +83,7 @@ export default defineConfig({
         ],
       },
       styleDirective: {
-        resources: ["self", "https://hcaptcha.com", "https://*.hcaptcha.com"],
+        resources: ["'self'", "https://hcaptcha.com", "https://*.hcaptcha.com"],
       },
     },
   },
