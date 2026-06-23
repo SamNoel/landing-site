@@ -1,6 +1,8 @@
 ---
 import { SITE_TITLE } from "@consts";
 import { Font } from "astro:assets";
+import bgDesktop from "@assets/background-transparent.png";
+import bgMobile from "@assets/background-mobile-transparent.png";
 
 const { title = { SITE_TITLE } } = Astro.props;
 ---
@@ -12,17 +14,7 @@ const { title = { SITE_TITLE } } = Astro.props;
   <Font cssVariable="--font-noto-sans" preload={true} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" href="/favicon.ico" />
-  <link
-    rel="preload"
-    as="image"
-    href="src/assets/background-transparent.png"
-    type="image/png"
-  />
-  <link
-    rel="preload"
-    as="image"
-    href="src/assets/background-mobile-transparent.png"
-    type="image/png"
-  />
+  <link rel="preload" as="image" href={bgDesktop.src} type="image/png" />
+  <link rel="preload" as="image" href={bgMobile.src} type="image/png" />
   <title>{title}</title>
 </head>
