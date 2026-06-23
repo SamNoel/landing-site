@@ -67,7 +67,7 @@ export default defineConfig({
       directives: [
         // script-src and style-src are included by default: https://docs.astro.build/en/reference/configuration-reference/#securitycspdirectives
         "default-src 'self'",
-        "connect-src 'self' https://hcaptcha.com https://*.hcaptcha.com",
+        "connect-src 'self' https://api.web3forms.com https://hcaptcha.com https://*.hcaptcha.com",
         "frame-src 'self' https://hcaptcha.com https://*.hcaptcha.com",
         "base-uri 'self'",
         "form-action 'self' https://api.web3forms.com",

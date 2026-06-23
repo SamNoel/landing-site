@@ -39,7 +39,8 @@ document.addEventListener(
         })
         .catch((error) => {
           console.log(error);
-          result.innerHTML = "Something went wrong!";
+          result.innerHTML =
+            "Error sending message. Thank you for your patience while we investigate the issue.";
         })
         .then(function () {
           form.reset();
