@@ -144,6 +144,10 @@ body {
 
 /* Typography */
 
+.bold {
+  font-weight: 700;
+}
+
 .text-sm {
   font-size: var(--text-sm);
 }
