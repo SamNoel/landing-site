@@ -83,7 +83,12 @@ export default defineConfig({
         ],
       },
       styleDirective: {
-        resources: ["'self'", "https://hcaptcha.com", "https://*.hcaptcha.com"],
+        resources: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://hcaptcha.com",
+          "https://*.hcaptcha.com",
+        ],
       },
     },
   },
