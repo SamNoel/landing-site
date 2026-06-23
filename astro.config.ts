@@ -75,6 +75,7 @@ export default defineConfig({
       scriptDirective: {
         resources: [
           "'self'",
+          "'strict-dynamic'",
           "https://static.cloudflareinsights.com",
           "https://web3forms.com",
           "https://js.hcaptcha.com",

@@ -14,7 +14,19 @@ const { title = { SITE_TITLE } } = Astro.props;
   <Font cssVariable="--font-noto-sans" preload={true} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" href="/favicon.ico" />
-  <link rel="preload" as="image" href={bgDesktop.src} type="image/png" />
-  <link rel="preload" as="image" href={bgMobile.src} type="image/png" />
+  <link
+    rel="preload"
+    as="image"
+    href={bgDesktop.src}
+    type="image/png"
+    fetchpriority="high"
+  />
+  <link
+    rel="preload"
+    as="image"
+    href={bgMobile.src}
+    type="image/png"
+    fetchpriority="high"
+  />
   <title>{title}</title>
 </head>
