@@ -3,7 +3,9 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Hero from "@components/composits/Hero.astro";
 import SectionContainer from "@components/containers/SectionContainer.astro";
 import Stack from "@components/primitives/Stack.astro";
+import Card from "@components/primitives/Card.astro";
 import { getAbout } from "@data/about.tsx";
+import { getServices } from "@data/services.tsx";
 import PageContainer from "@components/containers/PageContainer.astro";
 import BackgroundImage from "@assets/background-transparent.png";
 import Heading from "@components/primitives/Heading.astro";
@@ -12,6 +14,7 @@ import Spacer from "@components/primitives/Spacer.astro";
 import ContactForm from "@components/forms/ContactForm.astro";
 
 const aboutContent = await getAbout();
+const serviceContent = await getServices();
 ---
 
 <BaseLayout title="Home">
@@ -31,15 +34,35 @@ const aboutContent = await getAbout();
 
     <Spacer />
 
+    <SectionContainer class="about-section fade-in-out-on-scroll" id="about">
+      <Stack direction="column" gap="lg" justify="center" align="center">
+        <Heading titleSize="h2">How it works</Heading>
+        <Stack direction="row" gap="md" justify="center" align="center">
+          <Card
+            title={serviceContent[0].title}
+            text={serviceContent[0].text}
+            style="height: 300px;"
+          />
+          <Card
+            title={serviceContent[1].title}
+            text={serviceContent[1].text}
+            style="height: 300px;"
+          />
+          <Card
+            title={serviceContent[2].title}
+            text={serviceContent[2].text}
+            style="height: 300px;"
+          />
+        </Stack>
+      </Stack>
+    </SectionContainer>
+
+    <Spacer />
+
     <SectionContainer id="contact" class="fade-in-out-on-scroll">
       <Stack direction="column" gap="md" justify="center" align="center">
         <Stack direction="column" gap="md" justify="center" align="center">
           <Heading titleSize="h2" align="center">Get In Touch.</Heading>
-          <!-- <Text>
-            If you are looking for web services and think we could be a good
-            fit, don't hesitate to reach out via phone or email - or fill out
-            the form to get in touch!
-          </Text> -->
           <Text align="center">
             If you are looking for web services and think we could be a good
             fit, get in touch by filling out the form below.

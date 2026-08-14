@@ -1,17 +1,17 @@
 [
   {
-    "title": "Drinks",
-    "text": "",
-    "imageName": "drinks.webp"
+    "title": "Free consultation",
+    "text": "We'll discuss your website needs and pain points, and analyze what works and what could be improved.",
+    "imageName": "How it works 1.png"
   },
   {
-    "title": "Crepes",
-    "text": "",
-    "imageName": "crepes.webp"
+    "title": "Website quote",
+    "text": "Based on our consultation, we'll provide you with a website quote to design and build the new site.",
+    "imageName": "How it works 2.png"
   },
   {
-    "title": "Sandwiches",
-    "text": "",
-    "imageName": "sandwiches.webp"
+    "title": "Zero-risk fulfillment",
+    "text": "We take a milestone-based approach - meaning that you only pay when we deliver tangible value.",
+    "imageName": "How it works 3.png"
   }
 ]

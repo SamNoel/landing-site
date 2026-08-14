@@ -23,6 +23,8 @@ const {
 const HeadingTag = titleSize || "h2";
 ---
 
-<HeadingTag class=`text-align-${align} ${display ? "display" : ""}` , {...props}
-  ><slot /></HeadingTag
+<HeadingTag
+  class=`text-align-${align} ${display ? "text-display" : ""}`
+  ,
+  {...props}><slot /></HeadingTag
 >

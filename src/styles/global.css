@@ -148,6 +148,10 @@ body {
   font-weight: 700;
 }
 
+.text-display {
+  font-size: var(--text-display);
+}
+
 .text-sm {
   font-size: var(--text-sm);
 }

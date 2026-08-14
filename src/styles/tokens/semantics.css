@@ -5,7 +5,7 @@ NOTE: Custom fonts via fontsource are defined in astro.config.mjs and imported i
 :root {
   /* colors - surface */
   --color-surface: var(--color-black);
-  --color-surface-muted: var(--color-grey-300);
+  --color-surface-muted: var(--color-grey-400);
 
   /* colors - borders & lines */
   --color-btn-border-primary: var(--color-white);
