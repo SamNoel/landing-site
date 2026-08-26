@@ -1,11 +1,11 @@
 ---
-import "@styles/global.css";
+import "@styles/globals/defaults.css";
 import type { HTMLAttributes } from "astro/types";
 
 // Allow swapping the root element while maintaining type safety for that tag
 interface Props extends HTMLAttributes<"p" | "span" | "strong" | "em"> {
   as?: "p" | "span" | "strong" | "em";
-  align?: "left" | "center" | "right";
+  align?: "left" | "center" | "right" | "justify";
   maxWidth?: "small" | "normal" | "wide" | "full";
 }
 
@@ -17,6 +17,6 @@ const {
 } = Astro.props;
 ---
 
-<Tag class=`text-align-${align} max-text-${maxWidth}` , {...props}>
+<Tag class=`text-${align} max-text-${maxWidth}` , {...props}>
   <slot />
 </Tag>

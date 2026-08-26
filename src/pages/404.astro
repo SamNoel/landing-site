@@ -1,11 +1,11 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import SectionContainer from "@components/containers/SectionContainer.astro";
-import Stack from "@components/primitives/Stack.astro";
+import Stack from "@components/elements/Stack.astro";
 import PageContainer from "@components/containers/PageContainer.astro";
 import BackgroundImage from "@assets/background-transparent.png";
-import Heading from "@components/primitives/Heading.astro";
-import Text from "@components/primitives/Text.astro";
+import Heading from "@components/elements/Heading.astro";
+import Text from "@components/elements/Text.astro";
 
 export const prerender = true;
 ---
@@ -14,7 +14,7 @@ export const prerender = true;
   <PageContainer id="404" class="notfound-container">
     <SectionContainer className="notfound-section-container">
       <Stack
-        direction="column"
+        flex="column"
         gap="lg"
         justify="center"
         align="center"

@@ -1,25 +1,24 @@
 ---
-const { class: className, ...props } = Astro.props;
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"a"> {
+  className?: string;
+}
+
+const { className = "", ...props } = Astro.props;
 ---
 
-<section class=`section-container ${className}` {...props}>
+<!-- ============================================ --><!--                     SECTION                      --><!-- ============================================ -->
+<section class=`section-container ${className} section-padding` {...props}>
   <slot />
 </section>
 
 <style>
   .section-container {
-    padding: 64px var(--space-12x);
     min-width: 0;
     width: 100%;
     max-width: var(--max-width);
-    scroll-margin-top: calc(
-      (var(--header-padding) * 2) + var(--header-padding)
-    );
-  }
-
-  @media (max-width: 768px) {
-    .section-container {
-      padding: 32px var(--space-4x);
-    }
+    scroll-margin-top: calc((var(--vpadding-md) * 2) + var(--vpadding-md));
+    padding: var(--vpadding-default) var(--hpadding-default);
   }
 </style>

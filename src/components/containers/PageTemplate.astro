@@ -2,11 +2,11 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import SectionContainer from "@components/containers/SectionContainer.astro";
 import Stack from "@components/primitives/Stack.astro";
-import Divider from "@components/primitives/Divider.astro";
+import Divider from "@components/elements/Divider.astro";
 import PageContainer from "@components/containers/PageContainer.astro";
 import BackgroundImage from "@assets/background-transparent.png";
-import Button from "@components/primitives/Button.astro";
-import Card from "@components/primitives/Card.astro";
+import Button from "@components/elements/Button.astro";
+import Card from "@components/compounds/Card.astro";
 import Heading from "@components/primitives/Heading.astro";
 import Text from "@components/primitives/Text.astro";
 ---
@@ -14,7 +14,7 @@ import Text from "@components/primitives/Text.astro";
 <BaseLayout title="Page">
   <PageContainer id="page" class="page-container">
     <SectionContainer>
-      <Stack direction="column" gap="lg" justify="left" align="top">
+      <Stack flex="column" gap="lg" justify="start" align="start">
         <Heading titleSize="h1">This is a new page.</Heading>
         <Text>
           You can use different components here to build out your page.
@@ -28,8 +28,8 @@ import Text from "@components/primitives/Text.astro";
     </SectionContainer>
 
     <SectionContainer class="fade-in-element" id="section">
-      <Stack direction="row" gap="lg" justify="left" align="center">
-        <Stack direction="column" gap="lg" justify="left" align="top">
+      <Stack flex="row" gap="lg" justify="start" align="center">
+        <Stack flex="column" gap="lg" justify="start" align="start">
           <Heading titleSize="h2">This is a section.</Heading>
           <Text>
             You can use different components here to build out your section.

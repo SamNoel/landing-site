@@ -7,13 +7,13 @@ const { ...props } = Astro.props;
 ---
 
 <header class="header" {...props}>
-  <div class="nav-inner">
+  <div class="nav-inner header-padding justify-between align-center">
     <!-- Logo -->
     <a href="/#home" class="logo-link">
       <Image
         src={LogoImage}
         alt="Noel Web Studio logo"
-        width="28"
+        width="24"
         format="svg"
       />
       <p class="logo-text">Noel Web Studio</p>
@@ -44,7 +44,7 @@ const { ...props } = Astro.props;
   .header {
     box-sizing: border-box;
     width: 100%;
-    background-color: black;
+    background-color: var(--color-black);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -62,11 +62,9 @@ const { ...props } = Astro.props;
     margin-inline: auto;
 
     display: flex;
-    align-items: center;
-    justify-content: space-between;
 
-    padding: var(--header-padding) 32px;
     width: 100%;
+    max-width: var(--max-width);
     box-sizing: border-box;
   }
 
@@ -80,7 +78,7 @@ const { ...props } = Astro.props;
   }
 
   .logo-link:hover {
-    background-color: var(--color-surface);
+    background-color: var(--color-black);
   }
 
   .logo-link p {

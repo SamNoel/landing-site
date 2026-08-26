@@ -1,17 +1,18 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import Hero from "@components/composits/Hero.astro";
+import Hero from "@components/families/Hero.astro";
 import SectionContainer from "@components/containers/SectionContainer.astro";
-import Stack from "@components/primitives/Stack.astro";
-import Card from "@components/primitives/Card.astro";
+import Stack from "@components/elements/Stack.astro";
+import Card from "@components/compounds/Card.astro";
 import { getAbout } from "@data/about.tsx";
 import { getServices } from "@data/services.tsx";
 import PageContainer from "@components/containers/PageContainer.astro";
 import BackgroundImage from "@assets/background-transparent.png";
-import Heading from "@components/primitives/Heading.astro";
-import Text from "@components/primitives/Text.astro";
-import Spacer from "@components/primitives/Spacer.astro";
+import Heading from "@components/elements/Heading.astro";
+import Text from "@components/elements/Text.astro";
+import Spacer from "@components/elements/Spacer.astro";
 import ContactForm from "@components/forms/ContactForm.astro";
+import Button from "@components/elements/Button.astro";
 
 const aboutContent = await getAbout();
 const serviceContent = await getServices();
@@ -21,12 +22,13 @@ const serviceContent = await getServices();
   <PageContainer id="home" class="homepage-container">
     <SectionContainer>
       <Hero />
+      <Button>Text</Button>
     </SectionContainer>
 
     <Spacer />
 
     <SectionContainer class="about-section fade-in-out-on-scroll" id="about">
-      <Stack direction="row" gap="lg" justify="center" align="top">
+      <Stack flex="row" gap="sm" justify="center" align="start">
         <Heading titleSize="h2">{aboutContent.title}</Heading>
         <div><aboutContent.Content /></div>
       </Stack>
@@ -35,9 +37,19 @@ const serviceContent = await getServices();
     <Spacer />
 
     <SectionContainer class="about-section fade-in-out-on-scroll" id="about">
-      <Stack direction="column" gap="lg" justify="center" align="center">
-        <Heading titleSize="h2">How it works</Heading>
-        <Stack direction="row" gap="md" justify="center" align="center">
+      <Stack flex="column" gap="lg" justify="center" align="center">
+        <Stack flex="column" gap="sm" justify="center" align="center">
+          <Heading titleSize="h2"
+            >Fast, custom websites that actually convert.</Heading
+          >
+          <Text align="center">
+            We know that the web can be an overwhelming place for many
+            businesses. At Noel Web Studio, our aim is to be your long-term web
+            partner and deliver you a fast website and get more people finding
+            your business online.
+          </Text>
+        </Stack>
+        <Stack flex="row" gap="md" justify="center" align="center">
           <Card
             title={serviceContent[0].title}
             text={serviceContent[0].text}
@@ -59,9 +71,9 @@ const serviceContent = await getServices();
 
     <Spacer />
 
-    <SectionContainer id="contact" class="fade-in-out-on-scroll">
-      <Stack direction="column" gap="md" justify="center" align="center">
-        <Stack direction="column" gap="md" justify="center" align="center">
+    <SectionContainer class="fade-in-out-on-scroll">
+      <Stack flex="column" gap="md" justify="center" align="center">
+        <Stack flex="column" gap="md" justify="center" align="center">
           <Heading titleSize="h2" align="center">Get In Touch.</Heading>
           <Text align="center">
             If you are looking for web services and think we could be a good
@@ -97,32 +109,32 @@ const serviceContent = await getServices();
 		</Stack>
 	</SectionContainer> -->
   </PageContainer>
-</BaseLayout>
 
-<style define:vars={{ backgroundImage: `url(${BackgroundImage.src})` }}>
-  .homepage-container {
-    background-image: url(/src/assets/background-transparent.png); /*var(--backgroundImage); */
-    background-position: right bottom;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-attachment: fixed;
-  }
-
-  .about-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 32px;
-  }
-
-  @media (max-width: 768px) {
+  <style define:vars={{ backgroundImage: `url(${BackgroundImage.src})` }}>
     .homepage-container {
-      background-image: url(/src/assets/background-mobile-transparent.png); /*var(--backgroundImage); */
-      background-position: center top;
+      background-image: url(/src/assets/background-transparent.png); /*var(--backgroundImage); */
+      background-position: right bottom;
       background-repeat: no-repeat;
       background-size: contain;
-      background-attachment: scroll;
+      background-attachment: fixed;
     }
-  }
-</style>
+
+    .about-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+    }
+
+    @media (max-width: 768px) {
+      .homepage-container {
+        background-image: url(/src/assets/background-mobile-transparent.png); /*var(--backgroundImage); */
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-attachment: scroll;
+      }
+    }
+  </style>
+</BaseLayout>

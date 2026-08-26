@@ -1,13 +1,14 @@
 ---
-import "@styles/global.css";
-import "@tokens/primitives.css";
-import "@tokens/semantics.css";
-import "@styles/typography.css";
-import "@styles/animations.css";
+import "@styles/globals/defaults.css";
+import "@styles/globals/tokens.css";
+import "@styles/classes/color.css";
+import "@styles/classes/spacing.css";
+import "@styles/classes/animations.css";
+import "@styles/classes/direction.css";
 
-import Header from "@components/composits/Header.astro";
-import Footer from "@components/composits/Footer.astro";
-import Head from "@components/primitives/Head.astro";
+import Header from "@components/compounds/Header.astro";
+import Footer from "@components/compounds/Footer.astro";
+import Head from "@components/elements/Head.astro";
 import { SITE_TITLE } from "@consts";
 
 const { title = SITE_TITLE } = Astro.props;

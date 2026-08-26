@@ -1,0 +1,77 @@
+/** 
+This file contains only values related to spacing. See the how-to doc for reference.
+**/
+
+/** 
+-------------------PADDING-------------------
+**/
+
+/* .section-padding {
+  padding: var(--vpadding-default) var(--hpadding-default);
+} */
+
+.header-padding {
+  padding: var(--vpadding-200) var(--hpadding-default);
+}
+
+/** 
+-------------------GAP-------------------
+**/
+
+.gap-xs {
+  gap: var(--gap-200);
+}
+
+.gap-sm {
+  gap: var(--gap-300);
+}
+
+.gap-md {
+  gap: var(--gap-400);
+}
+
+.gap-lg {
+  gap: var(--gap-500);
+}
+
+/** 
+-------------------WIDTH-------------------
+**/
+/* Max Text Width */
+
+.max-text-small {
+  max-width: 40ch;
+}
+
+.max-text-normal {
+  max-width: 65ch;
+}
+
+.max-text-wide {
+  max-width: 90ch;
+}
+
+.max-text-full {
+  max-width: 100%;
+}
+
+/* Max width for pixels */
+.max-small {
+  max-width: 200px;
+}
+
+.max-normal {
+  max-width: 400px;
+}
+
+.max-wide {
+  max-width: 600px;
+}
+
+.max-full {
+  max-width: 100%;
+}
+
+/** 
+-------------------HEIGHT-------------------
+**/

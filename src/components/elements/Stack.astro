@@ -1,20 +1,19 @@
 ---
-import "@styles/global.css";
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"section"> {
-  direction: "row" | "column";
-  gap: "xs" | "sm" | "md" | "lg";
-  justify: "left" | "center" | "right";
-  align: "top" | "center" | "bottom";
+  flex?: "row" | "column";
+  gap?: "xs" | "sm" | "md" | "lg";
+  justify?: "start" | "center" | "between" | "around" | "evenly";
+  align?: "start" | "center" | "end" | "stretch";
   className?: string;
 }
 
 const {
-  direction = "column",
+  flex = "column",
   gap = "md",
-  justify = "left",
-  align = "top",
+  justify = "start",
+  align = "start",
   className = "",
   ...props
 } = Astro.props;
@@ -23,11 +22,10 @@ const {
 <section
   class:list={[
     "stack",
-    "content-block",
-    `direction-${direction}`,
+    `flex-${flex}`,
     `gap-${gap}`,
-    `horizontal-align-${justify}`,
-    `vertical-align-${align}`,
+    `justify-${justify}`,
+    `align-${align}`,
     `${className}`,
   ]}
   {...props}
@@ -38,7 +36,7 @@ const {
 <style>
   .stack {
     display: flex;
-    width: 100%;
+    max-width: 100%;
   }
 
   @media (max-width: 768px) {

@@ -1,5 +1,5 @@
 ---
-import Text from "@components/primitives/Text.astro";
+import Text from "@components/elements/Text.astro";
 
 const { ...props } = Astro.props;
 ---
@@ -15,7 +15,7 @@ const { ...props } = Astro.props;
 <style>
   .footer {
     margin-top: var(--space-12x);
-    padding: var(--footer-padding) 0;
+    padding: var(--space-6x) 0;
     border-top: var(--border-width) solid var(--color-border);
     flex-shrink: 0;
   }
