@@ -1,24 +1,22 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import type { WidthType } from "@consts";
 
 interface Props extends HTMLAttributes<"div"> {
   gap?: "xs" | "sm" | "md" | "lg";
-  width?: "small" | "normal" | "wide" | "full";
+  width?: WidthType;
   className?: string;
 }
 
 const { className = "", gap = "md", width = "normal", ...props } = Astro.props;
 ---
 
-<div
-  class={`nws-grid-container ${className} gap-${gap} max-${width}`}
-  {...props}
->
+<div class={`nws-grid ${className} gap-${gap} width-${width}`} {...props}>
   <slot />
 </div>
 
 <style>
-  .nws-grid-container {
+  .nws-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }

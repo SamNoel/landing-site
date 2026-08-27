@@ -1,23 +1,34 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import type { JustifyType, AlignType, WidthType } from "@consts";
 
 interface Props extends HTMLAttributes<"a"> {
   className?: string;
+  justify?: JustifyType;
+  align?: AlignType;
+  width?: WidthType;
 }
 
-const { className = "", ...props } = Astro.props;
+const {
+  className = "",
+  justify = "center",
+  align = "center",
+  width = "full",
+  ...props
+} = Astro.props;
 ---
 
 <!-- ============================================ --><!--                     SECTION                      --><!-- ============================================ -->
-<section class=`section-container ${className} section-padding` {...props}>
+<section
+  class=`section-container ${className} section-padding justify-${justify} align-${align} width-${width}`
+  {...props}
+>
   <slot />
 </section>
 
 <style>
   .section-container {
-    min-width: 0;
-    width: 100%;
-    max-width: var(--max-width);
+    display: flex;
     scroll-margin-top: calc((var(--vpadding-md) * 2) + var(--vpadding-md));
     padding: var(--vpadding-default) var(--hpadding-default);
   }

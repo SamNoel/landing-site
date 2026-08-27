@@ -1,11 +1,13 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import type { JustifyType, AlignType, WidthType, GapType } from "@consts";
 
 interface Props extends HTMLAttributes<"section"> {
   flex?: "row" | "column";
-  gap?: "xs" | "sm" | "md" | "lg";
-  justify?: "start" | "center" | "between" | "around" | "evenly";
-  align?: "start" | "center" | "end" | "stretch";
+  gap?: GapType;
+  justify?: JustifyType;
+  align?: AlignType;
+  width?: WidthType;
   className?: string;
 }
 
@@ -15,6 +17,7 @@ const {
   justify = "start",
   align = "start",
   className = "",
+  width = "normal",
   ...props
 } = Astro.props;
 ---
@@ -26,6 +29,7 @@ const {
     `gap-${gap}`,
     `justify-${justify}`,
     `align-${align}`,
+    `width-${width}`,
     `${className}`,
   ]}
   {...props}
@@ -34,7 +38,10 @@ const {
 </section>
 
 <style>
-  .nws-stack {
-    max-width: 100%;
+  /* tablet */
+  @media (max-width: 48rem) {
+    .nws-stack {
+      flex-direction: column;
+    }
   }
 </style>

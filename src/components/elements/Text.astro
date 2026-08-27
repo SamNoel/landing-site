@@ -1,12 +1,13 @@
 ---
 import "@styles/globals/defaults.css";
 import type { HTMLAttributes } from "astro/types";
+import type { AlignType, WidthType } from "@consts";
 
 // Allow swapping the root element while maintaining type safety for that tag
 interface Props extends HTMLAttributes<"p" | "span" | "strong" | "em"> {
   as?: "p" | "span" | "strong" | "em";
-  align?: "left" | "center" | "right" | "justify";
-  maxWidth?: "small" | "normal" | "wide" | "full";
+  align?: AlignType;
+  maxWidth?: WidthType;
 }
 
 const {

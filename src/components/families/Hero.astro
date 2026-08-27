@@ -1,5 +1,6 @@
 ---
 import Heading from "@components/elements/Heading.astro";
+import Button from "@components/elements/Button.astro";
 
 const { ...props } = Astro.props;
 ---
@@ -14,6 +15,7 @@ const { ...props } = Astro.props;
       suited specifically for your business, with fast loading speeds and
       optimized content. Let us take the complication out of your web presence.
     </p>
+    <Button>Text</Button>
   </div>
 </section>
 
@@ -35,16 +37,18 @@ const { ...props } = Astro.props;
     justify-content: flex-end;
     gap: var(--gap-300);
     z-index: 2;
-    max-width: 390px;
+    max-width: 400px;
   }
 
   .image {
     align-items: start;
   }
 
-  @media (max-width: 768px) {
+  /* tablet */
+  @media (max-width: 48rem) {
     .hero {
       padding: 0;
+      align-items: flex-end;
     }
 
     .image {

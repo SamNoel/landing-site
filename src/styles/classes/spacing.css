@@ -51,21 +51,23 @@ This file contains only values related to spacing. See the how-to doc for refere
   max-width: 100%;
 }
 
-/* Max width for % */
-.max-small {
-  max-width: 40%;
+/* Widths based on smalles value. This allows us to keep 100% on mobile while limiting on larger screens
+https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/min
+*/
+.width-small {
+  width: min(100% - 2rem, 800px);
 }
 
-.max-normal {
-  max-width: 75%;
+.width-normal {
+  width: min(100% - 2rem, 1200px);
 }
 
-.max-wide {
-  max-width: 85%;
+.width-wide {
+  width: min(100% - 2rem, 1600px);
 }
 
-.max-full {
-  max-width: 100%;
+.width-full {
+  width: 100%;
 }
 
 /** 

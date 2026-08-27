@@ -12,7 +12,6 @@ import Heading from "@components/elements/Heading.astro";
 import Text from "@components/elements/Text.astro";
 import Spacer from "@components/elements/Spacer.astro";
 import ContactForm from "@components/forms/ContactForm.astro";
-import Button from "@components/elements/Button.astro";
 import Grid from "@components/elements/Grid.astro";
 
 const aboutContent = await getAbout();
@@ -21,26 +20,28 @@ const serviceContent = await getServices();
 
 <BaseLayout title="Home">
   <PageContainer id="home" class="homepage-container">
-    <SectionContainer>
+    <SectionContainer width="wide">
       <Hero />
-      <Button>Text</Button>
     </SectionContainer>
 
-    <Spacer />
+    <!-- <Spacer />
 
     <SectionContainer class="about-section fade-in-out-on-scroll" id="about">
       <Stack flex="row" gap="sm" justify="center" align="start">
         <Heading titleSize="h2">{aboutContent.title}</Heading>
         <div><aboutContent.Content /></div>
       </Stack>
-    </SectionContainer>
+    </SectionContainer> -->
 
     <Spacer />
 
-    <SectionContainer class="about-section fade-in-out-on-scroll" id="about">
+    <SectionContainer
+      class="about-section fade-in-out-on-scroll bg-muted"
+      id="about"
+    >
       <Stack flex="column" gap="lg" justify="center" align="center">
         <Stack flex="column" gap="sm" justify="center" align="center">
-          <Heading titleSize="h2"
+          <Heading titleSize="h2" align="center"
             >Fast, custom websites that actually convert.</Heading
           >
           <Text align="center">
@@ -54,13 +55,14 @@ const serviceContent = await getServices();
           <Card title={serviceContent[0].title} text={serviceContent[0].text} />
           <Card title={serviceContent[1].title} text={serviceContent[1].text} />
           <Card title={serviceContent[2].title} text={serviceContent[2].text} />
+          <Card title={serviceContent[3].title} text={serviceContent[3].text} />
         </Grid>
       </Stack>
     </SectionContainer>
 
     <Spacer />
 
-    <SectionContainer class="fade-in-out-on-scroll">
+    <SectionContainer class="fade-in-out-on-scroll" width="small">
       <Stack flex="column" gap="md" justify="center" align="center">
         <Stack flex="column" gap="md" justify="center" align="center">
           <Heading titleSize="h2" align="center">Get In Touch.</Heading>

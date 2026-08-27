@@ -1,14 +1,14 @@
 ---
-import "@styles/globals/defaults.css";
 import type { HTMLAttributes } from "astro/types";
+import type { JustifyType, AlignType, WidthType } from "@consts";
 
 interface Props extends HTMLAttributes<
   "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 > {
   titleSize: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   display?: boolean;
-  align?: "left" | "center" | "right";
-  maxWidth?: "small" | "normal" | "wide" | "full";
+  align?: AlignType;
+  maxWidth?: WidthType;
 }
 
 const {
@@ -23,6 +23,6 @@ const {
 const HeadingTag = titleSize || "h2";
 ---
 
-<HeadingTag class=`text-align-${align} ${display ? "display" : ""}` , {...props}
+<HeadingTag class=`text-${align} ${display ? "display" : ""}` , {...props}
   ><slot /></HeadingTag
 >
