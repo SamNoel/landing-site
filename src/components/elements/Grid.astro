@@ -1,0 +1,25 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  gap?: "xs" | "sm" | "md" | "lg";
+  width?: "small" | "normal" | "wide" | "full";
+  className?: string;
+}
+
+const { className = "", gap = "md", width = "normal", ...props } = Astro.props;
+---
+
+<div
+  class={`nws-grid-container ${className} gap-${gap} max-${width}`}
+  {...props}
+>
+  <slot />
+</div>
+
+<style>
+  .nws-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+</style>

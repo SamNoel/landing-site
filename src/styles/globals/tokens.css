@@ -6,6 +6,8 @@ NOTE: Custom fonts via fontsource are defined in astro.config.mjs and imported i
   /* base font size 10px (62.5% of 16px) */
   font-size: 62.5%;
 
+  --color-focus: blue;
+
   /* colors - neutrals */
   --color-black: #000000;
   --color-white: #ffffff;
@@ -37,6 +39,7 @@ NOTE: Custom fonts via fontsource are defined in astro.config.mjs and imported i
   --text-900: clamp(8rem, 4vw, 8.2rem);
 
   /* vertical padding */
+  --vpadding-50: clamp(0.8rem, 8vw, 1.6rem);
   --vpadding-100: clamp(1.6rem, 8vw, 2.4rem);
   --vpadding-200: clamp(2.4rem, 8vw, 3.2rem);
   --vpadding-300: clamp(3.2rem, 8vw, 4rem);
@@ -83,7 +86,7 @@ NOTE: Custom fonts via fontsource are defined in astro.config.mjs and imported i
   --gap-500: clamp(3rem, 4vw, 3.4rem);
   --gap-600: clamp(3.8rem, 4vw, 4.2rem);
 
-  /* layout */
+  /* width */
   --max-width: 1600px;
 
   /* DELTE AFTER THIS */

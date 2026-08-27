@@ -40,6 +40,7 @@ h6 {
   line-height: 1.2;
   margin: 0;
   padding: 0;
+  color: var(--color-white);
 }
 
 h1.display {
@@ -70,6 +71,7 @@ p {
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  color: var(--color-grey-200);
 }
 
 a {
@@ -80,19 +82,25 @@ a {
   line-height: 1;
   margin: 0;
   padding: 0;
+  color: var(--color-grey-150);
 }
 
-.logo-text {
+a:hover {
+  color: var(--color-black);
+  background-color: var(--color-white);
+}
+
+a.nws-button {
+  font-family: var(--font-jost);
+  font-size: var(--text-100);
+  text-decoration: none;
+}
+
+p.logo-text {
   font-family: var(--font-jost);
   font-size: var(--text-200);
   font-weight: 300;
   line-height: 1;
   margin: 0;
   padding: 0;
-}
-
-.button-text {
-  font-family: var(--font-noto-sans);
-  font-size: var(--text-100);
-  text-decoration: none;
 }

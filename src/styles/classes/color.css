@@ -3,38 +3,9 @@ This file contains only values related to color. See the how-to doc for referenc
 **/
 
 /** 
--------------------TYPOGRAPHY-------------------
-**/
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--color-white);
-}
-
-p {
-  color: var(--color-grey-200);
-}
-
-a {
-  color: var(--color-grey-150);
-}
-
-a:hover {
-  color: var(--color-black);
-  background-color: var(--color-white);
-}
-
-/** 
 -------------------SURFACES-------------------
 **/
-body {
-  background: var(--color-black);
-}
-
-.bg {
+.bg-main {
   background: var(--color-black);
 }
 

@@ -18,7 +18,7 @@ const {
 <a
   type="button"
   href={href}
-  class={`button ${variant} text-center button-text`}
+  class={`nws-button ${variant} text-center button-text`}
   {...props}
   aria-label={label}
   title={label}
@@ -27,18 +27,18 @@ const {
 </a>
 
 <style>
-  .button {
+  .nws-button {
     display: inline-block;
-    padding: var(--space-4x);
+    padding: var(--vpadding-50) var(--hpadding-200);
     transition: opacity 0.2s ease;
     border-radius: var(--border-radius-sm);
 
     transition: background 0.2s ease;
   }
 
-  .button:focus {
-    outline: 2px solid blue;
-    color: blue;
+  .nws-button:focus {
+    outline: 2px solid var(--color-focus);
+    color: var(--color-focus);
   }
 
   .primary {

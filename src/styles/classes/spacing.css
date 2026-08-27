@@ -6,10 +6,6 @@ This file contains only values related to spacing. See the how-to doc for refere
 -------------------PADDING-------------------
 **/
 
-/* .section-padding {
-  padding: var(--vpadding-default) var(--hpadding-default);
-} */
-
 .header-padding {
   padding: var(--vpadding-200) var(--hpadding-default);
 }
@@ -55,17 +51,17 @@ This file contains only values related to spacing. See the how-to doc for refere
   max-width: 100%;
 }
 
-/* Max width for pixels */
+/* Max width for % */
 .max-small {
-  max-width: 200px;
+  max-width: 40%;
 }
 
 .max-normal {
-  max-width: 400px;
+  max-width: 75%;
 }
 
 .max-wide {
-  max-width: 600px;
+  max-width: 85%;
 }
 
 .max-full {

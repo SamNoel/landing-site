@@ -4,9 +4,8 @@
 export const SITE_TITLE = "Website Template";
 export const SITE_DESCRIPTION = "This is a website template";
 
-export const MOBILE_BREAKPOINT = 768;
-
 export const BASE_IMAGE_PATH = "/src/assets/";
+export const BASE_PAGE_PATH = "/src/pages/";
 
 export const NAV_LINKS = [
   { label: "Home", href: "/#home" },

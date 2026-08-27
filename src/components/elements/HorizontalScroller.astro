@@ -1,0 +1,22 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"section"> {
+  className?: string;
+}
+
+const { className = "", ...props } = Astro.props;
+---
+
+<div class:list={["nws-hscroll-container", `${className}`]} {...props}>
+  <slot />
+</div>
+
+<style>
+  .nws-hscroll-container {
+    display: grid;
+    grid-auto-columns: 300px;
+    grid-auto-flow: column;
+    gap: 1rem;
+  }
+</style>

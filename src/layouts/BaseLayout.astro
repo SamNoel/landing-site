@@ -1,6 +1,7 @@
 ---
 import "@styles/globals/defaults.css";
 import "@styles/globals/tokens.css";
+import "@styles/globals/responsive.css";
 import "@styles/classes/color.css";
 import "@styles/classes/spacing.css";
 import "@styles/classes/animations.css";
@@ -16,7 +17,7 @@ const { title = SITE_TITLE } = Astro.props;
 
 <html lang="en">
   <Head title={title} />
-  <body>
+  <body class="bg-main">
     <Header />
     <slot />
     <Footer />

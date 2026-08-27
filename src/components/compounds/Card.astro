@@ -2,46 +2,43 @@
 import Image from "@components/elements/Image.astro";
 
 import type { HTMLAttributes } from "astro/types";
+import {BASE_PAGE_PATH} from "@consts";
 
 interface Props extends HTMLAttributes<"div"> {
   title?: string;
   text?: string;
   imageName?: string;
+  linkText?: string;
+  linkPageName?: string;
 }
 
 const {
   title = "Card Title",
   text = "Here is some text",
   imageName,
+  linkPageName,
+  linkText,
   ...props
 } = Astro.props;
 ---
 
-<div class="card" {...props}>
+<div class="nws-card bg-muted flex-column" {...props}>
   {imageName && <Image imageName={imageName}
     alt=`Image for card with title of: ${title}`
     class="card-image"
     width={600}
     height={400}/>}
-  <!-- <Image
-    imageName={imageName}
-    alt=`Image for card with title of: ${title}`
-    class="card-image"
-    width={600}
-    height={400}
-  /> -->
-  <div class="content-container">
+
     <h3>{title}</h3>
     <p>{text}</p>
-  </div>
+    {(linkPageName && linkText) && <a href={`${BASE_PAGE_PATH}${linkPageName}`}>{linkText}</a>}
 </div>
 
 <style>
-  .card {
-    display: flex;
-    flex-direction: column;
-    max-width: 350px;
+  .nws-card {
+    gap: var(--gap-300);
     height: auto;
+    padding: var(--vpadding-default) var(--hpadding-default);
   }
 
   .card-image {
@@ -49,24 +46,4 @@ const {
     height: 100%;
   }
 
-  .content-container {
-    padding: var(--space-6x);
-    background-color: var(--color-surface-muted);
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-xs);
-    height: 100%;
-  }
-
-  h3,
-  p {
-    margin: 0;
-    color: var(--color-body);
-  }
-
-  @media (max-width: 768px) {
-    .content-container {
-      padding: var(--space-base);
-    }
-  }
 </style>

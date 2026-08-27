@@ -13,6 +13,7 @@ import Text from "@components/elements/Text.astro";
 import Spacer from "@components/elements/Spacer.astro";
 import ContactForm from "@components/forms/ContactForm.astro";
 import Button from "@components/elements/Button.astro";
+import Grid from "@components/elements/Grid.astro";
 
 const aboutContent = await getAbout();
 const serviceContent = await getServices();
@@ -49,23 +50,11 @@ const serviceContent = await getServices();
             your business online.
           </Text>
         </Stack>
-        <Stack flex="row" gap="md" justify="center" align="center">
-          <Card
-            title={serviceContent[0].title}
-            text={serviceContent[0].text}
-            style="height: 300px;"
-          />
-          <Card
-            title={serviceContent[1].title}
-            text={serviceContent[1].text}
-            style="height: 300px;"
-          />
-          <Card
-            title={serviceContent[2].title}
-            text={serviceContent[2].text}
-            style="height: 300px;"
-          />
-        </Stack>
+        <Grid>
+          <Card title={serviceContent[0].title} text={serviceContent[0].text} />
+          <Card title={serviceContent[1].title} text={serviceContent[1].text} />
+          <Card title={serviceContent[2].title} text={serviceContent[2].text} />
+        </Grid>
       </Stack>
     </SectionContainer>
 

@@ -1,0 +1,15 @@
+/** 
+This file contains only values related to responsive sizing. See the how-to doc for reference.
+**/
+
+/* mobile */
+@media (max-width: 36rem) {
+  a.nws-button,
+  .nws-card {
+    width: 100%;
+  }
+}
+
+/* tablet */
+@media (max-width: 48rem) {
+}
