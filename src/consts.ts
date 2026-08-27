@@ -9,7 +9,7 @@ export const BASE_PAGE_PATH = "/src/pages/";
 
 export const NAV_LINKS = [
   { label: "Home", href: "/#home" },
-  { label: "Who We Are", href: "/#about" },
+  { label: "Why We're Different", href: "/#about" },
   { label: "Get In Touch", href: "/#contact" },
 ];
 
@@ -19,3 +19,4 @@ export type JustifyType = "start" | "center" | "between" | "around" | "evenly";
 export type AlignType = "start" | "center" | "end" | "stretch";
 export type WidthType = "small" | "normal" | "wide" | "full";
 export type GapType = "xs" | "sm" | "md" | "lg";
+export type TextAlignType = "left" | "center" | "right" | "justify";

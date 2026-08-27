@@ -1,13 +1,13 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import type { JustifyType, AlignType, WidthType } from "@consts";
+import type { TextAlignType, WidthType } from "@consts";
 
 interface Props extends HTMLAttributes<
   "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 > {
   titleSize: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   display?: boolean;
-  align?: AlignType;
+  align?: TextAlignType;
   maxWidth?: WidthType;
 }
 

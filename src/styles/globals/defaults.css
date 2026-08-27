@@ -97,6 +97,7 @@ a:hover {
 a.nws-button {
   font-family: var(--font-jost);
   font-size: var(--text-100);
+  font-weight: 400;
   text-decoration: none;
 }
 
