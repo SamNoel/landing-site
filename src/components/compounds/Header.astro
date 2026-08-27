@@ -34,7 +34,13 @@ const { ...props } = Astro.props;
 
   <!-- Mobile menu (separate panel) -->
   <div id="mobileNav" class="mobile-nav">
-    {NAV_LINKS.map((item) => <a href={item.href}>{item.label}</a>)}
+    {
+      NAV_LINKS.map((item) => (
+        <a href={item.href} class="mobile-nav-links">
+          {item.label}
+        </a>
+      ))
+    }
   </div>
 </header>
 
@@ -155,9 +161,13 @@ const { ...props } = Astro.props;
     position: absolute;
     top: 100%;
     right: 0;
+    width: 100%;
+    height: calc(100vh - var(--vpadding-default) * 2);
 
     /* width: 100%; */
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 16px;
 
     padding: 16px;
@@ -178,7 +188,10 @@ const { ...props } = Astro.props;
   .mobile-nav a {
     text-decoration: none;
     padding: 8px 16px;
-    text-align: right;
+    text-align: center;
+    font-size: var(--text-500);
+    line-height: 1.6;
+    color: var(--color-white);
   }
 
   /* OPEN STATE */

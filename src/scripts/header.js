@@ -2,6 +2,7 @@ let lastScrollTop = 0;
 
 const header = document.querySelector(".header");
 const mobileNav = document.querySelector(".mobile-nav");
+const mobileNavLinks = document.querySelectorAll(".mobile-nav-links");
 const burger = document.querySelector(".hamburger");
 const burgerTop = document.querySelector(".hamburger-top");
 const burgerMiddle = document.querySelector(".hamburger-middle");
@@ -55,3 +56,23 @@ burger?.addEventListener("click", () => {
   // Accessibility state
   burger?.setAttribute("aria-expanded", String(isOpen));
 });
+
+mobileNavLinks?.forEach((link) =>
+  link.addEventListener("click", () => {
+    // Toggle mobile menu
+    const isOpen = mobileNav?.classList.toggle("menu-open");
+
+    if (isOpen) {
+      burgerTop?.classList.add("open");
+      burgerMiddle?.classList.add("open");
+      burgerBottom?.classList.add("open");
+    } else {
+      burgerTop?.classList.remove("open");
+      burgerMiddle?.classList.remove("open");
+      burgerBottom?.classList.remove("open");
+    }
+
+    // Accessibility state
+    burger?.setAttribute("aria-expanded", String(isOpen));
+  }),
+);
