@@ -1,9 +1,9 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import type { WidthType } from "@consts";
+import type { WidthType, GapType } from "@consts";
 
 interface Props extends HTMLAttributes<"div"> {
-  gap?: "xs" | "sm" | "md" | "lg";
+  gap?: GapType;
   width?: WidthType;
   className?: string;
 }

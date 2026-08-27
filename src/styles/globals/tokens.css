@@ -13,7 +13,7 @@ NOTE: Custom fonts via fontsource are defined in astro.config.mjs and imported i
   --color-white: #ffffff;
   --color-grey-100: #eeeeee;
   --color-grey-150: #c4c4c4;
-  --color-grey-200: #8d8d8d;
+  --color-grey-200: #959595;
   --color-grey-300: #282828;
   --color-grey-400: #161616;
 
@@ -31,41 +31,41 @@ NOTE: Custom fonts via fontsource are defined in astro.config.mjs and imported i
   --text-100: clamp(1.2rem, 4vw, 1.4rem);
   --text-200: clamp(1.4rem, 4vw, 1.6rem);
   --text-300: clamp(1.6rem, 4vw, 1.8rem);
-  --text-400: clamp(1.8rem, 4vw, 2rem);
+  --text-400: clamp(2rem, 4vw, 2.2rem);
   --text-500: clamp(3.2rem, 4vw, 3.4rem);
-  --text-600: clamp(4.8rem, 4vw, 5rem);
+  --text-600: clamp(4rem, 4vw, 4.8rem);
   --text-700: clamp(5.6rem, 4vw, 5.8rem);
   --text-800: clamp(6.4rem, 4vw, 6.6rem);
   --text-900: clamp(8rem, 4vw, 8.2rem);
 
   /* vertical padding */
-  --vpadding-50: clamp(0.8rem, 8vw, 1.6rem);
-  --vpadding-100: clamp(1.6rem, 8vw, 2.4rem);
-  --vpadding-200: clamp(2.4rem, 8vw, 3.2rem);
-  --vpadding-300: clamp(3.2rem, 8vw, 4rem);
-  --vpadding-400: clamp(4rem, 8vw, 4.8rem);
-  --vpadding-500: clamp(4.8rem, 8vw, 5.6rem);
-  --vpadding-600: clamp(5.6rem, 8vw, 6.4rem);
-  --vpadding-700: clamp(6.4rem, 8vw, 7.2rem);
-  --vpadding-800: clamp(7.2rem, 8vw, 8rem);
-  --vpadding-900: clamp(8rem, 8vw, 8.8rem);
+  --vpadding-50: clamp(0.8rem, 4vw, 1.6rem);
+  --vpadding-100: clamp(1.6rem, 4vw, 2.4rem);
+  --vpadding-200: clamp(2.4rem, 4vw, 3.2rem);
+  --vpadding-300: clamp(3.2rem, 4vw, 4rem);
+  --vpadding-400: clamp(4rem, 4vw, 4.8rem);
+  --vpadding-500: clamp(4.8rem, 4vw, 5.6rem);
+  --vpadding-600: clamp(5.6rem, 4vw, 6.4rem);
+  --vpadding-700: clamp(6.4rem, 4vw, 7.2rem);
+  --vpadding-800: clamp(7.2rem, 4vw, 8rem);
+  --vpadding-900: clamp(8rem, 4vw, 8.8rem);
 
   /* here we need to account for things like section padding, which has larger ranges */
-  --vpadding-default: clamp(4rem, 8vw, 6rem);
+  --vpadding-default: clamp(4rem, 4vw, 6rem);
 
   /* horizontal padding */
-  --hpadding-100: clamp(0.8rem, 8vw, 1.2rem);
-  --hpadding-200: clamp(1.2rem, 8vw, 1.6rem);
-  --hpadding-300: clamp(1.6rem, 8vw, 2rem);
-  --hpadding-400: clamp(2rem, 8vw, 2.4rem);
-  --hpadding-500: clamp(2.4rem, 8vw, 2.8rem);
-  --hpadding-600: clamp(2.8rem, 8vw, 3.2rem);
-  --hpadding-700: clamp(3.2rem, 8vw, 3.6rem);
-  --hpadding-800: clamp(3.6rem, 8vw, 4rem);
-  --hpadding-900: clamp(4rem, 8vw, 4.4rem);
+  --hpadding-100: clamp(0.8rem, 4vw, 1.2rem);
+  --hpadding-200: clamp(1.2rem, 4vw, 1.6rem);
+  --hpadding-300: clamp(1.6rem, 4vw, 2rem);
+  --hpadding-400: clamp(2rem, 4vw, 2.4rem);
+  --hpadding-500: clamp(2.4rem, 4vw, 2.8rem);
+  --hpadding-600: clamp(2.8rem, 4vw, 3.2rem);
+  --hpadding-700: clamp(3.2rem, 4vw, 3.6rem);
+  --hpadding-800: clamp(3.6rem, 4vw, 4rem);
+  --hpadding-900: clamp(4rem, 4vw, 4.4rem);
 
   /* here we need to account for things like section padding, which has larger ranges */
-  --hpadding-default: clamp(1.6rem, 8vw, 3.2rem);
+  --hpadding-default: clamp(1.6rem, 4vw, 3.2rem);
 
   /* margin */
   /* --vmargin-100: 324;
@@ -81,7 +81,7 @@ NOTE: Custom fonts via fontsource are defined in astro.config.mjs and imported i
   /* gap */
   --gap-100: clamp(0.2rem, 4vw, 0.6rem);
   --gap-200: clamp(0.6rem, 4vw, 1rem);
-  --gap-300: clamp(1.4rem, 4vw, 1.8rem);
+  --gap-300: clamp(1rem, 4vw, 1.4rem);
   --gap-400: clamp(2.2rem, 4vw, 2.6rem);
   --gap-500: clamp(3rem, 4vw, 3.4rem);
   --gap-600: clamp(3.8rem, 4vw, 4.2rem);
