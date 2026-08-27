@@ -55,15 +55,15 @@ This file contains only values related to spacing. See the how-to doc for refere
 https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/min
 */
 .width-small {
-  width: min(100% - 2rem, 800px);
+  width: min(100%, 800px);
 }
 
 .width-normal {
-  width: min(100% - 2rem, 1200px);
+  width: min(100%, 1200px);
 }
 
 .width-wide {
-  width: min(100% - 2rem, 1600px);
+  width: min(100%, 1600px);
 }
 
 .width-full {

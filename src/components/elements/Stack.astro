@@ -22,7 +22,7 @@ const {
 } = Astro.props;
 ---
 
-<section
+<div
   class:list={[
     "nws-stack",
     `flex-${flex}`,
@@ -35,7 +35,7 @@ const {
   {...props}
 >
   <slot />
-</section>
+</div>
 
 <style>
   /* tablet */
