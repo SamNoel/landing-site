@@ -107,6 +107,10 @@ export default defineConfig({
       weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
     },
   ],
+
+  image: {
+    responsiveStyles: true, // Enables automatic global sizing styles
+  },
   env: {
     schema: {
       PUBLIC_WEB3FORMS_ACCESS_KEY: envField.string({

@@ -25,8 +25,8 @@ const serviceContent = await getServices();
       desktopImgUrl={"background-new.png"}
       mobileImgUrl={"background-new-mobile.png"}
       alt="An image of the Noel Web Studio logo."
-      class="hero-image"
-      width={700}
+      desktopClassNames="desktop-hero"
+      mobileClassNames="mobile-hero"
     />
     <SectionContainer width="wide">
       <Hero />
@@ -44,7 +44,7 @@ const serviceContent = await getServices();
     <Spacer />
 
     <SectionContainer
-      className="about-section fade-in-out-on-scroll bg-muted"
+      className="about-section fade-in-out-on-scroll"
       vpadding="lg"
       id="about"
     >
@@ -71,7 +71,11 @@ const serviceContent = await getServices();
 
     <Spacer />
 
-    <SectionContainer className="fade-in-out-on-scroll" width="small" id="contact">
+    <SectionContainer
+      className="fade-in-out-on-scroll"
+      width="small"
+      id="contact"
+    >
       <Stack flex="column" gap="md" justify="center" align="center">
         <Stack flex="column" gap="md" justify="center" align="center">
           <Heading titleSize="h2" align="center">Get In Touch.</Heading>
@@ -110,20 +114,25 @@ const serviceContent = await getServices();
 	</SectionContainer> -->
   </PageContainer>
 
-  <style define:vars={{ backgroundImage: `url(${BackgroundImage.src})` }}>
-    .hero-image {
+  <style>
+    .desktop-hero {
       position: absolute;
-      top: -5%;
+      right: 0;
+      top: 50%; /* 1. Moves the top edge to the middle of the screen */
+      transform: translateY(-50%); /* 2. Centers it vertically perfectly */
+      z-index: -1;
+      width: 50vw;
+      height: auto;
+      transform-origin: right;
+    }
+    .mobile-hero {
+      position: absolute;
+      width: 100vw;
+      top: 10;
       right: 0;
       z-index: -1;
+      height: auto;
     }
-    /* .homepage-container {
-      background-image: url(/src/assets/background-new.png); /*var(--backgroundImage); */
-      background-position: 100% -10%;
-      background-repeat: no-repeat;
-      background-size: 50%;
-      background-attachment: scroll;
-    } */
 
     .about-section {
       display: flex;
@@ -131,15 +140,5 @@ const serviceContent = await getServices();
       justify-content: center;
       align-items: center;
     }
-/* 
-    @media (max-width: 48rem) {
-      .homepage-container {
-        background-image: url(/src/assets/background-new-mobile.png); /*var(--backgroundImage); */
-        background-position: center top;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-attachment: scroll;
-      }
-    } */
   </style>
 </BaseLayout>

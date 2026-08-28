@@ -115,7 +115,7 @@ NOTE: Custom fonts via fontsource are defined in astro.config.mjs and imported i
   --s-color-type-button-primary-hover: var(--color-black);
   --s-color-surface-button-primary: var();
   --s-color-surface-button-primary-hover: var();
-  --s-color-surface-card: var(--color-grey-400);
+  --s-color-surface-card: var(--color-grey-500);
   --s-color-surface-bg: var(--color-black);
   --s-color-surface-bg-muted: var(--color-grey-500);
 
