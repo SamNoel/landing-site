@@ -19,4 +19,7 @@ export type JustifyType = "start" | "center" | "between" | "around" | "evenly";
 export type AlignType = "start" | "center" | "end" | "stretch";
 export type WidthType = "small" | "normal" | "wide" | "full";
 export type GapType = "xs" | "sm" | "md" | "lg";
+export type SpacerType = "sm" | "md" | "lg";
 export type TextAlignType = "left" | "center" | "right" | "justify";
+export type VPaddingSectionType = "none" | "sm" | "md" | "lg";
+export type HPaddingSectionType = "none" | "sm" | "md" | "lg";

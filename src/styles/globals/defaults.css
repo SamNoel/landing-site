@@ -39,71 +39,71 @@ h6 {
   font-synthesis: none;
   margin: 0;
   padding: 0;
-  color: var(--color-white);
+  color: var(--s-color-type-h);
 }
 
 h1.display {
-  font-size: var(--text-900);
+  font-size: var(--s-size-type-h1-display);
   line-height: 1.2;
 }
 
 h1 {
-  font-size: var(--text-600);
+  font-size: var(--s-size-type-h1);
   line-height: 1.15;
 }
 
 h2 {
-  font-size: var(--text-500);
+  font-size: var(--s-size-type-h2);
   line-height: 1.3;
 }
 
 h3 {
-  font-size: var(--text-400);
+  font-size: var(--s-size-type-h3);
   line-height: 1.4;
 }
 
 h4 {
-  font-size: var(--text-300);
+  font-size: var(--s-size-type-h4);
   line-height: 1.5;
 }
 
 p {
   font-family: var(--font-jost);
-  font-size: var(--text-200);
+  font-size: var(--s-size-type-p);
   font-weight: 300;
   font-synthesis: none;
   line-height: 1.6;
   margin: 0;
   padding: 0;
-  color: var(--color-grey-200);
+  color: var(--s-color-type-p);
 }
 
 a {
   font-family: var(--font-jost);
-  font-size: var(--text-200);
+  font-size: var(--s-size-type-a);
   font-weight: 300;
   text-decoration: underline;
   line-height: 1;
   margin: 0;
   padding: 0;
-  color: var(--color-grey-150);
+  color: var(--s-color-type-a);
 }
 
 a:hover {
-  color: var(--color-black);
+  color: var(--s-color-type-a-hover);
   background-color: var(--color-white);
 }
 
 a.nws-button {
   font-family: var(--font-jost);
-  font-size: var(--text-100);
+  font-size: var(--s-size-type-button);
   font-weight: 400;
   text-decoration: none;
 }
 
 p.logo-text {
   font-family: var(--font-jost);
-  font-size: var(--text-200);
+  font-size: var(--s-size-type-p);
   font-weight: 300;
   line-height: 1;
   margin: 0;

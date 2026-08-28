@@ -31,11 +31,14 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 // Check if image exists in the glob
 if (!images[imagePath])
   throw new Error(`"${imagePath}" does not exist in glob`);
+
+//use client:media and move Picture component into ResponsiveImage component
 ---
 
 <Picture
   src={images[imagePath]()}
   formats={["avif", "webp"]}
+  client:media=""
   alt={alt}
   layout="constrained"
   width={width}

@@ -22,7 +22,7 @@ const {
 } = Astro.props;
 ---
 
-<div class="nws-card bg-muted flex-column gap-xs justify-start" {...props}>
+<div class="nws-card flex-column gap-xs justify-start" {...props}>
   {imageName && <Image imageName={imageName}
     alt=`Image for card with title of: ${title}`
     class="card-image"
@@ -38,6 +38,7 @@ const {
   .nws-card {
     height: auto;
     padding: var(--vpadding-300) var(--hpadding-default);
+    background-color: var(--s-color-surface-card);
   }
 
   .card-image {

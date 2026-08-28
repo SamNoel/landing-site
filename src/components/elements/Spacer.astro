@@ -1,8 +1,9 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import type { SpacerType } from "@consts";
 
 interface Props extends HTMLAttributes<"div"> {
-  gap?: "sm" | "md" | "lg";
+  gap?: SpacerType;
 }
 
 const { gap = "md", ...props } = Astro.props;

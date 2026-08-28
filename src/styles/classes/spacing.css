@@ -10,6 +10,46 @@ This file contains only values related to spacing. See the how-to doc for refere
   padding: var(--vpadding-200) var(--hpadding-default);
 }
 
+.vpad-section-none {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.vpad-section-sm {
+  padding-top: var(--vpadding-400);
+  padding-bottom: var(--vpadding-400);
+}
+
+.vpad-section-md {
+  padding-top: var(--vpadding-default);
+  padding-bottom: var(--vpadding-default);
+}
+
+.vpad-section-lg {
+  padding-top: var(--vpadding-800);
+  padding-bottom: var(--vpadding-800);
+}
+
+.hpad-section-none {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.hpad-section-sm {
+  padding-left: var(--hpadding-400);
+  padding-right: var(--hpadding-400);
+}
+
+.hpad-section-md {
+  padding-left: var(--hpadding-default);
+  padding-right: var(--hpadding-default);
+}
+
+.hpad-section-lg {
+  padding-left: var(--hpadding-800);
+  padding-right: var(--hpadding-800);
+}
+
 /** 
 -------------------GAP-------------------
 **/

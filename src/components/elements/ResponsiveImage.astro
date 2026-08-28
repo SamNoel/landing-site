@@ -8,12 +8,14 @@ interface Props extends HTMLAttributes<"picture"> {
   mobileImgUrl: string | ImageMetadata;
   desktopImgUrl: string | ImageMetadata;
   alt: string;
+  width?: number;
 }
 
 const {
   mobileImgUrl,
   desktopImgUrl,
   alt = "A description of my image.",
+  width = 200,
   ...props
 } = Astro.props;
 
@@ -23,20 +25,20 @@ const mobileImagePath = `${BASE_IMAGE_PATH}${mobileImgUrl}`;
 const mobileImg = await getImage({
   src: mobileImagePath,
   format: "webp",
-  width: 200,
-  height: 200,
+  width: width,
+  height: width,
 });
 
 const desktopImg = await getImage({
   src: desktopImagePath,
   format: "webp",
-  width: 200,
-  height: 200,
+  width: width,
+  height: width,
 });
 ---
 
 <picture {...props}>
-  <source media="(max-width: 768px)" srcset={mobileImg.src} />
-  <source media="(min-width: 769px)" srcset={desktopImg.src} />
-  <img src={desktopImg.src} alt={alt} />
+  <source media="(max-width: 48rem)" srcset={mobileImg.src} />
+  <source media="(min-width: 48.1rem)" srcset={desktopImg.src} />
+  <img src={desktopImg.src} alt={alt} width={width} />
 </picture>

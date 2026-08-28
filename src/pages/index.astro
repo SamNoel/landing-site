@@ -13,6 +13,7 @@ import Text from "@components/elements/Text.astro";
 import Spacer from "@components/elements/Spacer.astro";
 import ContactForm from "@components/forms/ContactForm.astro";
 import Grid from "@components/elements/Grid.astro";
+import ResponsiveImage from "@components/elements/ResponsiveImage.astro";
 
 const aboutContent = await getAbout();
 const serviceContent = await getServices();
@@ -20,6 +21,13 @@ const serviceContent = await getServices();
 
 <BaseLayout title="Home">
   <PageContainer id="home" class="homepage-container">
+    <ResponsiveImage
+      desktopImgUrl={"background-new.png"}
+      mobileImgUrl={"background-new-mobile.png"}
+      alt="An image of the Noel Web Studio logo."
+      class="hero-image"
+      width={700}
+    />
     <SectionContainer width="wide">
       <Hero />
     </SectionContainer>
@@ -36,7 +44,8 @@ const serviceContent = await getServices();
     <Spacer />
 
     <SectionContainer
-      class="about-section fade-in-out-on-scroll bg-muted"
+      className="about-section fade-in-out-on-scroll bg-muted"
+      vpadding="lg"
       id="about"
     >
       <Stack flex="column" gap="lg" justify="center" align="center">
@@ -62,7 +71,7 @@ const serviceContent = await getServices();
 
     <Spacer />
 
-    <SectionContainer class="fade-in-out-on-scroll" width="small" id="contact">
+    <SectionContainer className="fade-in-out-on-scroll" width="small" id="contact">
       <Stack flex="column" gap="md" justify="center" align="center">
         <Stack flex="column" gap="md" justify="center" align="center">
           <Heading titleSize="h2" align="center">Get In Touch.</Heading>
@@ -102,13 +111,19 @@ const serviceContent = await getServices();
   </PageContainer>
 
   <style define:vars={{ backgroundImage: `url(${BackgroundImage.src})` }}>
-    .homepage-container {
-      background-image: url(/src/assets/background-transparent.png); /*var(--backgroundImage); */
-      background-position: right bottom;
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-attachment: fixed;
+    .hero-image {
+      position: absolute;
+      top: -5%;
+      right: 0;
+      z-index: -1;
     }
+    /* .homepage-container {
+      background-image: url(/src/assets/background-new.png); /*var(--backgroundImage); */
+      background-position: 100% -10%;
+      background-repeat: no-repeat;
+      background-size: 50%;
+      background-attachment: scroll;
+    } */
 
     .about-section {
       display: flex;
@@ -116,15 +131,15 @@ const serviceContent = await getServices();
       justify-content: center;
       align-items: center;
     }
-
-    @media (max-width: 768px) {
+/* 
+    @media (max-width: 48rem) {
       .homepage-container {
-        background-image: url(/src/assets/background-mobile-transparent.png); /*var(--backgroundImage); */
+        background-image: url(/src/assets/background-new-mobile.png); /*var(--backgroundImage); */
         background-position: center top;
         background-repeat: no-repeat;
         background-size: contain;
         background-attachment: scroll;
       }
-    }
+    } */
   </style>
 </BaseLayout>
