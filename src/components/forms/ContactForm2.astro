@@ -1,0 +1,33 @@
+---
+/**
+ * A simple contact form
+ */
+---
+
+<form id="contact-form">
+  <input type="text" name="name" required placeholder="John Doe" />
+  <input type="text" name="email" required placeholder="example@email.com" />
+  <textarea
+    name="message"
+    id="message"
+    required
+    placeholder="How can we help your business?"></textarea>
+
+  <!-- hp field -->
+  <input
+    type="text"
+    name="website"
+    class="hp-field"
+    tabindex="-1"
+    autocomplete="off"
+  />
+
+  <button type="submit">Send</button>
+</form>
+
+<style>
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+  }
+</style>
