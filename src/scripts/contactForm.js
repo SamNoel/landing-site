@@ -1,7 +1,7 @@
 document.addEventListener(
   "DOMContentLoaded",
   () => {
-    const form = document.getElementById("form");
+    const form = document.getElementById("contact-form");
     const result = document.getElementById("result");
 
     form.addEventListener("submit", function (e) {

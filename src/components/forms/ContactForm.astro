@@ -1,81 +1,53 @@
 ---
-// import {PUBLIC_WEB3FORMS_ACCESS_KEY} from 'astro:env/client';
+/**
+ * A simple contact form
+ */
 ---
 
-<form
-  action="https://api.web3forms.com/submit"
-  method="POST"
-  id="form"
-  class="needs-validation contact-form max-wide gap-md"
-  data-astro-reload
-  novalidate
->
+<form id="contact-form" class="contact-form">
   <input
     type="hidden"
     name="access_key"
     value="92f04ba0-23e2-43c0-bbde-e883621269a0"
   />
 
-  <input type="checkbox" class="hidden" name="botcheck" />
-  <div class="field">
-    <label for="full_name" class="cf_label">Name</label>
-    <input
-      id="full_name"
-      type="text"
-      placeholder="Full Name"
-      required
-      class="cf_input"
-      name="name"
-    />
-    <div class="validation_message empty-feedback invalid-feedback">
-      Please provide your full name.
-    </div>
+  <div class="cf-field-wrapper">
+  <label for="input_name" class="cf-label">Name</label>
+  <input id="input_name" class="cf-field bg-muted" type="text" name="name" required placeholder="John Doe" />
   </div>
-  <div class="field">
-    <label for="email_address" class="cf_label">Email Address</label>
-    <input
-      id="email_address"
-      type="email"
-      placeholder="Email Address"
-      name="email"
-      required
-      class="cf_input"
-    />
-    <div class="validation_message empty-feedback invalid-feedback">
-      Please provide your email address.
-    </div>
-    <div class="validation_message empty-feedback invalid-feedback">
-      Please provide a valid email address.
-    </div>
+
+  <div class="cf-field-wrapper">
+  <label for="input_email" class="cf-label">Email Address</label>
+  <input id="input_email" class="cf-field bg-muted" type="text" name="email" required placeholder="example@email.com" />
   </div>
-  <div class="field">
-    <label for="message" class="cf_label">Message</label>
-    <textarea
-      id="message"
-      name="message"
-      required
-      placeholder="How can we help your business?"
-      class="cf_input"></textarea>
-    <div class="validation_message empty-feedback invalid-feedback">
-      Please enter your message.
-    </div>
+
+  <div class="cf-field-wrapper">
+  <label for="input_message" class="cf-label">Message</label>
+  <textarea id="input_message" class="cf-field bg-muted" 
+    name="message"
+    id="message"
+    required
+    placeholder="How can we help your business?"></textarea>
   </div>
-  <div class="hcaptcha-wrapper">
-    <div class="h-captcha" data-captcha="true" data-theme="dark" data-lang="en">
-    </div>
-  </div>
-  <button type="submit" class="submit-btn button primary">Send Message</button>
-  <div id="result" class="result_message"></div>
+
+  <!-- hp field -->
+  <input
+    type="text"
+    name="website"
+    class="hp-field"
+    tabindex="-1"
+    autocomplete="off"
+  />
+
+  <button type="submit" class="nws-button">Send</button>
+  <div id="result" class="result-message"></div>
 </form>
 
 <style>
-  .hidden {
-    display: none !important;
-  }
-
   .contact-form {
     display: flex;
     flex-direction: column;
+    gap: 24px;
     border: 1px solid var(--color-grey-300);
     border-radius: 3px;
     padding: 2rem;
@@ -83,125 +55,52 @@
     width: 100%;
   }
 
-  .field {
+  .cf-field-wrapper {
     display: flex;
     flex-direction: column;
     gap: 6px;
   }
 
-  .cf_label {
+  .cf-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px 16px;
+    color: var(--s-color-type-h);
+    font-size: var(--s-size-type-p);
+  }
+
+  .cf-label {
     font-size: 1rem;
     font-weight: 400;
     letter-spacing: 0.04em;
     color: var(--color-grey-200);
   }
 
-  .cf_input {
-    font-family: var(--font-jost);
-    font-size: var(--s-size-type-p);
-    font-weight: 300;
-    color: #fff;
-    background: #000;
-    border: 1px solid var(--color-grey-300);
-    border-radius: 3px;
-    padding: 0.75rem 1rem;
-    width: 100%;
-    box-sizing: border-box;
-    transition:
-      border-color 150ms ease,
-      background 150ms ease;
-    resize: vertical;
-  }
-
-  .validation_message {
-    font-size: var(--s-size-type-p);
-    color: red;
-  }
-
-  .result_message {
-    font-size: var(--s-size-type-p);
+  .result-message {
     color: var(--color-white);
   }
 
-  .hcaptcha-wrapper {
-    width: 100%;
-    height: 100px;
+  .hp-field {
+    position: absolute;
+    left: -9999px;
   }
 
-  input::placeholder,
-  textarea::placeholder {
-    color: rgba(255, 255, 255, 0.4);
-  }
-
-  input:hover,
-  textarea:hover {
-    border-color: rgba(255, 255, 255, 0.3);
-  }
-
-  input:focus,
-  textarea:focus {
-    outline: none;
-    border-color: rgba(255, 255, 255, 0.7);
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  input[aria-invalid="true"],
-  textarea[aria-invalid="true"] {
-    border-color: rgba(255, 100, 100, 0.7);
-  }
-
-  /* ── Submit button ── */
-  .submit-btn {
-    font-family: var(--font-jost);
-    font-size: var(--s-size-type-button);
-    font-weight: 500;
-    color: #000;
-    background: #fff;
-    border: none;
-    border-radius: 3px;
-    padding: 1.5rem 1.75rem;
+  .nws-button {
+    display: inline-block;
+    padding: var(--vpadding-50) var(--hpadding-100);
+    transition: opacity 0.2s ease;
+    border-radius: var(--border-radius-sm);
+    width: min(auto);
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    gap: 0.5rem;
-    transition:
-      background 150ms ease,
-      color 150ms ease,
-      opacity 150ms ease;
-    white-space: nowrap;
+
+    transition: background 0.2s ease;
   }
 
-  .submit-btn:hover:not(:disabled) {
-    background: rgba(255, 255, 255, 0.85);
-  }
-
-  .submit-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .invalid-feedback,
-  .empty-feedback {
-    display: none;
-  }
-
-  .was-validated :placeholder-shown:invalid ~ .empty-feedback {
-    display: block;
-  }
-
-  .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
-    display: block;
-  }
-
-  .is-invalid,
-  .was-validated :invalid {
-    border-color: #dc3545;
+  .nws-button:focus {
+    outline: 2px solid var(--color-focus);
+    color: var(--color-focus);
   }
 </style>
 
-<script src="/src/scripts/vendor/web3forms.js"></script>
 <script src="/src/scripts/contactForm.js"></script>
-
-<!-- <script src="https://web3forms.com/client/script.js" async defer></script> -->

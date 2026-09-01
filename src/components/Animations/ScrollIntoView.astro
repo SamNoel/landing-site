@@ -1,0 +1,18 @@
+---
+import "@styles/globals/defaults.css";
+import type { HTMLAttributes } from "astro/types";
+import AnimationBase from "./AnimationBase.astro";
+
+interface Props extends HTMLAttributes<"div"> {
+  delay?: number;
+  classNames?: string;
+}
+
+const { delay = 0, classNames = "", ...props } = Astro.props;
+---
+
+<AnimationBase animationClasses="fade-in-line-wrapper" dataAnimate="fade-in" otherClasses=`${classNames}`
+  ><AnimationBase animationClasses="fade-in-line" variables=`--i: ${delay}` otherClasses=`width-full`
+    ><slot /></AnimationBase
+  ></AnimationBase
+>

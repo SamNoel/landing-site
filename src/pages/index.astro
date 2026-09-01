@@ -13,8 +13,7 @@ import Spacer from "@components/elements/Spacer.astro";
 import ContactForm from "@components/forms/ContactForm.astro";
 import Grid from "@components/elements/Grid.astro";
 import ResponsiveImage from "@components/elements/ResponsiveImage.astro";
-import AnimationElement from "@components/elements/AnimationElement.astro";
-import AnimationText from "@components/elements/AnimationText.astro";
+import ScrollIntoView from "@components/Animations/ScrollIntoView.astro";
 
 const aboutContent = await getAbout();
 const serviceContent = await getServices();
@@ -48,41 +47,39 @@ const serviceContent = await getServices();
       <Stack flex="column" gap="lg" justify="center" align="center">
         <Stack flex="column" gap="sm" justify="center" align="center">
           <Heading titleSize="h2" align="center"
-            ><AnimationElement
-              >Fast, custom websites that actually convert.</AnimationElement
+            ><ScrollIntoView delay={0}>Fast, custom websites that actually convert.</ScrollIntoView
             ></Heading
           >
-          <AnimationText delayValue={1} align="center"
-            >We know that the web can be an overwhelming place for many
+          <ScrollIntoView delay={1}><Text align="center">We know that the web can be an overwhelming place for many
             businesses. At Noel Web Studio, our aim is to be your long-term web
             partner and deliver you a fast website and get more people finding
-            your business online.</AnimationText
+            your business online.</Text></ScrollIntoView
           >
         </Stack>
         <Grid>
-          <AnimationElement delayValue={2}>
+          <ScrollIntoView delay={2}>
             <Card
               title={serviceContent[0].title}
               text={serviceContent[0].text}
-            /></AnimationElement
+            /></ScrollIntoView
           >
-          <AnimationElement delayValue={3}>
+          <ScrollIntoView delay={3}>
             <Card
               title={serviceContent[1].title}
               text={serviceContent[1].text}
-            /></AnimationElement
+            /></ScrollIntoView
           >
-          <AnimationElement delayValue={4}>
+          <ScrollIntoView delay={4}>
             <Card
               title={serviceContent[2].title}
               text={serviceContent[2].text}
-            /></AnimationElement
+            /></ScrollIntoView
           >
-          <AnimationElement delayValue={5}>
+          <ScrollIntoView delay={5}>
             <Card
               title={serviceContent[3].title}
               text={serviceContent[3].text}
-            /></AnimationElement
+            /></ScrollIntoView
           >
         </Grid>
       </Stack>
@@ -101,16 +98,16 @@ const serviceContent = await getServices();
         width="full"
       >
         <Heading titleSize="h2" align="center"
-          ><AnimationElement>Get In Touch.</AnimationElement></Heading
+          ><ScrollIntoView delay={0}>Get In Touch.</ScrollIntoView></Heading
         >
-        <AnimationText align="center" delayValue={1}>
-          If you are looking for web services and think we could be a good fit,
-          get in touch by filling out the form below.
-        </AnimationText>
+        <ScrollIntoView delay={1}>
+          <Text align="center">If you are looking for web services and think we could be a good fit,
+          get in touch by filling out the form below.</Text>
+        </ScrollIntoView>
       </Stack>
-      <AnimationElement class="width-full align-center">
+      <ScrollIntoView delay={2} classNames="width-xsmall">
         <ContactForm />
-      </AnimationElement>
+      </ScrollIntoView>
     </Stack>
   </SectionContainer>
 

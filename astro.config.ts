@@ -67,8 +67,8 @@ export default defineConfig({
       directives: [
         // script-src and style-src are included by default: https://docs.astro.build/en/reference/configuration-reference/#securitycspdirectives
         "default-src 'self'",
-        "connect-src 'self' https://api.web3forms.com https://hcaptcha.com https://*.hcaptcha.com",
-        "frame-src 'self' https://hcaptcha.com https://*.hcaptcha.com",
+        "connect-src 'self' https://api.web3forms.com",
+        "frame-src 'self'",
         "base-uri 'self'",
         "form-action 'self' https://api.web3forms.com",
       ],
@@ -77,18 +77,10 @@ export default defineConfig({
           "'self'",
           "https://static.cloudflareinsights.com",
           "https://web3forms.com",
-          "https://js.hcaptcha.com",
-          "https://hcaptcha.com",
-          "https://*.hcaptcha.com",
         ],
       },
       styleDirective: {
-        resources: [
-          "'self'",
-          "'unsafe-inline'",
-          "https://hcaptcha.com",
-          "https://*.hcaptcha.com",
-        ],
+        resources: ["'self'", "'unsafe-inline'"],
       },
     },
   },

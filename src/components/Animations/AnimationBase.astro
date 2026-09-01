@@ -1,0 +1,28 @@
+---
+import "@styles/globals/defaults.css";
+import type { HTMLAttributes } from "astro/types";
+
+// Allow swapping the root element while maintaining type safety for that tag
+interface Props extends HTMLAttributes<"div"> {
+  variables?: string;
+  animationClasses: string;
+  otherClasses?: string;
+  dataAnimate?: string;
+}
+
+const {
+  variables = "",
+  animationClasses = "",
+  otherClasses = "",
+  dataAnimate = "",
+  ...props
+} = Astro.props;
+---
+
+<div
+  class:list={[animationClasses, otherClasses]}
+  data-animate={dataAnimate}
+  style={variables}
+>
+  <slot />
+</div>

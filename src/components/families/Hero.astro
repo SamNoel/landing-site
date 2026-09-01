@@ -2,9 +2,7 @@
 import Heading from "@components/elements/Heading.astro";
 import Text from "@components/elements/Text.astro";
 import Button from "@components/elements/Button.astro";
-import AnimationElement from "@components/elements/AnimationElement.astro";
-import AnimationText from "@components/elements/AnimationText.astro";
-import AnimationContainer from "@components/containers/AnimationContainer.astro";
+import ScrollIntoView from "@components/Animations/ScrollIntoView.astro";
 
 const { ...props } = Astro.props;
 ---
@@ -12,14 +10,17 @@ const { ...props } = Astro.props;
 <section class="hero" , {...props}>
   <div class="content-container">
     <Heading titleSize="h1" display={false}>
-      <AnimationElement delayValue={1}>We build custom</AnimationElement>
-      <AnimationElement delayValue={2}>websites for small</AnimationElement>
-      <AnimationElement delayValue={3}>businesses.</AnimationElement>
+      <ScrollIntoView delay={1}>We build custom</ScrollIntoView>
+      <ScrollIntoView delay={2}>websites for small</ScrollIntoView>
+      <ScrollIntoView delay={3}>businesses.</ScrollIntoView>
     </Heading>
-    <AnimationText align="start" delayValue={4}
-      >We're your all-in-one web partner. We build you a 100% custom website
-      suited specifically for your business, with fast loading speeds and
-      optimized content. Let us take the complication out of your web presence.</AnimationText
+    <ScrollIntoView delay={4}>
+      <Text>
+        We're your all-in-one web partner. We build you a 100% custom website
+        suited specifically for your business, with fast loading speeds and
+        optimized content. Let us take the complication out of your web
+        presence.
+      </Text></ScrollIntoView
     >
 
     <!-- <Text align="center"
@@ -32,10 +33,8 @@ const { ...props } = Astro.props;
         </p></AnimationElement
       ></Text
     > -->
-    <AnimationContainer as="div"
-      ><AnimationElement
-        ><Button href="#contact" label="Get in Touch" /></AnimationElement
-      ></AnimationContainer
+    <ScrollIntoView delay={5}
+      ><Button href="#contact" label="Get in Touch" /></ScrollIntoView
     >
   </div>
 </section>

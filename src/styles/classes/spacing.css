@@ -94,6 +94,10 @@ This file contains only values related to spacing. See the how-to doc for refere
 /* Widths based on smalles value. This allows us to keep 100% on mobile while limiting on larger screens
 https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/min
 */
+.width-xsmall {
+  width: min(100%, 600px);
+}
+
 .width-small {
   width: min(100%, 800px);
 }
