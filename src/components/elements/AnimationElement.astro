@@ -12,13 +12,19 @@ interface Props extends HTMLAttributes<
 > {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "div";
   delayValue?: number;
+  classNames?: string;
 }
 
-const { as: Tag = "div", delayValue = 0, ...props } = Astro.props;
+const {
+  as: Tag = "div",
+  delayValue = 0,
+  classNames = "",
+  ...props
+} = Astro.props;
 ---
 
 <div class="fade-in-line-wrapper" data-animate>
-  <Tag class="fade-in-line" style=`--i: ${delayValue}`>
+  <Tag class=`fade-in-line ${classNames}` style=`--i: ${delayValue}`>
     <slot />
   </Tag>
 </div>

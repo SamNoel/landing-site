@@ -91,20 +91,26 @@ const serviceContent = await getServices();
 
   <Spacer />
 
-  <SectionContainer
-    className="fade-in-out-on-scroll"
-    width="small"
-    id="contact"
-  >
-    <Stack flex="column" gap="md" justify="center" align="center">
-      <Stack flex="column" gap="md" justify="center" align="center">
-        <Heading titleSize="h2" align="center">Get In Touch.</Heading>
-        <Text align="center">
+  <SectionContainer className="fade-in-out-on-scroll" id="contact">
+    <Stack flex="column" gap="md" justify="center" align="center" width="full">
+      <Stack
+        flex="column"
+        gap="md"
+        justify="center"
+        align="center"
+        width="full"
+      >
+        <Heading titleSize="h2" align="center"
+          ><AnimationElement>Get In Touch.</AnimationElement></Heading
+        >
+        <AnimationText align="center" delayValue={1}>
           If you are looking for web services and think we could be a good fit,
           get in touch by filling out the form below.
-        </Text>
+        </AnimationText>
       </Stack>
-      <ContactForm />
+      <AnimationElement class="width-full align-center">
+        <ContactForm />
+      </AnimationElement>
     </Stack>
   </SectionContainer>
 
