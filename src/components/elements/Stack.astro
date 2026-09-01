@@ -1,4 +1,12 @@
 ---
+/**
+ * @component Stack Component
+ *
+ * @description This component is a container for elements that stack using flex.
+ * Attributes can be set like row/column, gap, justify, align, and width. Custom
+ * classes can be applied for custom styling.
+ */
+
 import type { HTMLAttributes } from "astro/types";
 import type { JustifyType, AlignType, WidthType, GapType } from "@consts";
 
@@ -8,7 +16,7 @@ interface Props extends HTMLAttributes<"section"> {
   justify?: JustifyType;
   align?: AlignType;
   width?: WidthType;
-  className?: string;
+  classNames?: string;
 }
 
 const {
@@ -16,7 +24,7 @@ const {
   gap = "md",
   justify = "start",
   align = "start",
-  className = "",
+  classNames = "",
   width = "normal",
   ...props
 } = Astro.props;
@@ -30,7 +38,7 @@ const {
     `justify-${justify}`,
     `align-${align}`,
     `width-${width}`,
-    `${className}`,
+    `${classNames}`,
   ]}
   {...props}
 >

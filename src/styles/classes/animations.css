@@ -32,12 +32,29 @@ a:hover {
 @keyframes fadeInWithDelay {
   from {
     opacity: 0;
-    transform: translateY(20px); /* Optional: adds a slight slide-up effect */
+    transform: translateY(100%); /* Optional: adds a slight slide-up effect */
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.fade-in-line-wrapper {
+  overflow: hidden;
+}
+
+.fade-in-line {
+  will-change: transform, opacity;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+/* Only animate when the parent wrapper becomes visible */
+.fade-in-line-wrapper.is-visible .fade-in-line {
+  animation: fadeInWithDelay 1s cubic-bezier(0.67, 0.07, 0.36, 1) forwards; /* name | duration | timing | delay | fill-mode */
+  animation-delay: calc(0.2s + (var(--i, 0) * 0.05s));
 }
 
 /* 2. Apply it to your target scroll elements */
@@ -53,12 +70,16 @@ a:hover {
   animation-range: cover;
 }
 
-.fade-in-with-delay {
-  /* Apply the fade-in animation when the element is in view */
-  /* animation: fadeIn ease-in-out both;
-  animation-timeline: view();
-  animation-fill-mode: both;
-  animation-range: cover; */
-  opacity: 0;
-  animation: fadeInWithDelay 0.75s ease-in-out 0.5s forwards; /* name | duration | timing | delay | fill-mode */
+/* =========================
+   ACCESSIBILITY
+========================= */
+@media (prefers-reduced-motion: reduce) {
+  .line-content {
+    /* Kill the animation entirely */
+    animation: none !important;
+
+    /* Ensure the text is instantly visible and correctly positioned */
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
 }

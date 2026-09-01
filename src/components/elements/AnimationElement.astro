@@ -1,0 +1,24 @@
+---
+import "@styles/globals/defaults.css";
+import type { HTMLAttributes } from "astro/types";
+import type { AlignType, WidthType } from "@consts";
+import AnimationElement from "@components/elements/AnimationElement.astro";
+import Heading from "@components/elements/Heading.astro";
+import Text from "@components/elements/Text.astro";
+
+// Allow swapping the root element while maintaining type safety for that tag
+interface Props extends HTMLAttributes<
+  "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "div"
+> {
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "div";
+  delayValue?: number;
+}
+
+const { as: Tag = "div", delayValue = 0, ...props } = Astro.props;
+---
+
+<div class="fade-in-line-wrapper" data-animate>
+  <Tag class="fade-in-line" style=`--i: ${delayValue}`>
+    <slot />
+  </Tag>
+</div>

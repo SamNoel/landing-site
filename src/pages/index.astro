@@ -7,13 +7,14 @@ import Card from "@components/compounds/Card.astro";
 import { getAbout } from "@data/about.tsx";
 import { getServices } from "@data/services.tsx";
 import PageContainer from "@components/containers/PageContainer.astro";
-import BackgroundImage from "@assets/background-transparent.png";
 import Heading from "@components/elements/Heading.astro";
 import Text from "@components/elements/Text.astro";
 import Spacer from "@components/elements/Spacer.astro";
 import ContactForm from "@components/forms/ContactForm.astro";
 import Grid from "@components/elements/Grid.astro";
 import ResponsiveImage from "@components/elements/ResponsiveImage.astro";
+import AnimationElement from "@components/elements/AnimationElement.astro";
+import AnimationText from "@components/elements/AnimationText.astro";
 
 const aboutContent = await getAbout();
 const serviceContent = await getServices();
@@ -43,52 +44,71 @@ const serviceContent = await getServices();
 
     <Spacer />
 
-    <SectionContainer
-      className="about-section fade-in-out-on-scroll"
-      vpadding="lg"
-      id="about"
-    >
+    <SectionContainer className="about-section " vpadding="lg" id="about">
       <Stack flex="column" gap="lg" justify="center" align="center">
         <Stack flex="column" gap="sm" justify="center" align="center">
           <Heading titleSize="h2" align="center"
-            >Fast, custom websites that actually convert.</Heading
+            ><AnimationElement
+              >Fast, custom websites that actually convert.</AnimationElement
+            ></Heading
           >
-          <Text align="center">
-            We know that the web can be an overwhelming place for many
+          <AnimationText delayValue={1} align="center"
+            >We know that the web can be an overwhelming place for many
             businesses. At Noel Web Studio, our aim is to be your long-term web
             partner and deliver you a fast website and get more people finding
-            your business online.
-          </Text>
+            your business online.</AnimationText
+          >
         </Stack>
         <Grid>
-          <Card title={serviceContent[0].title} text={serviceContent[0].text} />
-          <Card title={serviceContent[1].title} text={serviceContent[1].text} />
-          <Card title={serviceContent[2].title} text={serviceContent[2].text} />
-          <Card title={serviceContent[3].title} text={serviceContent[3].text} />
+          <AnimationElement delayValue={2}>
+            <Card
+              title={serviceContent[0].title}
+              text={serviceContent[0].text}
+            /></AnimationElement
+          >
+          <AnimationElement delayValue={3}>
+            <Card
+              title={serviceContent[1].title}
+              text={serviceContent[1].text}
+            /></AnimationElement
+          >
+          <AnimationElement delayValue={4}>
+            <Card
+              title={serviceContent[2].title}
+              text={serviceContent[2].text}
+            /></AnimationElement
+          >
+          <AnimationElement delayValue={5}>
+            <Card
+              title={serviceContent[3].title}
+              text={serviceContent[3].text}
+            /></AnimationElement
+          >
         </Grid>
       </Stack>
     </SectionContainer>
+  </PageContainer>
 
-    <Spacer />
+  <Spacer />
 
-    <SectionContainer
-      className="fade-in-out-on-scroll"
-      width="small"
-      id="contact"
-    >
+  <SectionContainer
+    className="fade-in-out-on-scroll"
+    width="small"
+    id="contact"
+  >
+    <Stack flex="column" gap="md" justify="center" align="center">
       <Stack flex="column" gap="md" justify="center" align="center">
-        <Stack flex="column" gap="md" justify="center" align="center">
-          <Heading titleSize="h2" align="center">Get In Touch.</Heading>
-          <Text align="center">
-            If you are looking for web services and think we could be a good
-            fit, get in touch by filling out the form below.
-          </Text>
-        </Stack>
-        <ContactForm />
+        <Heading titleSize="h2" align="center">Get In Touch.</Heading>
+        <Text align="center">
+          If you are looking for web services and think we could be a good fit,
+          get in touch by filling out the form below.
+        </Text>
       </Stack>
-    </SectionContainer>
+      <ContactForm />
+    </Stack>
+  </SectionContainer>
 
-    <!-- <SectionContainer>
+  <!-- <SectionContainer>
 		<Stack
 		direction="column"
 					gap="md"
@@ -112,33 +132,32 @@ const serviceContent = await getServices();
 			</Grid>
 		</Stack>
 	</SectionContainer> -->
-  </PageContainer>
-
-  <style>
-    .desktop-hero {
-      position: absolute;
-      right: 0;
-      top: 50%; /* 1. Moves the top edge to the middle of the screen */
-      transform: translateY(-50%); /* 2. Centers it vertically perfectly */
-      z-index: -1;
-      width: 50vw;
-      height: auto;
-      transform-origin: right;
-    }
-    .mobile-hero {
-      position: absolute;
-      width: 100vw;
-      top: 10;
-      right: 0;
-      z-index: -1;
-      height: auto;
-    }
-
-    .about-section {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-  </style>
 </BaseLayout>
+
+<style>
+  .desktop-hero {
+    position: absolute;
+    right: 0;
+    top: 50%; /* 1. Moves the top edge to the middle of the screen */
+    transform: translateY(-50%); /* 2. Centers it vertically perfectly */
+    z-index: -1;
+    width: 50vw;
+    height: auto;
+    transform-origin: right;
+  }
+  .mobile-hero {
+    position: absolute;
+    width: 100vw;
+    top: 10;
+    right: 0;
+    z-index: -1;
+    height: auto;
+  }
+
+  .about-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

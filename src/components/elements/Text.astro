@@ -4,20 +4,30 @@ import type { HTMLAttributes } from "astro/types";
 import type { AlignType, WidthType } from "@consts";
 
 // Allow swapping the root element while maintaining type safety for that tag
-interface Props extends HTMLAttributes<"p" | "span" | "strong" | "em"> {
-  as?: "p" | "span" | "strong" | "em";
+export interface Props extends HTMLAttributes<"p" | "span" | "strong" | "em"> {
+  textType?: "p" | "span" | "strong" | "em";
   align?: AlignType;
   maxWidth?: WidthType;
+  classNames?: string;
 }
 
 const {
-  as: Tag = "p",
-  align = "left",
+  textType = "p",
+  align = "start",
   maxWidth = "normal",
+  classNames = "",
   ...props
 } = Astro.props;
+
+// Render the title with the appropriate heading tag based on the titleSize prop
+const TextTag = textType || "p";
 ---
 
-<Tag class=`text-${align} max-text-${maxWidth}` , {...props}>
+<TextTag
+  class=`text-${align} max-text-${maxWidth} ${classNames}`
+  style="display: inline-block"
+  ,
+  {...props}
+>
   <slot />
-</Tag>
+</TextTag>

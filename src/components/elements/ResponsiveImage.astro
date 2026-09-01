@@ -1,4 +1,17 @@
 ---
+/**
+ * @component Responsive Image Component
+ *
+ * @description This component is a wrapper for Astro's native Picture component,
+ * which generates next-gen formats for images and optimizes them. In this
+ * wrapper component, you can pass a desktop image URL and an optional
+ * mobile image URL, along with any custom class for the images in order to
+ * style them based on your use case.
+ *
+ * The component also enforces using an alt tag, and has optional lazy/eager loading
+ * with a default set to lazy.
+ */
+
 import { Picture, getImage } from "astro:assets";
 import { BASE_IMAGE_PATH } from "@consts";
 import type { HTMLAttributes } from "astro/types";
@@ -12,26 +25,6 @@ interface Props extends HTMLAttributes<"picture"> {
   loading?: "lazy" | "eager";
 }
 
-/**
- * We want to be able to set:
- * desktop width
- * desktop height
- * mobile width
- * mobile height
- * ^^^ responsive
- * desktopImageSizing: fixed, fluid
- *  mobileImageSizing: fixed, fluid
- *
- * desktop image
- * mobile image
- *
- * alt
- *
- * position
- *
- * additional classes (for things like JS animations)
- */
-
 const {
   mobileImgUrl = "",
   desktopImgUrl = "placeholder.webp",
@@ -42,6 +35,7 @@ const {
   ...props
 } = Astro.props;
 
+// Get full image paths
 const desktopImagePath = `${BASE_IMAGE_PATH}${desktopImgUrl}`;
 const mobileImagePath = mobileImgUrl
   ? `${BASE_IMAGE_PATH}${mobileImgUrl}`

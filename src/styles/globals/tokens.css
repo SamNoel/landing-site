@@ -98,6 +98,7 @@ NOTE: Custom fonts via fontsource are defined in astro.config.mjs and imported i
   --border-radius-lg: 16px;
 
   /* -------------------------SEMANTIC TOKENS------------------------- */
+
   --s-size-type-p: var(--text-200);
   --s-size-type-a: var(--text-200);
   --s-size-type-h1-display: var(--text-900);
