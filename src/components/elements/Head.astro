@@ -1,10 +1,9 @@
 ---
-import { SITE_TITLE } from "@consts";
 import { Font } from "astro:assets";
 import bgDesktop from "@assets/background-transparent.png";
 import bgMobile from "@assets/background-mobile-transparent.png";
 
-const { title = { SITE_TITLE } } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <head>
@@ -30,4 +29,5 @@ const { title = { SITE_TITLE } } = Astro.props;
     fetchpriority="high"
   />
   <title>{title}</title>
+  <meta name="description" content={description} />
 </head>

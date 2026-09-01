@@ -12,7 +12,12 @@ import Footer from "@components/compounds/Footer.astro";
 import Head from "@components/elements/Head.astro";
 import { SITE_TITLE } from "@consts";
 
-const { title = SITE_TITLE } = Astro.props;
+interface Props extends HTMLAttributes<"head"> {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
 ---
 
 <html lang="en">
