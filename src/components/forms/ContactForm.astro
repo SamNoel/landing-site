@@ -2,6 +2,7 @@
 /**
  * A simple contact form
  */
+import Button from "@components/elements/Button.astro";
 ---
 
 <form id="contact-form" class="contact-form">
@@ -12,22 +13,38 @@
   />
 
   <div class="cf-field-wrapper">
-  <label for="input_name" class="cf-label">Name</label>
-  <input id="input_name" class="cf-field bg-muted" type="text" name="name" required placeholder="John Doe" />
+    <label for="input_name" class="cf-label">Name</label>
+    <input
+      id="input_name"
+      class="cf-field bg-muted"
+      type="text"
+      name="name"
+      required
+      placeholder="John Doe"
+    />
   </div>
 
   <div class="cf-field-wrapper">
-  <label for="input_email" class="cf-label">Email Address</label>
-  <input id="input_email" class="cf-field bg-muted" type="text" name="email" required placeholder="example@email.com" />
+    <label for="input_email" class="cf-label">Email Address</label>
+    <input
+      id="input_email"
+      class="cf-field bg-muted"
+      type="text"
+      name="email"
+      required
+      placeholder="example@email.com"
+    />
   </div>
 
   <div class="cf-field-wrapper">
-  <label for="input_message" class="cf-label">Message</label>
-  <textarea id="input_message" class="cf-field bg-muted" 
-    name="message"
-    id="message"
-    required
-    placeholder="How can we help your business?"></textarea>
+    <label for="input_message" class="cf-label">Message</label>
+    <textarea
+      id="input_message"
+      class="cf-field bg-muted"
+      name="message"
+      id="message"
+      required
+      placeholder="How can we help your business?"></textarea>
   </div>
 
   <!-- hp field -->
@@ -39,7 +56,7 @@
     autocomplete="off"
   />
 
-  <button type="submit" class="nws-button">Send</button>
+  <Button type="submit" text="Send" label="Submit button" />
   <div id="result" class="result-message"></div>
 </form>
 
@@ -84,22 +101,6 @@
   .hp-field {
     position: absolute;
     left: -9999px;
-  }
-
-  .nws-button {
-    display: inline-block;
-    padding: var(--vpadding-50) var(--hpadding-100);
-    transition: opacity 0.2s ease;
-    border-radius: var(--border-radius-sm);
-    width: min(auto);
-    cursor: pointer;
-
-    transition: background 0.2s ease;
-  }
-
-  .nws-button:focus {
-    outline: 2px solid var(--color-focus);
-    color: var(--color-focus);
   }
 </style>
 

@@ -6,11 +6,12 @@ import PageContainer from "@components/containers/PageContainer.astro";
 import BackgroundImage from "@assets/background-transparent.png";
 import Heading from "@components/elements/Heading.astro";
 import Text from "@components/elements/Text.astro";
-
-export const prerender = true;
 ---
 
-<BaseLayout title="404">
+<BaseLayout
+  title="404"
+  description="It looks like you may be in the wrong place"
+>
   <PageContainer id="404" class="notfound-container">
     <SectionContainer className="notfound-section-container">
       <Stack

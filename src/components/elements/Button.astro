@@ -1,67 +1,30 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 
-interface Props extends HTMLAttributes<"a"> {
-  href?: string;
-  label?: string;
+interface Props extends HTMLAttributes<"button"> {
+  classNames?: string;
+  label: string;
+  text: string;
   variant?: "primary" | "secondary";
 }
 
 const {
-  href = "#",
-  label = "Click Here",
+  type = "button",
+  onclick = () => {},
+  classNames = "",
+  label = `A ${type} button`,
+  text = "Button",
   variant = "primary",
   ...props
 } = Astro.props;
 ---
 
-<a
-  type="button"
-  href={href}
-  class={`nws-button ${variant} text-center button-text`}
+<button
+  type={type}
+  class:list={["nws-button", classNames, "text-center", "button-text", variant]}
   {...props}
   aria-label={label}
   title={label}
 >
-  {label}
-</a>
-
-<style>
-  .nws-button {
-    display: inline-block;
-    padding: var(--vpadding-50) var(--hpadding-200);
-    transition: opacity 0.2s ease;
-    border-radius: var(--border-radius-sm);
-    width: min(auto);
-
-    transition: background 0.2s ease;
-  }
-
-  .nws-button:focus {
-    outline: 2px solid var(--color-focus);
-    color: var(--color-focus);
-  }
-
-  .primary {
-    border: var(--border-width) solid var(--color-white);
-    background-color: var(--color-white);
-    color: var(--color-black);
-  }
-
-  .primary:hover {
-    border: var(--border-width) solid var(--color-grey-200);
-    background-color: var(--color-grey-200);
-    color: black;
-  }
-
-  .secondary {
-    border: none;
-    background-color: none;
-    color: var(--color-body);
-  }
-
-  .secondary:hover {
-    background-color: var(--color-white);
-    color: var(--color-black);
-  }
-</style>
+  {text}
+</button>

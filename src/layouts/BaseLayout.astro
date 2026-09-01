@@ -10,18 +10,12 @@ import "@styles/classes/direction.css";
 import Header from "@components/compounds/Header.astro";
 import Footer from "@components/compounds/Footer.astro";
 import Head from "@components/elements/Head.astro";
-import { SITE_TITLE } from "@consts";
-
-interface Props extends HTMLAttributes<"head"> {
-  title: string;
-  description: string;
-}
 
 const { title, description } = Astro.props;
 ---
 
 <html lang="en">
-  <Head title={title} />
+  <Head title={title} description={description} />
   <body class="bg-main">
     <Header />
     <slot />

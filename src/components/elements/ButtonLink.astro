@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"a"> {
+  href?: string;
+  label?: string;
+  variant?: "primary" | "secondary";
+}
+
+const {
+  href = "#",
+  label = "Click Here",
+  variant = "primary",
+  ...props
+} = Astro.props;
+---
+
+<a
+  type="button"
+  href={href}
+  class={`nws-button ${variant} text-center button-text`}
+  {...props}
+  aria-label={label}
+  title={label}
+>
+  {label}
+</a>

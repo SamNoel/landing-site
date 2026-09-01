@@ -109,3 +109,46 @@ p.logo-text {
   margin: 0;
   padding: 0;
 }
+
+/* BUTTON STYLES */
+.nws-button {
+  display: inline-block;
+  padding: var(--vpadding-50) var(--hpadding-200);
+  transition: opacity 0.2s ease;
+  border-radius: var(--border-radius-sm);
+  width: min(auto);
+
+  transition: background 0.2s ease;
+}
+
+.nws-button:focus {
+  outline: 2px solid var(--color-focus);
+  color: var(--color-focus);
+}
+
+.nws-button:hover {
+  cursor: pointer;
+}
+
+.primary {
+  border: var(--border-width) solid var(--color-white);
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+.primary:hover {
+  border: var(--border-width) solid var(--color-grey-200);
+  background-color: var(--color-grey-200);
+  color: black;
+}
+
+.secondary {
+  border: none;
+  background-color: none;
+  color: var(--color-body);
+}
+
+.secondary:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
