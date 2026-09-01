@@ -17,6 +17,6 @@ const observer = new IntersectionObserver(
 );
 
 // Target all line wrappers
-document.querySelectorAll("[data-animate]").forEach((wrapper) => {
+document.querySelectorAll('[data-animate="fade-in"]').forEach((wrapper) => {
   observer.observe(wrapper);
 });

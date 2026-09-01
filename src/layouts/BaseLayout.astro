@@ -21,5 +21,9 @@ const { title = SITE_TITLE } = Astro.props;
     <Header />
     <slot />
     <Footer />
+    <script>
+      import "../scripts/animations.js";
+      import "../scripts/vendor/web3forms.js";
+    </script>
   </body>
 </html>
