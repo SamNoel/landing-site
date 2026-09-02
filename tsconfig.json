@@ -9,7 +9,6 @@
       "@assets/*": ["./src/assets/*"],
       "@schemas/*": ["./src/lib/schemas/*"],
       "@data/*": ["./src/lib/data/*"],
-      "@api/*": ["./src/lib/api/*"],
       "@content/*": ["./src/content/*"],
       "@services/*": ["./src/services/*"],
       "@styles/*": ["./src/styles/*"],
