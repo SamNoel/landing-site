@@ -5,24 +5,9 @@ const { ...props } = Astro.props;
 ---
 
 <footer class="footer" {...props}>
-  <div class="inner">
+  <div class="footer-inner">
     <Text align="center" maxWidth="full">
       &copy; {new Date().getFullYear()} Noel Web Studio. All rights reserved.
     </Text>
   </div>
 </footer>
-
-<style>
-  .footer {
-    margin-top: var(--space-12x);
-    padding: var(--space-6x) 0;
-    border-top: var(--border-width) solid var(--color-border);
-    flex-shrink: 0;
-  }
-
-  .inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: var(--vpadding-200) 0;
-  }
-</style>
