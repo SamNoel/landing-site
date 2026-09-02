@@ -4,7 +4,6 @@ import SectionContainer from "@components/containers/SectionContainer.astro";
 import Stack from "@components/elements/Stack.astro";
 import Divider from "@components/elements/Divider.astro";
 import PageContainer from "@components/containers/PageContainer.astro";
-import BackgroundImage from "@assets/background-transparent.png";
 import Button from "@components/elements/ButtonLink.astro";
 import Card from "@components/compounds/Card.astro";
 import Heading from "@components/elements/Heading.astro";
@@ -40,23 +39,3 @@ import Text from "@components/elements/Text.astro";
     </SectionContainer>
   </PageContainer>
 </BaseLayout>
-
-<style define:vars={{ backgroundImage: `url(${BackgroundImage.src})` }}>
-  .page-container {
-    background-image: url(/src/assets/background-transparent.png); /*var(--backgroundImage); */
-    background-position: right bottom;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-attachment: fixed;
-  }
-
-  @media (max-width: 768px) {
-    .page-container {
-      background-image: url(/src/assets/background-mobile-transparent.png); /*var(--backgroundImage); */
-      background-position: center top;
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-attachment: scroll;
-    }
-  }
-</style>

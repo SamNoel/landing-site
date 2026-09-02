@@ -80,7 +80,7 @@ export default defineConfig({
         ],
       },
       styleDirective: {
-        resources: ["'self'", "'unsafe-inline'"],
+        resources: ["'self'"],
       },
     },
   },

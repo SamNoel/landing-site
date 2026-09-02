@@ -10,23 +10,3 @@ const { gap = "md", ...props } = Astro.props;
 ---
 
 <div class=`.spacer spacer-${gap} max-full` {...props} aria-hidden="true"></div>
-
-<style>
-  .spacer-sm {
-    height: 8rem;
-  }
-
-  .spacer-md {
-    height: 12rem;
-  }
-
-  .spacer-lg {
-    height: 16rem;
-  }
-
-  @media (max-width: 768px) {
-    .spacer {
-      height: 80px;
-    }
-  }
-</style>

@@ -14,10 +14,3 @@ const { className = "", gap = "md", width = "normal", ...props } = Astro.props;
 <div class={`nws-grid ${className} gap-${gap} width-${width}`} {...props}>
   <slot />
 </div>
-
-<style>
-  .nws-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  }
-</style>

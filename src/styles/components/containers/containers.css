@@ -1,0 +1,17 @@
+.page-container {
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  width: 100%;
+  min-width: 0;
+  overflow: clip;
+}
+
+.section-container {
+  display: flex;
+  scroll-margin-top: calc((var(--vpadding-100) * 2) + var(--vpadding-100));
+}
