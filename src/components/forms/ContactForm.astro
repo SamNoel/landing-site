@@ -48,12 +48,17 @@ import Button from "@components/elements/Button.astro";
   </div>
 
   <!-- hp field -->
+  <label for="input_website" class="hp-label" tabindex="-1" aria-hidden="true"
+    >Website</label
+  >
   <input
+    id="input_website"
     type="text"
     name="website"
     class="hp-field"
     tabindex="-1"
     autocomplete="off"
+    aria-hidden="true"
   />
 
   <Button type="submit" text="Send" label="Submit button" />
@@ -98,7 +103,8 @@ import Button from "@components/elements/Button.astro";
     color: var(--color-white);
   }
 
-  .hp-field {
+  .hp-field,
+  .hp-label {
     position: absolute;
     left: -9999px;
   }
