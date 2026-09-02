@@ -24,5 +24,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // Target all line wrappers (line-wrappers need to specify data-animate property with a value of "fade-in")
   document.querySelectorAll('[data-animate="fade-in"]').forEach((wrapper) => {
     scrolledInViewObserver.observe(wrapper);
+
+    // Runs once per page load; sets the CSS custom property via CSSOM,
+    // which CSP's style-src does not restrict.
+    document.querySelectorAll("[data-i]").forEach((el) => {
+      const value = el.dataset.i;
+      if (value !== undefined) {
+        el.style.setProperty("--i", value);
+      }
+    });
   });
 });

@@ -4,14 +4,14 @@ import type { HTMLAttributes } from "astro/types";
 
 // Allow swapping the root element while maintaining type safety for that tag
 interface Props extends HTMLAttributes<"div"> {
-  variables?: string;
+  index?: number;
   animationClasses: string;
   otherClasses?: string;
   dataAnimate?: string;
 }
 
 const {
-  variables = "",
+  index,
   animationClasses = "",
   otherClasses = "",
   dataAnimate = "",
@@ -22,7 +22,7 @@ const {
 <div
   class:list={[animationClasses, otherClasses]}
   data-animate={dataAnimate}
-  style={variables}
+  data-i={index}
 >
   <slot />
 </div>
