@@ -1,7 +1,5 @@
 ---
 import { Font } from "astro:assets";
-import bgDesktop from "@assets/background-transparent.png";
-import bgMobile from "@assets/background-mobile-transparent.png";
 
 const { title, description } = Astro.props;
 ---
@@ -14,20 +12,6 @@ const { title, description } = Astro.props;
   <Font cssVariable="--font-jost" preload={true} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" href="/favicon.ico" />
-  <link
-    rel="preload"
-    as="image"
-    href={bgDesktop.src}
-    type="image/png"
-    fetchpriority="high"
-  />
-  <link
-    rel="preload"
-    as="image"
-    href={bgMobile.src}
-    type="image/png"
-    fetchpriority="high"
-  />
   <title>{title}</title>
   <meta name="description" content={description} />
 </head>
