@@ -65,6 +65,10 @@ export default defineConfig({
     syntaxHighlight: "prism", // Uses CSS classes instead of inline styles
   },
 
+  build: {
+    inlineStylesheets: "auto", // or "always" to force it. This should help with the network depenedency tree issue in core web vitals
+  },
+
   security: {
     csp: {
       algorithm: "SHA-512",

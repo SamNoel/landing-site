@@ -26,6 +26,18 @@ const { title, description } = Astro.props;
     <Footer />
     <script>
       import "../scripts/animations.js";
+
+      // this creates the Cloudflare tracking beacon only AFTER page load
+      window.addEventListener("load", () => {
+        const script = document.createElement("script");
+        script.src = "https://static.cloudflareinsights.com/beacon.min.js";
+        script.defer = true;
+        script.setAttribute(
+          "data-cf-beacon",
+          JSON.stringify({ token: "c5cac76170194ddaaedc0c2d76ea4771" }),
+        );
+        document.body.appendChild(script);
+      });
     </script>
   </body>
 </html>
