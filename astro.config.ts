@@ -61,6 +61,10 @@ export default defineConfig({
 
   output: "static",
 
+  markdown: {
+    syntaxHighlight: "prism", // Uses CSS classes instead of inline styles
+  },
+
   security: {
     csp: {
       algorithm: "SHA-512",
