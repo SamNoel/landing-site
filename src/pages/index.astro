@@ -32,28 +32,23 @@ const serviceContent = await getServices();
       <Hero />
     </SectionContainer>
 
-    <!-- <Spacer />
-
-    <SectionContainer class="about-section fade-in-out-on-scroll" id="about">
-      <Stack flex="row" gap="sm" justify="center" align="start">
-        <Heading titleSize="h2">{aboutContent.title}</Heading>
-        <div><aboutContent.Content /></div>
-      </Stack>
-    </SectionContainer> -->
-
     <Spacer />
 
     <SectionContainer className="about-section " vpadding="lg" id="about">
       <Stack flex="column" gap="lg" justify="center" align="center">
         <Stack flex="column" gap="sm" justify="center" align="center">
           <Heading titleSize="h2" align="center"
-            ><ScrollIntoView delay={0}>Fast, custom websites that actually convert.</ScrollIntoView
+            ><ScrollIntoView delay={0}
+              >Fast, custom websites that actually convert.</ScrollIntoView
             ></Heading
           >
-          <ScrollIntoView delay={1}><Text align="center">We know that the web can be an overwhelming place for many
-            businesses. At Noel Web Studio, our aim is to be your long-term web
-            partner and deliver you a fast website and get more people finding
-            your business online.</Text></ScrollIntoView
+          <ScrollIntoView delay={1}
+            ><Text align="center"
+              >We know that the web can be an overwhelming place for many
+              businesses. At Noel Web Studio, our aim is to be your long-term
+              web partner and deliver you a fast website and get more people
+              finding your business online.</Text
+            ></ScrollIntoView
           >
         </Stack>
         <Grid>
@@ -101,8 +96,10 @@ const serviceContent = await getServices();
           ><ScrollIntoView delay={0}>Get In Touch.</ScrollIntoView></Heading
         >
         <ScrollIntoView delay={1}>
-          <Text align="center">If you are looking for web services and think we could be a good fit,
-          get in touch by filling out the form below.</Text>
+          <Text align="center"
+            >If you are looking for web services and think we could be a good
+            fit, get in touch by filling out the form below.</Text
+          >
         </ScrollIntoView>
       </Stack>
       <ScrollIntoView delay={2} classNames="width-xsmall">
@@ -110,31 +107,6 @@ const serviceContent = await getServices();
       </ScrollIntoView>
     </Stack>
   </SectionContainer>
-
-  <!-- <SectionContainer>
-		<Stack
-		direction="column"
-					gap="md"
-					horizontalAlign="left"
-					verticalAlign="top"
-		>
-			<h2>What Our Customers Are Saying…</h2>
-			<Grid columns={3}>
-				{reviewsCollection.map((review) => (
-					<Stack
-					direction="column"
-					gap="sm"
-					horizontalAlign="left"
-					verticalAlign="top"
-					>
-						<h3>{review.name}</h3>
-						<p>{review.review}</p>
-						{/* <p><strong>- {review.author}</strong></p> */}
-					</Stack>
-				))}
-			</Grid>
-		</Stack>
-	</SectionContainer> -->
 </BaseLayout>
 
 <script>
